@@ -7,5 +7,6 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :addresses, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :carts, dependent: :destroy
 
 end
