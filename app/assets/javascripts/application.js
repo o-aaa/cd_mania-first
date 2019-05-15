@@ -14,3 +14,13 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// nested_form_fieldsで使用
+//= require nested_form_field
+
+// jQueryで使用
+//= require jquery  // ←ここを追加
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require_tree .
