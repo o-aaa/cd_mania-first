@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :users, only:[:index, :show, :edit, :update, :destroy]
   resources :addresses, only:[:new, :create, :show, :edit, :update]
-  resources :addresses, only:[:index, :create, :destroy]
+  resources :favorites, only:[:index, :create, :destroy]
   resources :products
   resources :discs, only:[:new, :create, :edit, :update, :destroy]
   resources :songs, only:[:new, :create, :edit, :update, :destroy]
   resources :carts, only:[:create, :update, :destroy]
-  resources :addresses, only:[:index, :destroy, :update]
+  resources :orders, only:[:index, :destroy, :update]
   get "/users/:id/orders/confirmation/:id" => "orders#confirmation", as: 'confirmation'
   get "/order_items" => "order_items#index", as: 'index'
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
