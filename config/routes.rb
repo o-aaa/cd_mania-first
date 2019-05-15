@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only:[:index, :show, :edit, :update, :destroy]
+
   resources :addresses, only:[:new, :create, :show, :edit, :update]
   resources :favorites, only:[:index, :create, :destroy]
   resources :products
@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get "/order_items" => "order_items#index", as: 'index'
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
   devise_for :users
+  resources :users, only:[:index, :show, :edit, :update, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
