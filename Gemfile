@@ -48,6 +48,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # 追加
+  # エラー画面詳細
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -60,3 +64,37 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# 追加
+#ログイン/ログアウト
+gem 'devise'
+
+# 画像投稿、画像リサイズ
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+
+# ページネーション
+gem 'kaminari', '~> 0.17.0'
+
+# 検索
+gem 'ransack'
+
+# 論理削除
+gem 'paranoia'
+
+# 動的フォームの追加
+gem 'nested_form_fields'
+
+# 都道府県コードと都道府県名を変換するGem
+gem 'jp_prefecture'
+gem 'jquery-rails' #rails5はこれを入れないとjQueryが動きません
+gem 'simple_form'  #formをすっきり書けます
+
+# レイアウト
+gem 'bootstrap', '~> 4.2.1'
+
+# デザイン（java)
+gem "jquery-rails"
+
+
+
