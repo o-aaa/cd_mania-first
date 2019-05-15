@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 1
+  disc_name: MyString
+  artist: MyString
+  price: 1
+  release_date: 2019-05-15
+  cover_image_id: MyText
+  lebel: MyString
+
+two:
+  product_id: 1
+  disc_name: MyString
+  artist: MyString
+  price: 1
+  release_date: 2019-05-15
+  cover_image_id: MyText
+  lebel: MyString
