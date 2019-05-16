@@ -1,0 +1,922 @@
+Last login: Wed May 15 13:32:41 on ttys000
+kitaharasatotamanoMacBook-Pro:~ satumikitahara$ cd ~/desktop
+kitaharasatotamanoMacBook-Pro:desktop satumikitahara$ pwd
+/Users/satumikitahara/desktop
+kitaharasatotamanoMacBook-Pro:desktop satumikitahara$ cd ~/Desktop/work/vagrant/cd_mania
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ pwd
+/Users/satumikitahara/Desktop/work/vagrant/cd_mania
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   Gemfile
+	modified:   Gemfile.lock
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]使用GemをGemfileに追加"
+[master 6625982] [Add]使用GemをGemfileに追加
+ 2 files changed, 146 insertions(+)
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 1.98 KiB | 1.98 MiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To github.com:o-aaa/cd_mania-first.git
+   f148438..6625982  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/assets/javascripts/application.js
+	modified:   config/routes.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/user.rb
+	config/initializers/devise.rb
+	config/locales/devise.en.yml
+	db/migrate/
+	test/fixtures/users.yml
+	test/models/user_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Update]application.jsにnested_form_fields,jQueryの記述を追加"
+[master a182f32] [Update]application.jsにnested_form_fields,jQueryの記述を追加
+ 8 files changed, 452 insertions(+)
+ create mode 100644 app/models/user.rb
+ create mode 100644 config/initializers/devise.rb
+ create mode 100644 config/locales/devise.en.yml
+ create mode 100644 db/migrate/20190515043817_devise_create_users.rb
+ create mode 100644 test/fixtures/users.yml
+ create mode 100644 test/models/user_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 36, done.
+Counting objects: 100% (36/36), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (22/22), done.
+Writing objects: 100% (22/22), 9.00 KiB | 2.25 MiB/s, done.
+Total 22 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   6625982..a182f32  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	db/schema.rb
+
+nothing added to commit but untracked files present (use "git add" to track)
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]deviseのマイグレーションファイルをマイグレート"
+[master 9f1a2b2] [Add]deviseのマイグレーションファイルをマイグレート
+ 1 file changed, 37 insertions(+)
+ create mode 100644 db/schema.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 1.08 KiB | 1.08 MiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   a182f32..9f1a2b2  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/user.rb
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/address.rb
+	db/migrate/20190515050315_create_addresses.rb
+	test/fixtures/addresses.yml
+	test/models/address_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/address.rb
+	modified:   app/models/user.rb
+	new file:   db/migrate/20190515050315_create_addresses.rb
+	modified:   db/schema.rb
+	new file:   test/fixtures/addresses.yml
+	new file:   test/models/address_test.rb
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]Adressモデル"
+[master c1eebed] [Add]Adressモデル
+ 6 files changed, 58 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/address.rb
+ create mode 100644 db/migrate/20190515050315_create_addresses.rb
+ create mode 100644 test/fixtures/addresses.yml
+ create mode 100644 test/models/address_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 24, done.
+Counting objects: 100% (24/24), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (14/14), 1.68 KiB | 573.00 KiB/s, done.
+Total 14 (delta 6), reused 0 (delta 0)
+remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   9f1a2b2..c1eebed  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/user.rb
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/favorite.rb
+	db/migrate/20190515060339_create_favorites.rb
+	test/fixtures/favorites.yml
+	test/models/favorite_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]favoriteモデル"
+[master d4d1979] [Add]favoriteモデル
+ 6 files changed, 42 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/favorite.rb
+ create mode 100644 db/migrate/20190515060339_create_favorites.rb
+ create mode 100644 test/fixtures/favorites.yml
+ create mode 100644 test/models/favorite_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (15/15), 1.58 KiB | 808.00 KiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   c1eebed..d4d1979  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/product.rb
+	db/migrate/20190515060618_create_products.rb
+	test/fixtures/products.yml
+	test/models/product_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/product.rb
+	new file:   db/migrate/20190515060618_create_products.rb
+	modified:   db/schema.rb
+	new file:   test/fixtures/products.yml
+	new file:   test/models/product_test.rb
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]productモデル"
+[master 772175c] [Add]productモデル
+ 5 files changed, 62 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/product.rb
+ create mode 100644 db/migrate/20190515060618_create_products.rb
+ create mode 100644 test/fixtures/products.yml
+ create mode 100644 test/models/product_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 23, done.
+Counting objects: 100% (23/23), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (13/13), done.
+Writing objects: 100% (14/14), 1.65 KiB | 1.65 MiB/s, done.
+Total 14 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   d4d1979..772175c  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/product.rb
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/disc.rb
+	db/migrate/20190515061604_create_discs.rb
+	test/fixtures/discs.yml
+	test/models/disc_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]Diskモデル追加"
+[master fbc5f14] [Add]Diskモデル追加
+ 6 files changed, 48 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/disc.rb
+ create mode 100644 db/migrate/20190515061604_create_discs.rb
+ create mode 100644 test/fixtures/discs.yml
+ create mode 100644 test/models/disc_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (15/15), 1.60 KiB | 817.00 KiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   772175c..fbc5f14  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/disc.rb
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/song.rb
+	db/migrate/20190515061942_create_songs.rb
+	test/fixtures/songs.yml
+	test/models/song_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   app/models/disc.rb
+	new file:   app/models/song.rb
+	new file:   db/migrate/20190515061942_create_songs.rb
+	modified:   db/schema.rb
+	new file:   test/fixtures/songs.yml
+	new file:   test/models/song_test.rb
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]Songモデル"
+[master 324522a] [Add]Songモデル
+ 6 files changed, 47 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/song.rb
+ create mode 100644 db/migrate/20190515061942_create_songs.rb
+ create mode 100644 test/fixtures/songs.yml
+ create mode 100644 test/models/song_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (15/15), 1.61 KiB | 822.00 KiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   fbc5f14..324522a  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/product.rb
+	modified:   app/models/user.rb
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/cart.rb
+	db/migrate/20190515062130_create_carts.rb
+	test/fixtures/carts.yml
+	test/models/cart_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/cart.rb
+	modified:   app/models/product.rb
+	modified:   app/models/user.rb
+	new file:   db/migrate/20190515062130_create_carts.rb
+	modified:   db/schema.rb
+	new file:   test/fixtures/carts.yml
+	new file:   test/models/cart_test.rb
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]Cartモデル"
+[master 471a0aa] [Add]Cartモデル
+ 7 files changed, 55 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/cart.rb
+ create mode 100644 db/migrate/20190515062130_create_carts.rb
+ create mode 100644 test/fixtures/carts.yml
+ create mode 100644 test/models/cart_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 27, done.
+Counting objects: 100% (27/27), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (16/16), 1.66 KiB | 851.00 KiB/s, done.
+Total 16 (delta 10), reused 0 (delta 0)
+remote: Resolving deltas: 100% (10/10), completed with 10 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   324522a..471a0aa  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/address.rb
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/order.rb
+	db/migrate/20190515062804_create_orders.rb
+	test/fixtures/orders.yml
+	test/models/order_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]Orderモデル"
+[master 2c9e9e7] [Add]Orderモデル
+ 6 files changed, 55 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/order.rb
+ create mode 100644 db/migrate/20190515062804_create_orders.rb
+ create mode 100644 test/fixtures/orders.yml
+ create mode 100644 test/models/order_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (15/15), 1.70 KiB | 868.00 KiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   471a0aa..2c9e9e7  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/order.rb
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/models/order_item.rb
+	db/migrate/20190515063124_create_order_items.rb
+	test/fixtures/order_items.yml
+	test/models/order_item_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]Order_itemモデル"
+[master 297444d] [Add]Order_itemモデル
+ 6 files changed, 47 insertions(+), 1 deletion(-)
+ create mode 100644 app/models/order_item.rb
+ create mode 100644 db/migrate/20190515063124_create_order_items.rb
+ create mode 100644 test/fixtures/order_items.yml
+ create mode 100644 test/models/order_item_test.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (15/15), 1.61 KiB | 823.00 KiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   2c9e9e7..297444d  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   db/schema.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	db/migrate/20190515063625_add_user_flag_to_user.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Update]user_flag,user_statusカラムUserテーブルに追加"
+[master ce8470b] [Update]user_flag,user_statusカラムUserテーブルに追加
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+ create mode 100644 db/migrate/20190515063625_add_user_flag_to_user.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 735 bytes | 735.00 KiB/s, done.
+Total 6 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   297444d..ce8470b  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   config/routes.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/assets/javascripts/addresses.coffee
+	app/assets/javascripts/carts.coffee
+	app/assets/javascripts/discs.coffee
+	app/assets/javascripts/favorites.coffee
+	app/assets/javascripts/order_items.coffee
+	app/assets/javascripts/orders.coffee
+	app/assets/javascripts/products.coffee
+	app/assets/javascripts/songs.coffee
+	app/assets/javascripts/users.coffee
+	app/assets/stylesheets/addresses.scss
+	app/assets/stylesheets/carts.scss
+	app/assets/stylesheets/discs.scss
+	app/assets/stylesheets/favorites.scss
+	app/assets/stylesheets/order_items.scss
+	app/assets/stylesheets/orders.scss
+	app/assets/stylesheets/products.scss
+	app/assets/stylesheets/songs.scss
+	app/assets/stylesheets/users.scss
+	app/controllers/addresses_controller.rb
+	app/controllers/carts_controller.rb
+	app/controllers/discs_controller.rb
+	app/controllers/favorites_controller.rb
+	app/controllers/order_items_controller.rb
+	app/controllers/orders_controller.rb
+	app/controllers/products_controller.rb
+	app/controllers/songs_controller.rb
+	app/controllers/users_controller.rb
+	app/helpers/addresses_helper.rb
+	app/helpers/carts_helper.rb
+	app/helpers/discs_helper.rb
+	app/helpers/favorites_helper.rb
+	app/helpers/order_items_helper.rb
+	app/helpers/orders_helper.rb
+	app/helpers/products_helper.rb
+	app/helpers/songs_helper.rb
+	app/helpers/users_helper.rb
+	app/views/addresses/
+	app/views/favorites/
+	app/views/order_items/
+	app/views/orders/
+	app/views/products/
+	app/views/users/
+	test/controllers/addresses_controller_test.rb
+	test/controllers/carts_controller_test.rb
+	test/controllers/discs_controller_test.rb
+	test/controllers/favorites_controller_test.rb
+	test/controllers/order_items_controller_test.rb
+	test/controllers/orders_controller_test.rb
+	test/controllers/products_controller_test.rb
+	test/controllers/songs_controller_test.rb
+	test/controllers/users_controller_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]controllerつ
+  [復元日時2019/05/15 15:41:35]
+Last login: Wed May 15 15:41:35 on ttys000
+Restored session: 2019年 5月15日 水曜日 15時41分14秒 JST
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git sttaus
+git: 'sttaus' is not a git command. See 'git --help'.
+
+The most similar command is
+	status
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 81, done.
+Counting objects: 100% (81/81), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (57/57), done.
+Writing objects: 100% (69/69), 6.21 KiB | 577.00 KiB/s, done.
+Total 69 (delta 19), reused 0 (delta 0)
+remote: Resolving deltas: 100% (19/19), completed with 3 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   ce8470b..4b0379e  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   app/controllers/order_items_controller.rb
+	new file:   app/views/order_items/thankyou.html.erb
+	modified:   config/routes.rb
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]routes"
+[master c449cb4] [Add]routes
+ 3 files changed, 21 insertions(+), 17 deletions(-)
+ create mode 100644 app/views/order_items/thankyou.html.erb
+ rewrite config/routes.rb (64%)
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 18, done.
+Counting objects: 100% (18/18), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 1.10 KiB | 1.10 MiB/s, done.
+Total 10 (delta 5), reused 0 (delta 0)
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+remote: 
+acBook-Pro:cd_mania satumikitahara$ git commit-m "[Fix]routens default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   4b0379e..c449cb4  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit-m "[Fix]routeの名前間違いを修正"
+git: 'commit-m' is not a git command. See 'git --help'.
+
+The most similar command is
+	commit-tree
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Everything up-to-date
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   app/assets/javascripts/application.js
+	new file:   app/views/kaminari/_first_page.html.erb
+	new file:   app/views/kaminari/_gap.html.erb
+	new file:   app/views/kaminari/_last_page.html.erb
+	new file:   app/views/kaminari/_next_page.html.erb
+	new file:   app/views/kaminari/_page.html.erb
+	new file:   app/views/kaminari/_paginator.html.erb
+	new file:   app/views/kaminari/_prev_page.html.erb
+	new file:   config/initializers/kaminari_config.rb
+	modified:   config/routes.rb
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]kaminariで使うconfig,view"
+[master dcdc3e5] [Add]kaminariで使うconfig,view
+ 10 files changed, 99 insertions(+), 12 deletions(-)
+ create mode 100644 app/views/kaminari/_first_page.html.erb
+ create mode 100644 app/views/kaminari/_gap.html.erb
+ create mode 100644 app/views/kaminari/_last_page.html.erb
+ create mode 100644 app/views/kaminari/_next_page.html.erb
+ create mode 100644 app/views/kaminari/_page.html.erb
+ create mode 100644 app/views/kaminari/_paginator.html.erb
+ create mode 100644 app/views/kaminari/_prev_page.html.erb
+ create mode 100644 config/initializers/kaminari_config.rb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 28, done.
+Counting objects: 100% (28/28), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (19/19), done.
+Writing objects: 100% (19/19), 2.45 KiB | 1.23 MiB/s, done.
+Total 19 (delta 13), reused 0 (delta 0)
+remote: Resolving deltas: 100% (13/13), completed with 9 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   c449cb4..dcdc3e5  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/cart.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Update]Gem:paranoiaを使う準備をcart.rbに追加"
+[master e337e65] [Update]Gem:paranoiaを使う準備をcart.rbに追加
+ 1 file changed, 3 insertions(+)
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 585 bytes | 585.00 KiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   dcdc3e5..e337e65  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ 
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ 
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/assets/javascripts/application.js
+	modified:   app/models/disc.rb
+	modified:   app/models/product.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/assets/javascripts/jquery.jpostal.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ rails add --all
+Rails is not currently installed on this system. To get the latest version, simply type:
+
+    $ sudo gem install rails
+
+You can then rerun your "rails" command.
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   app/assets/javascripts/application.js
+	new file:   app/assets/javascripts/jquery.jpostal.js
+	modified:   app/models/disc.rb
+	modified:   app/models/product.rb
+
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Update]Gemを使う準備"
+[master f7973da] [Update]Gemを使う準備
+ 4 files changed, 815 insertions(+), 1 deletion(-)
+ create mode 100755 app/assets/javascripts/jquery.jpostal.js
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 18, done.
+Counting objects: 100% (18/18), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 5.99 KiB | 2.99 MiB/s, done.
+Total 10 (delta 7), reused 0 (delta 0)
+remote: Resolving deltas: 100% (7/7), completed with 7 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+MacBook-Pro:cd_mania satumikitahara$ 
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/controllers/discs_controller.rb
+	modified:   app/controllers/songs_controller.rb
+	modified:   config/routes.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/views/devise/
+	app/views/discs/
+	app/views/songs/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add --all
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "[Add]Disc/new.html,,Song/new.html"
+[master cb9dcc7] [Add]Disc/new.html,,Song/new.html
+ 19 files changed, 246 insertions(+), 1 deletion(-)
+ create mode 100644 app/views/devise/confirmations/new.html.erb
+ create mode 100644 app/views/devise/mailer/confirmation_instructions.html.erb
+ create mode 100644 app/views/devise/mailer/email_changed.html.erb
+ create mode 100644 app/views/devise/mailer/password_change.html.erb
+ create mode 100644 app/views/devise/mailer/reset_password_instructions.html.erb
+ create mode 100644 app/views/devise/mailer/unlock_instructions.html.erb
+ create mode 100644 app/views/devise/passwords/edit.html.erb
+ create mode 100644 app/views/devise/passwords/new.html.erb
+ create mode 100644 app/views/devise/registrations/edit.html.erb
+ create mode 100644 app/views/devise/registrations/new.html.erb
+ create mode 100644 app/views/devise/sessions/new.html.erb
+ create mode 100644 app/views/devise/shared/_error_messages.html.erb
+ create mode 100644 app/views/devise/shared/_links.html.erb
+ create mode 100644 app/views/devise/unlocks/new.html.erb
+ create mode 100644 app/views/discs/new.html.erb
+ create mode 100644 app/views/songs/new.erb
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin master
+Enumerating objects: 42, done.
+Counting objects: 100% (42/42), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (29/29), done.
+Writing objects: 100% (35/35), 4.76 KiB | 813.00 KiB/s, done.
+Total 35 (delta 11), reused 0 (delta 0)
+remote: Resolving deltas: 100% (11/11), completed with 6 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+   f7973da..cb9dcc7  master -> master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ cd ..
+kitaharasatotamanoMacBook-Pro:vagrant satumikitahara$ cd cd_mania
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git init
+Reinitialized existing Git repository in /Users/satumikitahara/Desktop/work/vagrant/cd_mania/.git/
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add -A
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add *
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add .
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git branch
+* master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ cd ..
+kitaharasatotamanoMacBook-Pro:vagrant satumikitahara$ cd cd_mania
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ pwd
+/Users/satumikitahara/Desktop/work/vagrant/cd_mania
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git remote add origin git@github.com:o-aaa/cd_mania.git
+fatal: remote origin already exists.
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add .
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit -m "first commit"
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git remote -v
+origin	git@github.com:o-aaa/cd_mania-first.git (fetch)
+origin	git@github.com:o-aaa/cd_mania-first.git (push)
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git branch
+* master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git checkout -b develop
+Switched to a new branch 'develop'
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git branch
+* develop
+  master
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git add -A
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git commit --allow-empty -m "[Create]Development environment"
+[develop 06884a8] [Create]Development environment
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ git push origin develop
+Enumerating objects: 1, done.
+Counting objects: 100% (1/1), done.
+Writing objects: 100% (1/1), 203 bytes | 203.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0)
+remote: 
+remote: Create a pull request for 'develop' on GitHub by visiting:
+remote:      https://github.com/o-aaa/cd_mania-first/pull/new/develop
+remote: 
+remote: 
+remote: 
+remote: GitHub found 1 vulnerability on o-aaa/cd_mania-first's default branch (1 moderate). To find out more, visit:
+remote:      https://github.com/o-aaa/cd_mania-first/network/alerts
+remote: 
+To github.com:o-aaa/cd_mania-first.git
+ * [new branch]      develop -> develop
+kitaharasatotamanoMacBook-Pro:cd_mania satumikitahara$ 
