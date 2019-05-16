@@ -1,0 +1,9 @@
+# deviseの日本語化で必要だが先にGemがいる
+
+ja:
+  activerecord:
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
