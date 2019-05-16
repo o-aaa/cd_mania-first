@@ -23,8 +23,14 @@
               <%= f.text_field :first_name_kana, required: true, autofocus: true, input_html: { autocomplete: "first_name_kana" } %>
             </div>
 
-            <!-- 郵便番号 -->
-            <!-- 住所 -->
+            <!-- ここからAdressモデルへ送るフォーム -->
+            <%= f.fields_for :address do |a| %>
+              <div class="field">
+                <%= a.label :post_num%>
+                <%= a.text_field :post_num %>
+              </div>
+            <% end %>
+            <!-- ここまでAdressモデルへ送るフォーム -->
 
             <div class="field">
               <%= f.label :phone_num, class: "text-right" %>
