@@ -1,2 +1,64 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<div class="main">
+	<h2 class="product_new_head">新規投稿画面</h2>
+	<div class="main-contain">
+		<section class="product_new">
+			<%= form_for @product do |product| %>
+				<section class=“field”>
+					<h4>ジャケット画像
+						<%= product.attachment_field :image %>
+					</h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>歌手名
+		            	<%= product.text_field :artist %>
+		            </h4>
+		        </section>
+		        <section class="field">
+		            <h4>シングル/アルバム名
+		            	<%= product.text_field :disc_name %>
+		            	<%= product.fields_for :discs do |disc| %>
+		            	<%= disc.select :disc_type, Disc.disc_types.keys.map {|k| [I18n.t("enums.disc.disc_type.#{k}"), k]} %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>ジャンル
+		            	<%= product.select :genre, Product.genres.keys.map {|k| [I18n.t("enums.product.genre.#{k}"), k]} %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>価格
+		            	<%= product.text_field :price %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>レーベル会社
+		            	<%= product.text_field :label %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>在庫数
+		            	<%= product.text_field :stocks %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>ステータス
+		            	<%= product.select :buy_status, Product.buy_statuses.keys.map {|k| [I18n.t("enums.product.buy_status.#{k}"), k]} %>
+		            </h4>
+		        </section>
+		        <section>
+		        	<h4>曲名
+		        		<%= disc.nested_fields_for :songs do |song| %>
+		        			<%= song.text_field :song_title %>
+		        			<%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+		        		<% end %>
+		        		<%= disc.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
+		        		<% end %>
+		        	</h4>
+		        </section>
+		        <div class="text-right">
+		         	<%= product.submit "投稿" %>
+		        </div>
+		    <% end %>
+		</section>
+	</div>
+</div>

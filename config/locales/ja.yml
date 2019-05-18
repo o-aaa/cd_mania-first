@@ -1,0 +1,44 @@
+ja:
+  activerecord:
+  enums: # <= HERE!
+    product:
+      genre:
+        POP: ポップ
+        Enka: 演歌
+        Rock: ロック
+        Classic: クラシック
+        Dance: ダンス
+        Jazz: ジャズ
+        Reghe: レゲェ
+        Heavy_metal: ヘビーメタル
+        Idol: アイドル
+        Anime: アニメ
+        Others: その他
+      buy_status:
+        Now_on_Sale: 販売中
+        Stop: 販売停止中
+    disc:
+      disc_type:
+        Single: シングル
+        Album: アルバム
+
+
+
+ # deviseラベルの日本語化
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: お名前
+        last_name_kana: ふりがな
+        phone_num: お電話番号
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+
+ja:
+  activerecord:
+    attributes:
+      address:
+        post_num: 郵便番号
+        address: 住所

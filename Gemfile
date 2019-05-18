@@ -95,6 +95,9 @@ gem 'bootstrap', '~> 4.2.1'
 
 # デザイン（java)
 gem "jquery-rails"
-gem 'pry-rails'
 
+# デバック用
+gem "pry-rails"
 
+# enumを日本語化
+gem "enum_help"
