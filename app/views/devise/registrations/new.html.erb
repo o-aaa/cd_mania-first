@@ -14,32 +14,36 @@
             <div class="field">
               <%= f.label :last_name, class: "text-right" %>
               <%= f.text_field :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" } %>
-              <%= f.text_field :first_name, required: true, autofocus: true, input_html: { autocomplete: "first_name" } %>
+              <%= f.text_field :first_name, required: true, input_html: { autocomplete: "first_name" } %>
             </div>
 
             <div class="field">
               <%= f.label :last_name_kana, class: "text-right" %>
-              <%= f.text_field :last_name_kana, required: true, autofocus: true, input_html: { autocomplete: "last_name_kana" } %>
-              <%= f.text_field :first_name_kana, required: true, autofocus: true, input_html: { autocomplete: "first_name_kana" } %>
+              <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" } %>
+              <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" } %>
             </div>
 
-            <!-- ここからAdressモデルへ送るフォーム -->
+            <!-- ここからAddressモデルへ送るフォーム -->
             <%= f.fields_for :address do |a| %>
               <div class="field">
-                <%= a.label :post_num%>
+                <%= a.label :post_num %>
                 <%= a.text_field :post_num %>
               </div>
+              <div class="field">
+                <%= a.label :address %>
+                <%= a.text_field :address %>
+              </div>
             <% end %>
-            <!-- ここまでAdressモデルへ送るフォーム -->
+            <!-- ここまでAddressモデルへ送るフォーム -->
 
             <div class="field">
               <%= f.label :phone_num, class: "text-right" %>
-             <%= f.text_field :phone_num, required: true, autofocus: true, input_html: { autocomplete: "phone_num" } %>
+             <%= f.text_field :phone_num, required: true, input_html: { autocomplete: "phone_num" } %>
             </div>
 
             <div class="field">
               <%= f.label :email, class: "text-right" %>
-              <%= f.email_field :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
+              <%= f.email_field :email, required: true,  input_html: { autocomplete: "email" } %>
             </div>
 
             <div class="field">
@@ -61,4 +65,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> 

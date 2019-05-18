@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -10,9 +11,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+       resource.addresses.build
+       resource.addresses.first.post_num = params[:user][:address][:post_num]
+       resource.addresses.first.address = params[:user][:address][:address]
+       resource.save!
+   end
 
   # GET /resource/edit
   # def edit
@@ -41,9 +46,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+   def configure_sign_up_params
+     devise_parameter_sanitizer.permit(:sign_up) do |params|
+     #binding.pry
+      #ユーザー（入力者）が新規登録をするとき変更できるのは、sign_up(deviseのデフォルト設定のカラム、emailやpasswordなど)に加え、追加した独自カラムnicknameとsexのみ変更を許可
+      #加えて子モデルaddress_listのprefectures_master_idカラムのみ変更を許可
+      params.permit(:sign_up, kays: [:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_num, :user_flag, :user_status, address_attributes: [:post_num, :address]])
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
@@ -60,24 +70,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-# 参考：https://teratail.com/questions/136856
-# 参考：https://teratail.com/questions/136641
-# Addressモデルへのデータ送信で必要
+
+
+  # 参考：https://teratail.com/questions/136856
+  # 参考：https://teratail.com/questions/136641
+  # Addressモデルへのデータ送信で必要
   # GET /resource/sign_up
-   def new
-     super
-   end
-  # POST /resource
-   def create
-    begin
-      ActiveRecord::Base.transaction do
-        super
-        ###新規登録したユーザー（親）が保有する住所（子）を作成する
-        resource.build_address
-        resource.address.prefectures_master_id = params[:user]
-        [:address][:prefectures_master_id]
-        resource.save!
-      end
-    end
-   end
+  # superは親クラス定義されている同名のメソッドを呼ぶことが出来る
 end

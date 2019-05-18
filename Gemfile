@@ -95,6 +95,6 @@ gem 'bootstrap', '~> 4.2.1'
 
 # デザイン（java)
 gem "jquery-rails"
-
+gem 'pry-rails'
 
 
