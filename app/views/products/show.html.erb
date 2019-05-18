@@ -9,20 +9,49 @@
 
 		<div class="col-lg-9">
 			<div class="row">
-				<div class="col-lg-4">
-					<span class="label label-primary"><%= @product.genre %></span>
-					<span class="label label-info"><%= @product.lebel %></span>
+
+				<div class="col-lg-6">
+					<span class="badge badge-pill badge-primary">ジャンル<!--%= @product.genre %--></span>
+					<span class="badge badge-pill badge-info">レーベル<!--%= @product.lebel %--></span>
+					<br>
+					<img src="http://placehold.it/350x350">
+					 <!--%= attachment_image_tag @product, :image, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %-->
 				</div>
-				<div class="col-lg-8">
+
+				<div class="col-lg-6">
+					<table class="table">
+						<tbody>
+							
+								<tr><th>アーティスト<!--%= @product.artist %--></th></tr>
+								<tr><th>商品名<!--%= @product.disc_name %--></th></tr>
+								<tr><th>値段<!--%= @product.price %--></th></tr>
+								<tr><th>リリース日<!--%= @product.lebel %--></th></tr>
+							
+						</tbody>
+					</table>
 				</div>
+
 			</div>
 		</div>
 
 		<!--カート＆管理者編集側-->
 
 		<div class="col-lg-3">
-			<blockquote>
-			</blockquote>
+			<div style="border-left: 2px solid black; line-height:">
+				<button type="button" class="btn btn-outline-secondary"><i class="fas fa-cart-arrow-down fa-5x"></i></button>
+				<h5>カートに入れる</h5>
+				<br>
+				<div class="form-group">
+                   <label for="exampleSelect1exampleFormControlSelect1">枚数</label>
+                   <select class="form-control" id="buy_count">
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                   </select>
+                </div>
+
 		</div>
 
 

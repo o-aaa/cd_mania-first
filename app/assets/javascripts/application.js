@@ -23,3 +23,17 @@
 //
 // 動的フォームの追加(Gem:nested_form_fields)
 //= require nested_form_fields
+
+$(function() {
+ 
+  // button要素をクリックしたら発動
+  $('button').click(function() {
+ 
+    // セレクトボックスで選択したvalue値を変数に格納
+    var count = $('#buy_count').val();
+ 
+    // p要素にvauleを出力
+    $('p').integer(count);
+ 
+  });
+});
