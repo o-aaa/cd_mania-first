@@ -4,7 +4,7 @@
     <div class="mx-auto">
       <div class="sign_up_wrapper">
 
-        <div class="text-center">
+        <div class="text-center py-4">
           <h2>新規登録画面</h2>
         </div>
 
@@ -13,51 +13,51 @@
 
             <div class="field">
               <%= f.label :last_name, class: "text-right" %>
-              <%= f.text_field :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" } %>
-              <%= f.text_field :first_name, required: true, input_html: { autocomplete: "first_name" } %>
+              <%= f.text_field :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" }, placeholder:"姓", class: "short" %>
+              <%= f.text_field :first_name, required: true, input_html: { autocomplete: "first_name" }, placeholder:"名前", class: "short" %>
             </div>
 
             <div class="field">
               <%= f.label :last_name_kana, class: "text-right" %>
-              <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" } %>
-              <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" } %>
+              <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"せい", class: "short" %>
+              <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"なまえ", class: "short" %>
             </div>
 
             <!-- ここからAddressモデルへ送るフォーム -->
             <%= f.fields_for :address do |a| %>
               <div class="field">
-                <%= a.label :post_num %>
-                <%= a.text_field :post_num %>
+                <%= a.label :post_num, class: "text-right" %>
+                <%= a.number_field :post_num, placeholder:"◯◯◯△△△△" %>
               </div>
               <div class="field">
-                <%= a.label :address %>
-                <%= a.text_field :address %>
+                <%= a.label :address, class: "text-right" %>
+                <%= a.text_field :address, placeholder:"長野県長野市A町1-23", class: "long" %>
               </div>
             <% end %>
             <!-- ここまでAddressモデルへ送るフォーム -->
 
             <div class="field">
               <%= f.label :phone_num, class: "text-right" %>
-             <%= f.text_field :phone_num, required: true, input_html: { autocomplete: "phone_num" } %>
+             <%= f.number_field :phone_num, placeholder:"◯◯◯×××△△△", required: true, input_html: { autocomplete: "phone_num" } %>
             </div>
 
             <div class="field">
               <%= f.label :email, class: "text-right" %>
-              <%= f.email_field :email, required: true,  input_html: { autocomplete: "email" } %>
+              <%= f.email_field :email, required: true, placeholder:"◯◯◯@×××.com",  input_html: { autocomplete: "email" }, class: "long" %>
             </div>
 
             <div class="field">
               <%= f.label :password, class: "text-right" %>
-              <%= f.password_field :password, required: true, input_html: { autocomplete: "new-password" } %>
+              <%= f.password_field :password, required: true, placeholder:"6文字以上", input_html: { autocomplete: "new-password" } %>
             </div>
 
             <div class="field">
               <%= f.label :password_confirmation, class: "text-right" %>
-              <%= f.password_field :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
+              <%= f.password_field :password_confirmation, required: true, placeholder:"もう一度入力", input_html: { autocomplete: "new-password" } %>
             </div>
 
-            <div class="form-actions text-center">
-              <%= f.button :submit, "sign_up" %>
+            <div class="form-actions text-center py-2">
+              <%= f.button :submit, "sign_up", class: "btn btn-info" %>
             </div>
 
         <% end %>
