@@ -1,2 +1,32 @@
 <h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+
+<body>
+
+  <div class="container">
+	<div class="row">
+
+       <!--商品情報側-->
+
+		<div class="col-lg-9">
+			<div class="row">
+				<div class="col-lg-4">
+					<span class="label label-primary"><%= @product.genre %></span>
+					<span class="label label-info"><%= @product.lebel %></span>
+				</div>
+				<div class="col-lg-8">
+				</div>
+			</div>
+		</div>
+
+		<!--カート＆管理者編集側-->
+
+		<div class="col-lg-3">
+			<blockquote>
+			</blockquote>
+		</div>
+
+
+	</div>
+  </div>
+
+</body>
