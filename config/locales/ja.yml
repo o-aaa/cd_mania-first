@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+  enums: # <= HERE!
+    product:
+      genre:
+        POP: ポップ
+        Enka: 演歌
+        Rock: ロック
+        Classic: クラシック
+        Dance: ダンス
+        Jazz: ジャズ
+        Reghe: レゲェ
+        Heavy_metal: ヘビーメタル
+        Idol: アイドル
+        Anime: アニメ
+        Others: その他
+      buy_status:
+        Now_on_Sale: 販売中
+        Stop: 販売停止中
+    disc:
+      disc_type:
+        Single: シングル
+        Album: アルバム
