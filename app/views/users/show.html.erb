@@ -1,18 +1,60 @@
-<h2>ユーザー情報</h2>
-<p>Find me in app/views/users/show.html.erb</p>
-
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
 <!-- コードここから -->
 <div class="main">
 	<div class="userinfo_wrapper">
 		<h1 class="text-center">ユーザー情報</h1>
-		<ul>
-			<li>名前：<%= @user.last_name %><%= @user.first_name %></li>
-			<li>名前（かな）：<%= @user.last_name_kana %><%= @user.first_name_kana %></li>
-			<li>郵便番号：<%=  %></li>
-			<li>住所：<%=  %></li>
-			<li>E-mail：<%= @user.email %></li>
-			<li>電話番号：<%= @user.phone_num %></li>
+		<table>
+			<tr>
+				<th class="text-right">名前：</th>
+				<td><%= @user.last_name %><%= @user.first_name %></td>
+			</tr>
+			<tr>
+				<th class="text-right">名前（かな）：</th>
+				<td><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
+			<tr>
+				<th class="text-right">郵便番号：</th>
+				<td><%= @address.post_num %></td>
+			<tr>
+				<th class="text-right">住所：</th>
+				<td><%= @address.address %></td>
+			<tr>
+				<th class="text-right">E-mail：</th>
+				<td><%= @user.email %></td>
+			<tr>
+				<th class="text-right">電話番号：</th>
+				<td><%= @user.phone_num %></td>
+		</table>
+		<%= link_to "登録情報を編集", edit_user_path, class: "btn btn-info" %>
+		<%= link_to(edit_user_path, class: 'btn btn-info') do %>
+		  <i class="far fa-heart"></i>
+		  <span>お気に入りリスト</span>
+		<% end %>
+		<%= link_to "退会", edit_user_path, class: "btn btn-info" %>
+	</div>
+
+	<div class="border-bottom border-dark py-3"></div>
+
+	<!-- ここから購入履歴 -->
+	<div class="order_history">
+		<table>
+		  <th>購入経歴</th>
+			<%= @orders.each do |order| %>
+			<tr>
+				<td rowspan="2">画像</td>
+				<td>シングル/アルバム</td>
+				<td>アーティスト</td>
+				<td>枚数</td>
+				<td>￥合計金額</td>
+			</tr>
+			<tr>
+				<!-- td統合 -->
+				<td>送付先住所</td>
+				<td>配送状況</td>
+				<td>購入日</td>
+				<td></td>
+			</tr>
+			<% end %>
+		</table>
 	</div>
 </div>
