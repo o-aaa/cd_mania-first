@@ -1,32 +1,40 @@
 <h1>Products#index</h1>
 
 <body>
-	<div class="container">
-      <div class="row">
 
+     <div class="container">
       <div class="col-xs-12">
         <h2 class="product_index">商品一覧</h2>
       </div>
+     </div>
       <br>
 
-	<% @products.each do |product| %>
-	  <div class="col-xs-6 col-lg-4 text-center mb-4">
+    <div class="container">
+      <div class="row">
+
+	   <% @products.each do |product| %>
+	     <div class="col-xs-6 col-lg-4 text-center mb-4">
 
 		  <div class="card p-4" style="width: 20rem;">
-	         <%= link_to product_path(products.id) do %>
-             <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
-             <% end %>
+
+            <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'250x250' %>
+            
+          
 
              <div class="card-body">
-                <h5 class="card-title"><%= product.disc_name %></h5>
-                <p class="card-text"><%= product.artist %></p> 
-                <p class="card-text">¥<%= product.price %>円</p> 
+                <h2 class="card-title"><%= link_to product.disc_name, product_path(product.id) %></h2>
+                <h4 class="card-text"><%= product.artist %></h4> 
+                <h4 class="card-text">¥<%= product.price %>円</h4> 
+
              </div>
 
           </div>
 
-     </div>
-    <% end %>
+         </div>
+       <% end %>
+
+      </div>
+    </div>
 
     <%= paginate @products, class: "paginate" %>
 </body>
