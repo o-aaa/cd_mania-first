@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   end
 
   def show
+  	@user = User.find(params[:id])
+  	@address = Address.find_by(id[:user_id])
   end
 
   def new
@@ -11,4 +13,3 @@ class UsersController < ApplicationController
   def edit
   end
 end
- 

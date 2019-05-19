@@ -1,4 +1,18 @@
-<h1>Users#show</h1>
+<h2>ユーザー情報</h2>
 <p>Find me in app/views/users/show.html.erb</p>
 
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+
+<!-- コードここから -->
+<div class="main">
+	<div class="userinfo_wrapper">
+		<h1 class="text-center">ユーザー情報</h1>
+		<ul>
+			<li>名前：<%= @user.last_name %><%= @user.first_name %></li>
+			<li>名前（かな）：<%= @user.last_name_kana %><%= @user.first_name_kana %></li>
+			<li>郵便番号：<%=  %></li>
+			<li>住所：<%=  %></li>
+			<li>E-mail：<%= @user.email %></li>
+			<li>電話番号：<%= @user.phone_num %></li>
+	</div>
+</div>
