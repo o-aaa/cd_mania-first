@@ -32,3 +32,21 @@
 	font-family: 'arial unicode ms';
 	padding-left: 100px;
 }
+
+// フォームの位置を揃える
+.form_label {
+	width: 150px;
+	display: inline-block;
+	text-align: right;
+}
+.short { width: 8em; }
+.long { width:20em; }
+
+// ログイン
+.login_title {
+	margin: 0 auto;
+	padding: 30px 0;
+	text-align: center;
+	width: 800px;
+	background-color: #875;
+}
