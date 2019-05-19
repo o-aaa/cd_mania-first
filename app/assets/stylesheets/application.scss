@@ -43,10 +43,30 @@
 .long { width:20em; }
 
 // ログイン
-.login_title {
-	margin: 0 auto;
-	padding: 30px 0;
-	text-align: center;
-	width: 800px;
-	background-color: #875;
+.login-contain-wrapper {
+	padding-top: 50px;
 }
+.login_title {
+	background-color: #578;
+	color: #fff;
+	margin: 0 auto;
+	width: 500px;
+	padding: 10px 0;
+	text-align: center;
+	font-family: 'arial unicode ms';
+}
+.login-contain {
+	background-color: white;
+	width: 500px;
+	margin: 0 auto;
+	padding: 30px;
+}
+.login-contain h4 {
+	padding-bottom: 30px;
+	text-align: center;
+}
+.login-contain-form {
+	display: block;
+	padding-left: 50px;
+}
+
