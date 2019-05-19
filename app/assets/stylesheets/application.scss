@@ -14,3 +14,199 @@
  */
  /* Bootstrap用 */
 @import "bootstrap";
+
+/* product_new*/
+.main {
+	background-color: silver;
+	width: 100%;
+	height: 1400px;
+	margin: 0 auto;
+}
+.main-contain {
+	background-color: white;
+	width: 800px;
+	margin: 0 auto;
+	padding: 100px;
+}
+.product_new_head {
+	font-family: 'arial unicode ms';
+	padding-left: 100px;
+}
+
+// フォームの位置を揃える
+.form_label {
+	width: 150px;
+	display: inline-block;
+	text-align: right;
+}
+.short { width: 8em; }
+.long { width:20em; }
+
+// ログイン
+.login-contain-wrapper {
+	padding-top: 50px;
+}
+.login_title {
+	background-color: #578;
+	color: #fff;
+	margin: 0 auto;
+	width: 500px;
+	padding: 10px 0;
+	text-align: center;
+	font-family: 'arial unicode ms';
+}
+.login-contain {
+	background-color: white;
+	width: 500px;
+	margin: 0 auto;
+	padding: 30px;
+}
+.login-contain h4 {
+	padding-bottom: 30px;
+	text-align: center;
+}
+.login-contain-form {
+	display: block;
+	padding-left: 50px;
+}
+
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a{
+	color: black;
+}
+
+
+.title-admin {
+	margin-right: 45%;
+	font-size: 30px;
+}
+
+.nav-item-admin {
+	margin-right: 30px;
+	text-align: center;
+}
+
+.title-kaiin{
+	margin-right: 45%;
+	font-size: 30px;
+}
+
+.title-user{
+	margin-right: 50%;
+	font-size: 30px;
+}
+
+
+
+.form{
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+.nav-item {
+	margin-right: 30px;
+
+	text-align: center;
+}
