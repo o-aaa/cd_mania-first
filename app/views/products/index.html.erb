@@ -17,13 +17,15 @@
 
 		  <div class="card p-4" style="width: 20rem;">
 
-             <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'250x250' %>
-
+            <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'250x250' %>
+            
+          
 
              <div class="card-body">
-                <h2 class="card-title"><%= product.disc_name %></h2>
+                <h2 class="card-title"><%= link_to product.disc_name, product_path(product.id) %></h2>
                 <h4 class="card-text"><%= product.artist %></h4> 
                 <h4 class="card-text">¥<%= product.price %>円</h4> 
+
              </div>
 
           </div>
