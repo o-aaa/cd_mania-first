@@ -39,9 +39,27 @@
 	<div class="order_history">
 		<table>
 		  <th>購入経歴</th>
-			<%= @orders.each do |order| %>
+			<% @orders.each do |order| %>
 			<tr>
 				<td rowspan="2">画像</td>
+				<td>シングル/アルバム</td>
+				<td>アーティスト</td>
+				<td>枚数</td>
+				<td>￥合計金額</td>
+			</tr>
+			<tr>
+				<!-- td統合 -->
+				<td>送付先住所</td>
+				<td>配送状況</td>
+				<td>購入日</td>
+				<td></td>
+			</tr>
+			<!-- 以上テスト -->
+			<!-- ここからモデルに保存されてるファイル -->
+			<tr>
+				<td rowspan="2">
+					がz
+				</td>
 				<td>シングル/アルバム</td>
 				<td>アーティスト</td>
 				<td>枚数</td>

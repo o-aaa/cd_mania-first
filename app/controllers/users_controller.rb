@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-  	@address = Address.find_by(user_id: @user.id)
+  	@address = @user.addresses.first
   	# ここから購入履歴
-  	@orders = Order.page(params[:page]).reverse_order
+  	@orders = Order.where(user_id: @user.id)
   end
 
   def new
