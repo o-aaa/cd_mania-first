@@ -71,16 +71,16 @@
 }
 
 
-header {
+.header {
     position: fixed;
     width: 100%;
 	margin-top: 0;
+	margin-bottom: 20px;
 }
 
 a{
 	color: black;
 }
-
 
 .title-admin {
 	margin-right: 45%;
@@ -101,8 +101,6 @@ a{
 	margin-right: 50%;
 	font-size: 30px;
 }
-
-
 
 .form{
 	margin-right: 30px;
