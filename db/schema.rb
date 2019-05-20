@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_035717) do
+ActiveRecord::Schema.define(version: 2019_05_20_062402) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 2019_05_20_035717) do
 
   create_table "products", force: :cascade do |t|
     t.integer "product_id"
-    t.string "disc_name"
     t.string "artist"
     t.integer "price"
     t.date "release_date"
@@ -87,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_035717) do
     t.string "label"
     t.text "image_id"
     t.integer "disc_type"
+    t.string "product_name"
   end
 
   create_table "songs", force: :cascade do |t|

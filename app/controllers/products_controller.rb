@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
   	@products = Product.page(params[:page]).reverse_order
- 
+
   end
 
   def show
@@ -26,14 +26,25 @@ class ProductsController < ApplicationController
 	end
 
   def edit
+    @product = Product.find(params[:id])
+  end
+  def update
+    product = Product.find(params[:id])
+    if product.update(product_params)
+       flash[:success] = '編集に成功しました!!!'
+       redirect_to product_path(product.id)
+    else
+      flash[:danger] = '編集に失敗しました...'
+      redirect_to product_path(product.id)
+    end
   end
 
   private
 
   def product_params
-  	params.require(:product).permit(:image, :artist, :disc_name, :price, :label, :stocks, :genre, :buy_status,
+  	params.require(:product).permit(:image, :artist, :product_name, :price, :label, :stocks, :genre, :buy_status,
                                       discs_attributes: [
-                                         :disc_type, :disc_num, :_destroy, songs_attributes: [:track_num, :song_title, :_destroy]
+                                         :id,:disc_type, :disc_num, :_destroy, songs_attributes: [:id,:track_num, :song_title, :_destroy]
                                       ] )
   end
 
