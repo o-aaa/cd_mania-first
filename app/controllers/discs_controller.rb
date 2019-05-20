@@ -16,6 +16,20 @@ class DiscsController < ApplicationController
       end
 	end
 
+  def edit
+    @disc = Disc.find(params[:id])
+  end
+  def update
+    disc = Disc.find(params[:id])
+    if disc.update(disc_params)
+       flash[:success] = '編集に成功しました!!!'
+       redirect_to product_path(product.id)
+    else
+      flash[:danger] = '編集に失敗しました...'
+      redirect_to product_path(product.id)
+    end
+  end
+
   	private
 
   	def disc_params
