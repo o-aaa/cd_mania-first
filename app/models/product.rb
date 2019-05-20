@@ -11,7 +11,7 @@ class Product < ApplicationRecord
 	enum disc_type:{Single: 0,Album: 1}
 	
 	validates :artist, presence: true
-	validates :disc_name, presence: true
+	validates :product_name, presence: true
 	validates :price, presence: true
 	validates :label, presence: true
 	validates :stocks, presence: true
