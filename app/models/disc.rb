@@ -7,6 +7,4 @@ class Disc < ApplicationRecord
 	accepts_nested_attributes_for :songs, allow_destroy: true
 
 
-	enum disc_type:{Single: 0,Album: 1}
-
 end
