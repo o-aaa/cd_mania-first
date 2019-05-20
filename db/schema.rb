@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_05_20_062402) do
 
   create_table "addresses", force: :cascade do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_062402) do
     t.text "image_id"
     t.integer "disc_type"
     t.string "product_name"
+
   end
 
   create_table "songs", force: :cascade do |t|
