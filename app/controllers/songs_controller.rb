@@ -15,6 +15,19 @@ class SongsController < ApplicationController
     	redirect_to products_path
   	  end
 	end
+	def edit
+    @sing = Sing.find(params[:id])
+  end
+  def update
+    sing = Sing.find(params[:id])
+    if sing.update(sing_params)
+       flash[:success] = '編集に成功しました!!!'
+       redirect_to product_path(product.id)
+    else
+      flash[:danger] = '編集に失敗しました...'
+      redirect_to product_path(product.id)
+    end
+  end
 
   	private
 

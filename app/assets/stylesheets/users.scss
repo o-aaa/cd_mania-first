@@ -2,3 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.userinfo_wrapper {
+	width: 90%;
+	margin: 0 auto;
+	background-color: #fcc;
+	text-align: center;
+}
+.userinfo_wrapper table {
+	width: 100%;
+	margin: 0 auto;
+	background-color: blue;
+	border-bottom: 1px solid #000;
+}
+.userinfo_wrapper th {
+	background-color: orange;
+	text-align: right;
+}
+.userinfo_wrapper td {
+	background-color: red;
+	text-align: left;
+}
+
+.order_history {
+	width: 90%;
+	margin: 0 auto;
+	background-color: #ccf;
+}
+.order_history th {
+	padding: 30px 10px;
+	font-size: 20px;
+}
