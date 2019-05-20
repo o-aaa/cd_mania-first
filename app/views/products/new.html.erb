@@ -1,2 +1,71 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<div class="main">
+	<h2 class="product_new_head">新規投稿画面</h2>
+	<div class="container">
+		<section class="product_new">
+			<%= form_for @product do |product| %>
+				<section class=“field”>
+					<h4>ジャケット画像
+						<%= product.attachment_field :image %>
+					</h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>歌手名
+		            	<%= product.text_field :artist %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>ジャンル
+		            	<%= product.select :genre, Product.genres.keys.map {|k| [I18n.t("enums.product.genre.#{k}"), k]} %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>価格
+		            	<%= product.text_field :price %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>レーベル会社
+		            	<%= product.text_field :label %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>在庫数
+		            	<%= product.text_field :stocks %>
+		            </h4>
+		        </section>
+		        <section class=“field”>
+		            <h4>ステータス
+		            	<%= product.select :buy_status, Product.buy_statuses.keys.map {|k| [I18n.t("enums.product.buy_status.#{k}"), k]} %>
+		            </h4>
+		        </section>
+		        <section>
+		        	<h4>商品タイプ
+		        		<%= product.select :disc_type, Product.disc_types.keys.map {|k| [I18n.t("enums.product.disc_type.#{k}"),k]} %>
+		        	</h4>
+		        </section>
+		        <section class="field">
+		        	<h4>商品名
+		        		<%= product.text_field :product_name %>
+		        	</h4>
+		        </section>
+		        <section>
+		        		<h4>disc ナンバーと曲名
+		            	<%= product.nested_fields_for :discs do |disc| %>
+		            	<%= disc.select :disc_num, [["1枚目", "1"], ["2枚目", "2"], ["3枚目", "3"], ["4枚目", "4"]] ,class:"form-control" %>
+		            	<%= disc.remove_nested_fields_link 'Discナンバー削除', class: 'btn btn-danger', role: 'button' %></h4>
+		            	<h4><%= disc.nested_fields_for :songs do |song| %>
+		            	<%= song.text_field :song_title, placeholder:'曲名' %>
+		            	<%= song.remove_nested_fields_link '曲削除', class: 'btn btn-danger', role: 'button' %>
+		            	<% end %>
+		            	<%= disc.add_nested_fields_link :songs, '曲追加', class: 'btn btn-primary', role: 'button' %></h4>
+		            	<% end %>
+		            	<%= product.add_nested_fields_link :discs, 'Discナンバー追加', class: 'btn btn-primary', role: 'button' %>
+		        </section>
+		        <div class="text-right">
+		         	<%= product.submit "商品を投稿" %>
+		        </div>
+		    <% end %>
+		</section>
+	</div>
+</div>
+

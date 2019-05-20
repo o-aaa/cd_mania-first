@@ -19,6 +19,7 @@
 // Bootstrap用
 //= require bootstrap-sprockets
 //= require jquery3
+//= require jquery_ujs
 //= require popper
 //
 // 動的フォームの追加(Gem:nested_form_fields)

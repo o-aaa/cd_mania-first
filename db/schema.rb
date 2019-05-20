@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_062110) do
+
+ActiveRecord::Schema.define(version: 2019_05_20_062402) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -38,7 +39,6 @@ ActiveRecord::Schema.define(version: 2019_05_20_062110) do
 
   create_table "discs", force: :cascade do |t|
     t.integer "disc_id"
-    t.integer "disc_type", default: 0
     t.integer "disc_num", default: 0
     t.integer "product_id"
     t.datetime "created_at", null: false
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 2019_05_20_062110) do
 
   create_table "products", force: :cascade do |t|
     t.integer "product_id"
-    t.string "disc_name"
     t.string "artist"
     t.integer "price"
     t.date "release_date"
@@ -85,16 +84,20 @@ ActiveRecord::Schema.define(version: 2019_05_20_062110) do
     t.integer "stocks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "label"
     t.text "image_id"
+    t.integer "disc_type"
+    t.string "product_name"
+
   end
 
   create_table "songs", force: :cascade do |t|
     t.integer "song_id"
     t.integer "track_num"
     t.string "song_title"
-    t.integer "disc_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "disc_id"
   end
 
   create_table "users", force: :cascade do |t|

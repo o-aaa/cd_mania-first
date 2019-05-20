@@ -1,20 +1,40 @@
-<h2>Log in</h2>
+<div class="main">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div class="login-contain-wrapper">
+    <div class="login_title">
+      <h2>ログイン</h2>
+    </div>
+  <!-- ここからメイン部分 -->
+    <div class="login-contain">
+      <h4>登録がお済みの方はこちらから</h4>
+
+      <div class="login-contain-form">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+
+          <div class="field py-2">
+            <%= f.email_field :email, required: false, autofocus: true, placeholder:"メールアドレス", input_html: { autocomplete: "email" }, class: "long" %>
+          </div>
+
+          <div class="field py-2">
+            <%= f.password_field :password, required: false, placeholder:"パスワード", input_html: { autocomplete: "current-password" }, class: "long" %>
+          </div>
+
+          <!-- <div class="field py-2 text-center"> -->
+            <!-- <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %> -->
+          <!-- </div> -->
+
+          <div class="form-actions py-3">
+            <%= f.button :submit, "ログイン", class: "btn btn-info" %>
+          </div>
+        </div>
+      <% end %>
+
+        <!-- <%= render "devise/shared/links" %> 日本語化できるなら、後で編集するのもいい-->
+        <%= link_to "初めてご利用の方（新規会員登録）", new_user_registration_path %>
+      </div>
+
+   </div>
+    <!-- メイン部分ここまで -->
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
