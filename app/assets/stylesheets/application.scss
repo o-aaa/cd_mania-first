@@ -16,6 +16,7 @@
 @import "bootstrap";
 
 /* product_new*/
+
 .main {
 	background-color: silver;
 	width: 100%;
@@ -70,11 +71,17 @@
 	padding-left: 50px;
 }
 
+
  
 
 
 
 
+header {
+    position: fixed;
+    width: 100%;
+	margin-top: 0;
+}
 
 a{
 	color: black;
