@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
@@ -37,6 +38,12 @@ class ProductsController < ApplicationController
       flash[:danger] = '編集に失敗しました...'
       redirect_to product_path(product.id)
     end
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path
   end
 
   private
