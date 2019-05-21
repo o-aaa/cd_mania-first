@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
@@ -39,10 +40,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path
+  end
+
   private
 
   def product_params
-  	params.require(:product).permit(:image, :artist, :product_name, :price, :label, :stocks, :genre, :buy_status,
+  	params.require(:product).permit(:image, :artist, :product_name, :price, :label, :release_date, :stocks, :genre, :buy_status,
                                       discs_attributes: [
                                          :id,:disc_type, :disc_num, :_destroy, songs_attributes: [:id,:track_num, :song_title, :_destroy]
                                       ] )
