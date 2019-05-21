@@ -29,8 +29,8 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	@address = @user.addresses.first
-  	if @user.update(user_params)
+  	@user.addresses.build
+  	if @user.save(user_params)
       flash[:notice] = "ユーザー情報を編集しました。"
        redirect_to user_path(@user.id)
     else
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   private
   # ストロングパラメーター
   def user_params
-  	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_num, addresses_attributes: [:id, :post_num, :address])
+  	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_num, :email, addresses_attributes: [:post_num, :address])
   end
 
 end
