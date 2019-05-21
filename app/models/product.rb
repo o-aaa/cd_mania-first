@@ -15,5 +15,5 @@ class Product < ApplicationRecord
 	validates :price, presence: true
 	validates :label, presence: true
 	validates :stocks, presence: true
-
+	validates :release_date, presence: true, length: { is: 7 }
 end
