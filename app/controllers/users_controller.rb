@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
   	@users = User.all
 
@@ -22,6 +23,26 @@ class UsersController < ApplicationController
   end
 
   def edit
+  	@user = User.find(params[:id])
+  	@address = @user.addresses.first
+  end
+
+  def update
+  	@user = User.find(params[:id])
+  	@address = @user.addresses.first
+  	if @user.update(user_params)
+      flash[:notice] = "ユーザー情報を編集しました。"
+       redirect_to user_path(@user.id)
+    else
+      render action: :edit
+    end
+  end
+
+
+  private
+  # ストロングパラメーター
+  def user_params
+  	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_num, addresses_attributes: [:id, :post_num, :address])
   end
 
 end
