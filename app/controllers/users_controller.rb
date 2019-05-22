@@ -29,11 +29,13 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	@user.addresses.build
-  	if @user.save(user_params)
-      flash[:notice] = "ユーザー情報を編集しました。"
+  	@address = @user.addresses.first
+  	binding.pry
+  	if @user.update(user_params)
+       flash[:notice] = "ユーザー情報を編集しました。"
        redirect_to user_path(@user.id)
     else
+      flash[:denger] = "編集に失敗しました..."
       render action: :edit
     end
   end
@@ -42,7 +44,16 @@ class UsersController < ApplicationController
   private
   # ストロングパラメーター
   def user_params
-  	params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_num, :email, addresses_attributes: [:post_num, :address])
+  	params.require(:user).permit(
+  		:last_name,
+  		:first_name,
+  		:last_name_kana,
+  		:first_name_kana,
+  		:phone_num,
+  		:email,
+  		addresses_attributes: [:id, :user_id, :post_num, :address, :_destroy]
+  		)
   end
+
 
 end
