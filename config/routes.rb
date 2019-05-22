@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :discs, only:[:new, :create, :edit, :update, :destroy]
   resources :songs, only:[:new, :create, :edit, :update, :destroy]
   resources :carts, only:[:create, :update, :destroy]
-  resources :orders, only:[:index, :destroy, :update]
+  resources :orders, only:[:destroy, :update]
+  get "users/:id/orders_index" => 'orders#index', as: 'mycart'
+  post "users/:id/orders_index" => 'carts#create'
   get "/users/:id/orders/confirmation/:id" => "orders#confirmation", as: 'confirmation'
   get "/order_items" => "order_items#index", as: 'index'
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
