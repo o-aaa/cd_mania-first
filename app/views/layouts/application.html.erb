@@ -138,7 +138,6 @@
 
     </nav>
 
-
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>">
         <%= message %>
@@ -146,6 +145,10 @@
     <% end %>
 
   </header>
+  <div style="height: 65px;">
+    <!-- margin効かない問題対策 -->
+  </div>
+
 
   <%= yield %>
 
