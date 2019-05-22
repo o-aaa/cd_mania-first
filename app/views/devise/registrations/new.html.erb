@@ -10,8 +10,9 @@
             <h2>新規登録画面</h2>
           </div>
 
+            <%= devise_error_messages! %>
+
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
 
               <div class="field py-2">
                 <span class="form_label">お名前</span>
@@ -20,9 +21,9 @@
               </div>
 
               <div class="field py-2">
-                <span class="form_label">ふりがな</span>
-                <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"せい", class: "short" %>
-                <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"なまえ", class: "short" %>
+                <span class="form_label">フリガナ</span>
+                <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"セイ", class: "short" %>
+                <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"ナマエ", class: "short" %>
               </div>
 
               <!-- ここからAddressモデルへ送るフォーム -->

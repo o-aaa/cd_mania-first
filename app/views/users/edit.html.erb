@@ -10,12 +10,6 @@
             <h2>ユーザー情報の編集</h2>
           </div>
 
-		<% if @user.errors.any? %>
-    		<% @user.errors.full_messages.each do |message| %>
-        		<p class="error_massage"><i class="fas fa-exclamation-circle"></i><%= message %></p>
-    		<% end %>
-		<% end %>
-
           <%= form_for(@user) do |f| %>
 
               <div class="field py-2">
@@ -25,9 +19,9 @@
               </div>
 
               <div class="field py-2">
-                <span>ふりがな</span><br>
-                <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"せい", class: "short" %>
-                <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"なまえ", class: "short" %>
+                <span>フリガナ</span><br>
+                <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"セイ", class: "short" %>
+                <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"ナマエ", class: "short" %>
               </div>
 
               <!-- ここからAddressモデルへ送るフォーム -->
