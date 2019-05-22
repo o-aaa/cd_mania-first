@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2019_05_21_033011) do
     t.integer "product_id"
     t.string "artist"
     t.integer "price"
-    t.string "lebel"
     t.integer "genre", default: 0
     t.integer "buy_status", default: 0
     t.integer "stocks"
