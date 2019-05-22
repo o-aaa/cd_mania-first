@@ -28,6 +28,11 @@
 		            	<%= product.text_field :label %>
 		            </h4>
 		        </section>
+		        <section>
+		        	<h4>発売日
+		        		<%= product.text_field :release_date, placeholder:'例)2019/05' %>
+		        	</h4>
+		        </section>
 		        <section class=“field”>
 		            <h4>在庫数
 		            	<%= product.text_field :stocks %>

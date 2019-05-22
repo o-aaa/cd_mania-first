@@ -1,2 +1,21 @@
 <h1>Favorites#index</h1>
 <p>Find me in app/views/favorites/index.html.erb</p>
+
+<div>
+
+	<% @favorites.each do |favorite| %>
+	<%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'300x300', class: "img-thumbnail" %>
+	<%= product_name %>
+	<%= artist %>
+	<%= price %>
+	<%= link_to "削除", favorite(favorite.id),  method: :delete %>
+
+	<% end %>
+
+	<%= paginate @favorites, class: "paginate" %>
+
+	<button style="margin-left: 80%;">
+		<%= link_to "戻る", :back %>
+	</button>
+
+</div>

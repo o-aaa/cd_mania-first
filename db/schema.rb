@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_033011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "label"
-    t.string "image_id"
+    t.text "image_id"
     t.integer "disc_type"
     t.string "product_name"
     t.string "release_date"
