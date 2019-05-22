@@ -10,6 +10,12 @@
             <h2>ユーザー情報の編集</h2>
           </div>
 
+		<% if @user.errors.any? %>
+    		<% @user.errors.full_messages.each do |message| %>
+        		<p class="error_massage"><i class="fas fa-exclamation-circle"></i><%= message %></p>
+    		<% end %>
+		<% end %>
+
           <%= form_for(@user) do |f| %>
 
               <div class="field py-2">
@@ -28,11 +34,11 @@
               <%= f.nested_fields_for :addresses do |a| %>
                 <div class="field py-2">
                   <span>郵便番号</span><br>
-                  <%= a.number_field :post_num, value:"#{ @address.post_num }" %>
+                  <%= a.number_field :post_num, required: true, value:"#{ @address.post_num }" %>
                 </div>
                 <div class="field py-2">
                   <span>住所</span><br>
-                  <%= a.text_field :address, value:"#{ @address.address }", class: "long" %>
+                  <%= a.text_field :address, required: true, value:"#{ @address.address }", class: "long" %>
                 </div>
                   <!-- <%= a.remove_nested_fields_link 'Addresses削除', class: 'btn btn-danger', role: 'button' %></h4> -->
               <% end %>

@@ -31,10 +31,10 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@address = @user.addresses.first
   	if @user.update(user_params)
-       flash[:notice] = "ユーザー情報を編集しました。"
+       flash[:success] = "ユーザー情報を編集しました。"
        redirect_to user_path(@user.id)
     else
-      flash[:denger] = "編集に失敗しました..."
+      flash[:danger] = "編集に失敗しました..."
       render action: :edit
     end
   end
