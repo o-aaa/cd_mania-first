@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   	@address = @user.addresses.first
-  	binding.pry
   	if @user.update(user_params)
        flash[:notice] = "ユーザー情報を編集しました。"
        redirect_to user_path(@user.id)

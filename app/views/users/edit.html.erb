@@ -34,9 +34,9 @@
                   <span>住所</span><br>
                   <%= a.text_field :address, value:"#{ @address.address }", class: "long" %>
                 </div>
-                  <%= a.remove_nested_fields_link 'Addresses削除', class: 'btn btn-danger', role: 'button' %></h4>
+                  <!-- <%= a.remove_nested_fields_link 'Addresses削除', class: 'btn btn-danger', role: 'button' %></h4> -->
               <% end %>
-              <%= f.add_nested_fields_link :addresses, 'Adddress追加', class: 'btn btn-primary', role: 'button' %>
+              <!-- <%= f.add_nested_fields_link :addresses, 'Adddress追加', class: 'btn btn-primary', role: 'button' %> -->
               <!-- ここまでAddressモデルへ送るフォーム -->
 
               <div class="field py-2">
