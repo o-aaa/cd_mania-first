@@ -42,7 +42,7 @@
         </span>
 
         <span class="nav-item-admin">
-          <%= link_to users_path(@user) do %>
+          <%= link_to user_path(current_user.id) do %>
           <i class="fas fa-user"></i><br>
           マイページ
           <% end %>
@@ -85,7 +85,7 @@
         </span>
 
         <span class="nav-item">
-          <%= link_to users_path(@user) do %>
+          <%= link_to user_path(current_user.id) do %>
           <i class="fas fa-user"></i><br>
           マイページ
           <% end %>
