@@ -42,7 +42,7 @@
         </span>
 
         <span class="nav-item-admin">
-          <%= link_to users_path do %>
+          <%= link_to user_path(current_user.id) do %>
           <i class="fas fa-user"></i><br>
           マイページ
           <% end %>
@@ -85,17 +85,17 @@
         </span>
 
         <span class="nav-item">
-          <%= link_to users_path do %>
+          <%= link_to user_path(current_user.id) do %>
           <i class="fas fa-user"></i><br>
           マイページ
           <% end %>
         </span>
 
         <span class="nav-item">
-          <%= link_to orders_path do %>
+         <%= link_to mycart_path do %>
           <i class="fas fa-cart-arrow-down"></i><br>
           カート
-          <% end %>
+         <% end %>
         </span>
 
         <span>
@@ -138,7 +138,6 @@
 
     </nav>
 
-
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>">
         <%= message %>
@@ -146,6 +145,11 @@
     <% end %>
 
   </header>
+    <!-- margin効かない問題の対策 -->
+  <div style="height: 65px;">
+
+  </div>
+
 
   <%= yield %>
 
