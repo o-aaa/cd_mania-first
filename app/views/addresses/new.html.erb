@@ -1,2 +1,51 @@
 <h1>Addresses#new</h1>
 <p>Find me in app/views/addresses/new.html.erb</p>
+
+<!-- ここから新規コード -->
+<div class="main">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="mx-auto">
+        <div class="sign_up_wrapper">
+
+          <div class="text-center py-4">
+            <h2>別の送り先住所を登録</h2>
+          </div>
+
+          <%= form_for(@address) do |f| %>
+
+              <div class="field py-2">
+                <span>受け取り先 氏名</span><br>
+                <%= f.text_field :delivery_last_name, required: true, autofocus: true, input_html: { autocomplete: "delivery_last_name" }, class: "short" %>
+                <%= f.text_field :delivery_first_name, required: true, input_html: { autocomplete: "delivery_first_name" }, class: "short" %>
+              </div>
+
+              <div class="field py-2">
+                <span>受け取り先 氏名（フリガナ）</span><br>
+                <%= f.text_field :delivery_last_name_kana, required: true, input_html: { autocomplete: "delivery_last_name_kana" }, placeholder:"セイ", class: "short" %>
+                <%= f.text_field :delivery_first_name_kana, required: true, input_html: { autocomplete: "delivery_first_name_kana" }, placeholder:"ナマエ", class: "short" %>
+              </div>
+
+                <div class="field py-2">
+                  <span>郵便番号</span><br>
+                  <%= f.number_field :post_num, required: true, placeholder:"◯◯◯△△△△" %>
+                </div>
+                <div class="field py-2">
+                  <span>住所</span><br>
+                  <%= f.text_field :address, required: true, placeholder:"長野県長野市A町1-23", class: "long" %>
+                </div>
+
+              <div class="form-actions py-2">
+                <%= f.submit "別住所を保存", class: "btn btn-info" %>
+              </div>
+
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
