@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_033011) do
+ActiveRecord::Schema.define(version: 2019_05_23_044939) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
     t.string "post_num"
     t.string "address"
-    t.integer "shipping_address"
+    t.integer "shipping_address", default: 0
     t.integer "user_id"
     t.string "delivery_last_name"
     t.string "delivery_first_name"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_033011) do
     t.integer "product_id"
     t.string "artist"
     t.integer "price"
+    t.string "lebel"
     t.integer "genre", default: 0
     t.integer "buy_status", default: 0
     t.integer "stocks"
