@@ -24,8 +24,14 @@
 				<th>電話番号：</th>
 				<td><%= @user.phone_num %></td>
 		</table>
+
 		<div class="mypage_btn_wrapper">
 			<%= link_to "登録情報を編集", edit_user_path, class: "btn btn-info" %>
+
+			<!-- 一般ユーザー向けのvieｗ -->
+			<% if current_user.user_flag == 0 %>
+
+
 			<%= link_to(edit_user_path, class: 'btn btn-info') do %>
 				<i class="far fa-heart"></i>
 				<span>お気に入りリスト</span>
@@ -83,6 +89,16 @@
 				<td colspan="5" class="text-right">合計金額：￥<%= order.total_price %></td>
 			</tr>
 			<tr><td colspan="5" class="order_history_border"></td></tr>
+			<% end %>
+
+			<% else %>
+
+
+			<div class="sales_management">
+				<h2><br>売り上げ状況</h2>
+				<p class="sales_amount">¥   <%  @sales %></p>
+
+			<div>
 			<% end %>
 		</table>
 	</div>
