@@ -5,34 +5,36 @@
 		<h1 class="text-center">ユーザー情報</h1>
 		<table>
 			<tr>
-				<th class="text-right">名前：</th>
+				<th>名前：</th>
 				<td><%= @user.last_name %><%= @user.first_name %></td>
 			</tr>
 			<tr>
-				<th class="text-right">名前（かな）：</th>
+				<th>名前（かな）：</th>
 				<td><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
 			<tr>
-				<th class="text-right">郵便番号：</th>
+				<th>郵便番号：</th>
 				<td><%= @address.post_num %></td>
 			<tr>
-				<th class="text-right">住所：</th>
+				<th>住所：</th>
 				<td><%= @address.address %></td>
 			<tr>
-				<th class="text-right">E-mail：</th>
+				<th>E-mail：</th>
 				<td><%= @user.email %></td>
 			<tr>
-				<th class="text-right">電話番号：</th>
+				<th>電話番号：</th>
 				<td><%= @user.phone_num %></td>
 		</table>
-		<%= link_to "登録情報を編集", edit_user_path, class: "btn btn-info" %>
-		<%= link_to(edit_user_path, class: 'btn btn-info') do %>
-		  <i class="far fa-heart"></i>
-		  <span>お気に入りリスト</span>
-		<% end %>
-		<%= link_to "退会", edit_user_path, class: "btn btn-info" %>
+		<div class="mypage_btn_wrapper">
+			<%= link_to "登録情報を編集", edit_user_path, class: "btn btn-info" %>
+			<%= link_to(edit_user_path, class: 'btn btn-info') do %>
+				<i class="far fa-heart"></i>
+				<span>お気に入りリスト</span>
+			<% end %>
+			<%= link_to "退会", edit_user_path, class: "btn btn-info" %>
+		</div>
 	</div>
 
-	<div class="mypage_border"></div>
+	<hr color="#777" width="95%" size="5">
 
 	<!-- ここから購入履歴 -->
 	<div class="order_history">

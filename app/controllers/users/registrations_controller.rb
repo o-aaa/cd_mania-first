@@ -16,7 +16,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
        resource.addresses.build
        resource.addresses.first.post_num = params[:user][:address][:post_num]
        resource.addresses.first.address = params[:user][:address][:address]
-       resource.save!
+       begin
+          resource.save!
+       rescue ActiveRecord::RecordInvalid => invalid
+          puts invalid.record.errors
+       end
    end
 
   # GET /resource/edit
