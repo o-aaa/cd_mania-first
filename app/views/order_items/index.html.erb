@@ -1,2 +1,132 @@
 <h1>OrderItems#index</h1>
 <p>Find me in app/views/order_items/index.html.erb</p>
+
+<!--ここから追加したコード  -->
+
+<div class="main">
+
+	<!-- 商品情報 -->
+	<div class="container order_item_index_wrapper">
+		<div class="row align-items-end"><!-- align-items-end:下で揃える -->
+			<div class="col">
+				<div class="order_item_index">
+					<table>
+						<tr>
+							<th rowspan="2" class="text-center">
+								<%= image_tag 'no_image.jpg', :size => '100x100' %>
+							</th>
+							<td>購入アルバム名 / アーティスト名　Product</td>
+						</tr>
+						<tr>
+							<td>枚数　Cart</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="order_item_solid">
+					<p>購入者名　User</p>
+					<p>〒：　Address</p>
+					<p>住所：　Address</p>
+					<p>電話番号：　User</p>
+					<p>メールアドレス：　User</p>
+					<p>支払い方法：　Order</p>
+					<p>合計金額：　Order</p>
+					<p>ステータス：　Order
+						<select name="xxx">
+							<option value="">選択してください</option>
+							<option value="">未発送</option>
+							<option value="">発送済み</option>
+						</select>
+					</p>
+					<%= link_to "更新", index_path, class: "btn btn-info" %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ここからeach適用版 -->
+	<!-- 商品情報 -->
+	<div class="container order_item_index_wrapper">
+		<% @orders.each do |order| %>
+			<div class="row align-items-end"><!-- align-items-end:下で揃える -->
+				<div class="col">
+					<div class="order_item_index">
+						<table>
+							<% order.order_items.each do |order_item| %>
+								<tr>
+									<th rowspan="2" class="text-center">
+									<%= image_tag 'no_image.jpg', :size => '100x100' %>
+									</th>
+									<td>購入アルバム名 / アーティスト名　Product</td>
+								</tr>
+								<tr>
+									<td>枚数　Cart</td>
+								</tr>
+							<% end %>
+						</table>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="order_item_solid">
+						<p>購入者名　User</p>
+						<p>〒：　Address</p>
+						<p>住所：　Address</p>
+						<p>電話番号：　User</p>
+						<p>メールアドレス：　User</p>
+						<p>支払い方法：　Order</p>
+						<p>合計金額：￥<%= order.total_price %></p>
+						<p>ステータス：　Order
+							<select name="xxx">
+								<option value="">選択してください</option>
+								<option value="">未発送</option>
+								<option value="">発送済み</option>
+							</select>
+						</p>
+						<%= link_to "更新", index_path, class: "btn btn-info" %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+
+			<!-- :以下、参考 -->
+			<div class="order_history">
+				<table>
+				  <th colspan="5" class="order_history_border">参考に</th>
+			<!-- 以上テスト -->
+			<!-- ここからモデルに保存されてるファイル -->
+			<% @orders.each do |order| %>
+			  <% order.order_items.each do |order_item| %>
+				<tr>
+					<td rowspan="2" class="text-center">
+						<%= image_tag 'no_image.jpg', :size => '100x100' %>
+					</td>
+					<td>シングル/アルバム</td>
+					<td>アーティスト</td>
+					<td>枚数</td>
+					<td>￥<%= order_item.buy_price %></td>
+				</tr>
+				<tr>
+					<!-- td統合 -->
+					<td>送付先住所</td>
+					<td><%= order.delivery_status %></td>
+					<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+					<td></td>
+				</tr>
+				<tr><td colspan="5" class="order_history_border"></td></tr>
+			  <% end %>
+			<tr>
+				<td colspan="5" class="text-right">合計金額：￥<%= order.total_price %></td>
+			</tr>
+			<tr><td colspan="5" class="order_history_border"></td></tr>
+			<% end %>
+		</table>
+	</div>
+	<!-- 商品情報ここまで -->
+
+
+</div>

@@ -76,6 +76,7 @@ header {
     width: 100%;
 	margin-top: 0;
 	margin-bottom: 20px;
+	z-index: 50;
 }
 
 a{
@@ -168,4 +169,36 @@ a{
 }
 .sales_amount {
 	font-size: 30px;
+}
+
+
+
+
+
+
+
+// 販売一覧のレイアウト
+.order_item_index_wrapper {
+	width: 95%;
+	margin: 0 auto;
+	padding-top: 100px;
+	text-align: center;
+	line-height: 18px;
+	z-index: 1;
+}
+
+.order_item_index {
+}
+.order_item_index th {
+	text-align: center;
+	padding-right: 20px;
+}
+.order_item_index td {
+	text-align: left;
+}
+
+.order_item_solid{
+	border-left: 1px solid #666;
+	text-align: left;
+	padding-left: 20px;
 }
