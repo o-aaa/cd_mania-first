@@ -77,12 +77,16 @@
         <div class="title-kaiin">
           <%= link_to"CDまにあ堂", "/" %>
         </div>
-        <span class="form">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="アーティスト名検索" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-          </form>
-        </span>
+
+        <div class="form">
+          <%= search_form_for @search, url: products_path, :class =>"form-inline my-2 my-lg-0" do |f| %>
+            <%= f.text_field :artist_cont , placeholder:"アーティスト名検索", :class =>"form-control mr-sm-2" %>
+            <%= button_tag :type => "submit", :class =>"btn btn-outline-success my-2 my-sm-0" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+        </div>
+
 
         <span class="nav-item">
           <%= link_to user_path(current_user.id) do %>
@@ -117,12 +121,15 @@
         <div class="title-user">
           <%= link_to"CDまにあ堂", "/" %>
         </div>
-        <span class="form">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="アーティスト名検索" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-          </form>
-        </span>
+
+         <div class="form">
+          <%= search_form_for @search, url: products_path, :class =>"form-inline my-2 my-lg-0" do |f| %>
+            <%= f.text_field :artist_cont , placeholder:"アーティスト名検索", :class =>"form-control mr-sm-2" %>
+            <%= button_tag :type => "submit", :class =>"btn btn-outline-success my-2 my-sm-0" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+        </div>
 
         <span class="nav-item">
           <%= link_to"ログイン", "/users/sign_in" %>
