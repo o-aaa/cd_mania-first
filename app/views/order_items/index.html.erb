@@ -7,74 +7,24 @@
 
 	<!-- 商品情報 -->
 	<div class="container order_item_index_wrapper">
-		<div class="row align-items-end"><!-- align-items-end:下で揃える -->
-			<div class="col">
-				<div class="order_item_index">
-					<table>
-						<tr>
-							<th rowspan="2" class="text-center">
-								<%= image_tag 'no_image.jpg', :size => '100x100' %>
-							</th>
-							<td>購入アルバム名 / アーティスト名　Product</td>
-						</tr>
-						<tr>
-							<td>枚数　Cart</td>
-						</tr>
-					</table>
-				</div>
-			</div>
 
-			<div class="col">
-				<div class="order_item_solid">
-					<table class="order_item_address">
-						<tr><th>購入者名：　</th>
-							<td>User</td></tr>
-						<tr><th>〒：　</th>
-							<td>Address</td></tr>
-						<tr><th>住所：　</th>
-							<td>Address</td></tr>
-						<tr><th>電話番号：　</th>
-							<td>User</td></tr>
-						<tr><th>メールアドレス：　</td>
-							<td>User</td></tr>
-						<tr><th>支払い方法：　</th>
-							<td>Order</td></tr>
-						<tr><th>合計金額：　</th>
-							<td>Order</td></tr>
-						<tr><th>ステータス：　Order</th>
-							<td>
-							<select name="xxx">
-								<option value="">選択してください</option>
-								<option value="">未発送</option>
-								<option value="">発送済み</option>
-							</select>
-						</td></tr>
-					</table>
-					<%= link_to "更新", index_path, class: "btn btn-info" %>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ここからeach適用版 -->
-	<!-- 商品情報 -->
-	<div class="container order_item_index_wrapper">
 		<% @orders.each do |order| %>
-			<div class="row align-items-end"><!-- align-items-end:下で揃える -->
+			<div class="row">
 				<div class="col">
 					<div class="order_item_index">
 						<table>
 							<% order.order_items.each do |order_item| %>
-								<tr>
-									<th rowspan="2" class="text-center">
-									<%= image_tag 'no_image.jpg', :size => '100x100' %>
-									</th>
-									<td><%= order_item.cart.product.product_name %> / <%= order_item.cart.product.artist %></td>
-									<!-- :もっとスマートな呼び出し方があるかもしれない　=> メンターさんに質問 -->
-								</tr>
-								<tr>
-									<td><%= order_item.cart.buy_count %>枚</td>
-								</tr>
+								<tbody class="order_item_index_box">
+									<tr>
+										<th rowspan="2" class="text-center">
+											<%= image_tag 'no_image.jpg', :size => '100x100' %>
+										</th>
+										<td><%= order_item.cart.product.product_name %> / <%= order_item.cart.product.artist %></td>
+									</tr>
+									<tr>
+										<td><%= order_item.cart.buy_count %>枚</td>
+									</tr>
+								</tbody>
 							<% end %>
 						</table>
 					</div>
@@ -82,62 +32,51 @@
 
 				<div class="col">
 					<div class="order_item_solid">
-						<p>購入者名　<%= order.address.user.last_name %><%= order.address.user.first_name %></p>
-						<p>〒：　<%= order.address.post_num %></p>
-						<p>住所：　<%= order.address.address %></p>
-						<p>電話番号：　<%= order.address.user.phone_num %></p>
-						<p>メールアドレス：　<%= order.address.user.email %></p>
-						<p>支払い方法：　<%= order.payment %></p>
-						<p>合計金額：￥<%= order.total_price %></p>
-						<p>ステータス：　Order
-							<select name="xxx">
-								<option value="0">選択してください</option>
-								<option value="1">未発送</option>
-								<option value="2">発送済み</option>
-							</select>
-						</p>
+						<table class="order_item_address table table-hover">
+							<tr><th>購入者名</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.last_name %><%= order.address.user.first_name %></td>
+							</tr>
+							<tr><th>〒</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.post_num %></td>
+							</tr>
+							<tr><th>住所</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.address %></td>
+							</tr>
+							<tr><th>電話番号</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.phone_num %></td>
+							</tr>
+							<tr><th>メールアドレス</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.email %></td>
+							</tr>
+							<tr><th>支払い方法</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.payment %></td>
+							</tr>
+							<tr><th>合計金額</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.total_price %></td>
+							</tr>
+							<tr><th>ステータス</th>
+								<td class="table_boundary"></td>
+								<td>
+								<select name="xxx">
+									<option value="">選択してください</option>
+									<option value="">未発送</option>
+									<option value="">発送済み</option>
+								</select>
+							</td></tr>
+						</table>
 						<%= link_to "更新", index_path, class: "btn btn-info" %>
 					</div>
 				</div>
 			</div>
+
 		<% end %>
 	</div>
-
-
-			<!-- :以下、参考 -->
-			<div class="order_history">
-				<table>
-				  <th colspan="5" class="order_history_border">参考に</th>
-			<!-- 以上テスト -->
-			<!-- ここからモデルに保存されてるファイル -->
-			<% @orders.each do |order| %>
-			  <% order.order_items.each do |order_item| %>
-				<tr>
-					<td rowspan="2" class="text-center">
-						<%= image_tag 'no_image.jpg', :size => '100x100' %>
-					</td>
-					<td>シングル/アルバム</td>
-					<td>アーティスト</td>
-					<td>枚数</td>
-					<td>￥<%= order_item.buy_price %></td>
-				</tr>
-				<tr>
-					<!-- td統合 -->
-					<td>送付先住所</td>
-					<td><%= order.delivery_status %></td>
-					<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-					<td></td>
-				</tr>
-				<tr><td colspan="5" class="order_history_border"></td></tr>
-			  <% end %>
-			<tr>
-				<td colspan="5" class="text-right">合計金額：￥<%= order.total_price %></td>
-			</tr>
-			<tr><td colspan="5" class="order_history_border"></td></tr>
-			<% end %>
-		</table>
-	</div>
-	<!-- 商品情報ここまで -->
-
 
 </div>

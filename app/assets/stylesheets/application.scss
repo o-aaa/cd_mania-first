@@ -187,26 +187,38 @@ a{
 	z-index: 1;
 }
 
-.order_item_index {
+.order_item_index table {
+	width: 100%;
+}
+.order_item_index_box {
+	border-top: 1px solid #dee2e6; // bootstrap4のtableクラスborderと同じ色
+	border-bottom: 1px solid #dee2e6;
+}
+.order_item_index_box:hover {
+	background-color: #b3b3b3;
 }
 .order_item_index th {
-	text-align: center;
-	padding-right: 20px;
+	text-align: left;
+	width: 110px;
+	padding: 10px 20px;
+	border-spacing: 20px;
 }
 .order_item_index td {
 	text-align: left;
 }
 
 .order_item_solid{
-	border-left: 1px solid #666;
+	border-left: 1px solid #dee2e6;
 	text-align: left;
 	padding-left: 20px;
 }
 .order_item_address {
-	border-spacing: 20px;
 }
 .order_item_address th {
-	text-align: right;
+	text-align: center;
 	font-weight: normal;
+	width: 140px;
 }
-
+.table_boundary {
+	width: 18px;
+}
