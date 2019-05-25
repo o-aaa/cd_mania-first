@@ -4,10 +4,8 @@ class CartsController < ApplicationController
   	@cart = Cart.new(cart_params)
   	@cart.user_id = current_user.id
   	@cart.product_id = params[:product_id]
-    @cart.buy_count = params[:buy_count]
   	@cart.save
   	redirect_to mycart_path
-  	
   end
 
 private
