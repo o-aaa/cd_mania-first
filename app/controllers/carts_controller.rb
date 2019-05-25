@@ -3,9 +3,14 @@ class CartsController < ApplicationController
   def create
   	@cart = Cart.new
   	@cart.user_id = current_user.id
+  	@cart.product_id = params[:product_id]
   	@cart.save
   	redirect_to mycart_path
+  	
   end
 
-
+private
+  def product_params
+  	params.require(:product).permit(:id)
+  end
 end

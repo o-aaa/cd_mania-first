@@ -13,13 +13,14 @@
 					<h3><span class="badge badge-pill badge-primary"><%= @product.genre %></span>
 					<span class="badge badge-pill badge-info"><%= @product.label %></span></h3>
 					 <%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'300x300', class: "img-thumbnail" %>
-				</div>
+
+                </div>
 
 				<div class="col-lg-6">
 					<table class="table">
 						<tbody>
                                 <br><br>
-								<tr><th><h2><%= @product.product_name %></h2></th></tr>
+								<tr><th><h2><%= @product.product_name %><blockquote class="blockquote text-right mb-0"><span class="badge badge-pill badge-secondary"><%= @product.disc_type %></span></blockquote></h2></th></tr>
 								<tr><th>発売日 : <%= @product.release_date %></th></tr>
 								<tr><th>アーティスト : <%= @product.artist %></th></tr>
 								<tr><th><h3>価格 : ¥ <%= (@product.price*1.08).floor %>(税込)</h3></th></tr>
@@ -43,13 +44,16 @@
 		<div class="col-lg-3">
 			<div class="border-left" style="padding:15px;">
 
-			  <%= link_to mycart_path(cart: {product_id: params[:id]}), method: :post do %>
+			  <%= link_to cart_create_path(params[:id]), method: :post do %>
                 <button type="button" class="btn btn-outline-secondary"><i class="fas fa-cart-arrow-down fa-5x "></i></button><br>
                 カートに入れる
 			  <% end %>
 
 				<br>
-				<%= select_tag "buy_count", options_for_select([["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"]],:selected=>"1") %>
+
+				<%= form_for @cart do |f| %>
+　　　　　　　　　　<%= f.select :buy_count, options_for_select([["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"]],:selected=>"1") %>
+				<% end %>
 
                 <div>
                  <!--% if current_user.user_flag == 2 %-->

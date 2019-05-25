@@ -5,7 +5,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @cart = Cart.new
     @product = Product.find(params[:id])
+    session[:product] = @product
   end
 
   def new
@@ -49,9 +51,10 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-  	params.require(:product).permit(:image, :artist, :product_name, :price, :label, :release_date, :stocks, :genre, :buy_status,
+  	params.require(:product).permit(:image, :artist, :product_name, :price, :label, :stocks, :genre, :buy_status, :disc_type, :release_date,
+
                                       discs_attributes: [
-                                         :id,:disc_type, :disc_num, :_destroy, songs_attributes: [:id,:track_num, :song_title, :_destroy]
+                                         :id, :disc_num, :_destroy, songs_attributes: [:id,:track_num, :song_title, :_destroy]
                                       ] )
   end
 
