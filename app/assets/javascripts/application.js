@@ -26,7 +26,13 @@
 //= require nested_form_fields
 
 $(function() {
- 
+ $('#buy_count').bind('change', function() {
+ 	var url = "/cart_create_path(params[:id])/" + $(this).val()
+ 	if (url) {
+ 		window.location.replace(url);
+ 	}
+ 	return false;
+ });
   // button要素をクリックしたら発動
   $('button').click(function() {
  

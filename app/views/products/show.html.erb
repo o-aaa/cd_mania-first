@@ -44,15 +44,17 @@
 		<div class="col-lg-3">
 			<div class="border-left" style="padding:15px;">
 
-			  <%= link_to cart_create_path(params[:id]), method: :post do %>
+			  <!-- <%= link_to cart_create_path(params[:id]), method: :post do %>
                 <button type="button" class="btn btn-outline-secondary"><i class="fas fa-cart-arrow-down fa-5x "></i></button><br>
                 カートに入れる
-			  <% end %>
+			  <% end %> -->
 
 				<br>
 
-				<%= form_for @cart do |f| %>
-　　　　　　　　　　<%= f.select :buy_count, options_for_select([["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"]],:selected=>"1") %>
+				<%= form_for @cart, url: cart_create_path(params[:id]), html: {method: :post} do |f|  %>
+				  <span class="btn btn-outline-secondary"><i class="fas fa-cart-arrow-down fa-5x "></i></span>
+				  <%= f.select :buy_count, options_for_select(["1", "2", "3", "4", "5"], :selected=>"1") %>
+				  <%= f.submit "カートに入れる"%>
 				<% end %>
 
                 <div>
