@@ -16,6 +16,17 @@ class OrdersController < ApplicationController
   def confirmation
   end
 
+  def delivery_status
+    order = Order.find(params[:id])
+    if order.update(order_params)
+      flash[:success] = "配送ステータスを更新しました！"
+      redirect_to index_path
+    else
+      flash[:danger] = "更新できませんでした..."
+      redirect_to index_path
+    end
+  end
+
 private
   def cart_params
     params.require(:cart).permit(:id, :buy_count)
