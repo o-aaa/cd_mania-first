@@ -16,7 +16,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
        resource.addresses.build
        resource.addresses.first.post_num = params[:user][:address][:post_num]
        resource.addresses.first.address = params[:user][:address][:address]
-       resource.save!
+       begin
+          resource.save!
+       rescue ActiveRecord::RecordInvalid => invalid
+          puts invalid.record.errors
+       end
    end
 
   # GET /resource/edit
@@ -51,7 +55,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
      #binding.pry
       #ユーザー（入力者）が新規登録をするとき変更できるのは、sign_up(deviseのデフォルト設定のカラム、emailやpasswordなど)に加え、追加した独自カラムnicknameとsexのみ変更を許可
       #加えて子モデルaddress_listのprefectures_master_idカラムのみ変更を許可
-      params.permit(:sign_up, kays: [:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_num, :user_flag, :user_status, address_attributes: [:post_num, :address]])
+      params.permit(:sign_up, kays: [:last_name, :first_name, :last_name_kana, :first_name_kana, :phone_num, :user_flag, :user_status, address_attributes: [:post_num, :address, :shipping_address]])
     end
   end
 
