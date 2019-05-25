@@ -69,10 +69,11 @@
 									<th rowspan="2" class="text-center">
 									<%= image_tag 'no_image.jpg', :size => '100x100' %>
 									</th>
-									<td>購入アルバム名 / アーティスト名　Product</td>
+									<td><%= order_item.cart.product.product_name %> / <%= order_item.cart.product.artist %></td>
+									<!-- :もっとスマートな呼び出し方があるかもしれない　=> メンターさんに質問 -->
 								</tr>
 								<tr>
-									<td>枚数　Cart</td>
+									<td><%= order_item.cart.buy_count %>枚</td>
 								</tr>
 							<% end %>
 						</table>
