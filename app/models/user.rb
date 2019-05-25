@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :addresses, dependent: :destroy
+  belongs_to :default_address, foreign_key: "default_address", primary_key: :id, class_name: "Address"
   has_many :favorites, dependent: :destroy
   has_many :carts, dependent: :destroy
+
 
   # Addressモデルにデータを送る
   accepts_nested_attributes_for :addresses
