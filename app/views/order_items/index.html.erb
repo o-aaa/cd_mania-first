@@ -26,20 +26,30 @@
 
 			<div class="col">
 				<div class="order_item_solid">
-					<p>購入者名　User</p>
-					<p>〒：　Address</p>
-					<p>住所：　Address</p>
-					<p>電話番号：　User</p>
-					<p>メールアドレス：　User</p>
-					<p>支払い方法：　Order</p>
-					<p>合計金額：　Order</p>
-					<p>ステータス：　Order
-						<select name="xxx">
-							<option value="">選択してください</option>
-							<option value="">未発送</option>
-							<option value="">発送済み</option>
-						</select>
-					</p>
+					<table class="order_item_address">
+						<tr><th>購入者名：　</th>
+							<td>User</td></tr>
+						<tr><th>〒：　</th>
+							<td>Address</td></tr>
+						<tr><th>住所：　</th>
+							<td>Address</td></tr>
+						<tr><th>電話番号：　</th>
+							<td>User</td></tr>
+						<tr><th>メールアドレス：　</td>
+							<td>User</td></tr>
+						<tr><th>支払い方法：　</th>
+							<td>Order</td></tr>
+						<tr><th>合計金額：　</th>
+							<td>Order</td></tr>
+						<tr><th>ステータス：　Order</th>
+							<td>
+							<select name="xxx">
+								<option value="">選択してください</option>
+								<option value="">未発送</option>
+								<option value="">発送済み</option>
+							</select>
+						</td></tr>
+					</table>
 					<%= link_to "更新", index_path, class: "btn btn-info" %>
 				</div>
 			</div>
@@ -71,18 +81,18 @@
 
 				<div class="col">
 					<div class="order_item_solid">
-						<p>購入者名　User</p>
-						<p>〒：　Address</p>
-						<p>住所：　Address</p>
-						<p>電話番号：　User</p>
-						<p>メールアドレス：　User</p>
-						<p>支払い方法：　Order</p>
+						<p>購入者名　<%= order.address.user.last_name %><%= order.address.user.first_name %></p>
+						<p>〒：　<%= order.address.post_num %></p>
+						<p>住所：　<%= order.address.address %></p>
+						<p>電話番号：　<%= order.address.user.phone_num %></p>
+						<p>メールアドレス：　<%= order.address.user.email %></p>
+						<p>支払い方法：　<%= order.payment %></p>
 						<p>合計金額：￥<%= order.total_price %></p>
 						<p>ステータス：　Order
 							<select name="xxx">
-								<option value="">選択してください</option>
-								<option value="">未発送</option>
-								<option value="">発送済み</option>
+								<option value="0">選択してください</option>
+								<option value="1">未発送</option>
+								<option value="2">発送済み</option>
 							</select>
 						</p>
 						<%= link_to "更新", index_path, class: "btn btn-info" %>
