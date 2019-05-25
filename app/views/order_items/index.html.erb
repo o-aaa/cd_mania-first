@@ -5,6 +5,7 @@
 
 <div class="main">
 
+
 	<!-- 商品情報 -->
 	<div class="container order_item_index_wrapper">
 
@@ -17,7 +18,7 @@
 								<tbody class="order_item_index_box">
 									<tr>
 										<th rowspan="2" class="text-center">
-											<%= image_tag 'no_image.jpg', :size => '100x100' %>
+											<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
 										</th>
 										<td><%= order_item.cart.product.product_name %> / <%= order_item.cart.product.artist %></td>
 									</tr>
