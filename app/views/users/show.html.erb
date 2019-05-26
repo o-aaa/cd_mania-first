@@ -45,34 +45,28 @@
 
 	<!-- ここから購入履歴 -->
 	<div class="order_history">
-		<table>
-		  <th colspan="5" class="order_history_border">購入経歴</th>
-			<!-- 以上テスト -->
+		<h3>購入経歴</h3>
+
 			<!-- ここからモデルに保存されてるファイル -->
 			<% @orders.each do |order| %>
-				<tr><td colspan="4" class="order_history_border"></td></tr>
-				<tr>
-					<td >
-						<% if order.delivery_status == "Shipped" %>
-							<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
-						<% elsif order.delivery_status == "Unshipp" %>
-							<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
-						<% else %>
-							<span class="btn btn-warning btn-sm"><%= order.delivery_status_i18n %></span>
-						<% end %>
-					</td>
-					<td colspan="3">
-						<%= order.created_at.strftime('%Y年%m月%d日') %>に購入
-					</td>
-				</tr>
-				<tr><td colspan="4" class="order_history_border"></td></tr>
+				<div class="order_history_title">
+					<% if order.delivery_status == "Shipped" %>
+						<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
+					<% elsif order.delivery_status == "Unshipp" %>
+						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
+					<% else %>
+						<span class="btn btn-warning btn-sm"><%= order.delivery_status_i18n %></span>
+					<% end %>
+					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
+				</div>
+				<table>
 			  <% order.order_items.each do |order_item| %>
 				<tr>
 					<td rowspan="2" class="order_history_image">
 						<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
 					</td>
 					<td>商品名：　<%= order_item.cart.product.product_name %></td>
-					<td>シングル/アルバム：　<%= order_item.cart.product.disc_type %></td>
+					<td>シングル/アルバム：　<%= order_item.cart.product.disc_type_i18n %></td>
 					<td>アーティスト名：　<%= order_item.cart.product.artist %></td>
 				</tr>
 				<tr>
