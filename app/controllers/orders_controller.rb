@@ -7,13 +7,15 @@ class OrdersController < ApplicationController
     @buy_count = params[:buy_count]
     @address = Address.find_by(user_id:current_user.id)
     @addresses = current_user.addresses
+    @order = Order.new
+   end
 
-
-  end
-
-  def create
-    @order_item = Order_item.new
-  end
+   def create
+    @order = Order.new(order_params)
+    @order.user_id = current_user.id
+    @order.save
+    redirect_to confirmation_path
+   end
 
   def confirmation
   end
@@ -27,7 +29,5 @@ private
     params.require(:order).permit(:payment, :delivery_status,
                     carts_attributes:[:id, :buy_count])
   end
-
-  
 
 end
