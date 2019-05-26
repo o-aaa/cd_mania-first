@@ -1,2 +1,87 @@
-<h1>OrderItems#index</h1>
-<p>Find me in app/views/order_items/index.html.erb</p>
+<!-- : 55行目に修正点あります -->
+
+<div class="main">
+<% if user_signed_in? %>
+  <% if current_user.user_flag == 1 %>
+
+	<!-- 商品情報 -->
+	<div class="container order_item_index_wrapper">
+
+		<% @orders.each do |order| %>
+			<div class="row">
+				<div class="col">
+					<div class="order_item_index">
+						<table>
+							<% order.order_items.each do |order_item| %>
+								<tbody class="order_item_index_box">
+									<tr>
+										<th rowspan="2" class="text-center">
+											<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+										</th>
+										<td><%= order_item.cart.product.product_name %> / <%= order_item.cart.product.artist %></td>
+									</tr>
+									<tr>
+										<td><%= order_item.cart.buy_count %>枚</td>
+									</tr>
+								</tbody>
+							<% end %>
+						</table>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="order_item_solid">
+						<table class="order_item_address table table-hover">
+							<tr><th>購入者名</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.last_name %><%= order.address.user.first_name %></td>
+							</tr>
+							<tr><th>郵便番号</th>
+								<td class="table_boundary">：</td>
+								<td>〒<%= order.address.post_num %></td>
+							</tr>
+							<tr><th>住所</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.address %></td>
+							</tr>
+							<tr><th>電話番号</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.phone_num %></td>
+							</tr>
+							<tr><th>メールアドレス</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.email %></td>
+							</tr>
+							<tr><th>支払い方法</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.payment %></td><!-- 修正: emunの内容を反映させるために、「order.payment_i18n」に変更する -->
+							</tr>
+							<tr><th>合計金額</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.total_price %></td>
+							</tr>
+							<tr><th>配送ステータス</th>
+								<td class="table_boundary"></td>
+								<td>
+									<%= form_for order, url: "/orders/#{order.id}/delivery_status" do |f| %>
+										<%= f.select :delivery_status, Order.delivery_statuses.keys.map {|k| [I18n.t("enums.order.delivery_status.#{k}"), k]} %>
+									　<%= f.submit "更新", class: "btn btn-info" %>
+								</td>
+							</tr>
+						</table>
+									<% end %><!-- formタグのend -->
+					</div>
+				</div>
+			</div>
+			<hr  color="#eee" size="3">
+		<% end %>
+	</div>
+  <% end %>
+<% else %>
+
+	<div class="alert alert-primary text-center" role="alert">このページは管理者のみ閲覧することができます。</div>
+
+<% end %>
+
+
+</div>

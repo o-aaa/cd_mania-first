@@ -1,5 +1,7 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
     errors:
       format: "%{attribute}%{message}"
       messages:
@@ -71,8 +73,12 @@ ja:
         Single: シングル
         Album: アルバム
     order:
-        payment:
-            Cash_on_delivery: 代引き
-            Creditcard: クレジットカード
-            Bank_transfer: 銀行振り込み
-            
+      payment:
+        Cash_on_delivery: 代引き
+        Creditcard: クレジットカード
+        Bank_transfer: 銀行振り込み
+      delivery_status:
+        Please_select: 選択してください
+        Unshipp: 未発送
+        Shipped: 発送済み
+

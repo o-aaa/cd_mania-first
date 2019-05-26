@@ -7,8 +7,13 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    user.destroy
-    redirect_to action: 'index'
+      if current_user.user_flag == 1
+        user.destroy
+        redirect_to action: 'index'
+      else
+        user.destroy
+        redirect_to '/'
+      end
   end
 
   def show
@@ -29,6 +34,9 @@ class UsersController < ApplicationController
   def edit
   	@user = User.find(params[:id])
   	@address = @user.addresses.first
+  end
+
+  def delete_confirmation
   end
 
   def update
