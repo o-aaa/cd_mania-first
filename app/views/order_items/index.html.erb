@@ -1,5 +1,6 @@
-<div class="main">
+<!-- : 55行目に修正点あります -->
 
+<div class="main">
 
 	<!-- 商品情報 -->
 	<div class="container order_item_index_wrapper">
@@ -33,9 +34,9 @@
 								<td class="table_boundary">：</td>
 								<td><%= order.address.user.last_name %><%= order.address.user.first_name %></td>
 							</tr>
-							<tr><th>〒</th>
+							<tr><th>郵便番号</th>
 								<td class="table_boundary">：</td>
-								<td><%= order.address.post_num %></td>
+								<td>〒<%= order.address.post_num %></td>
 							</tr>
 							<tr><th>住所</th>
 								<td class="table_boundary">：</td>
@@ -51,7 +52,7 @@
 							</tr>
 							<tr><th>支払い方法</th>
 								<td class="table_boundary">：</td>
-								<td><%= order.payment %></td>
+								<td><%= order.payment %></td><!-- 修正: emunの内容を反映させるために、「order.payment_i18n」に変更する -->
 							</tr>
 							<tr><th>合計金額</th>
 								<td class="table_boundary">：</td>
@@ -61,13 +62,12 @@
 								<td class="table_boundary"></td>
 								<td>
 									<%= form_for order, url: "/orders/#{order.id}/delivery_status" do |f| %>
-										<%= f.select :delivery_status, [["選択してください", 0], ["未発送", 1], ["発送済み", 2]] %>
+										<%= f.select :delivery_status, Order.delivery_statuses.keys.map {|k| [I18n.t("enums.order.delivery_status.#{k}"), k]} %>
 								</td>
 							</tr>
 						</table>
 										<%= f.submit "更新", class: "btn btn-info" %>
 									<% end %>
-						<%= link_to "更新", index_path, class: "btn btn-info" %>
 					</div>
 				</div>
 			</div>
