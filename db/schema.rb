@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_044939) do
+ActiveRecord::Schema.define(version: 2019_05_25_103618) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_05_23_044939) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subtotal"
   end
 
   create_table "discs", force: :cascade do |t|

@@ -50,7 +50,7 @@ ja:
       header:
         one: "%{model}にエラーが発生しました"
         other: "%{model}に%{count}個のエラーが発生しました"
-  enums: # <= HERE!
+  enums:
     product:
       genre:
         POP: ポップ
@@ -70,3 +70,9 @@ ja:
       disc_type:
         Single: シングル
         Album: アルバム
+    order:
+        payment:
+            Cash_on_delivery: 代引き
+            Creditcard: クレジットカード
+            Bank_transfer: 銀行振り込み
+            
