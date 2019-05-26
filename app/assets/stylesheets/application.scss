@@ -149,13 +149,20 @@ a{
 }
 .order_history table {
 	width: 100%;
-	border-spacing: 10px 5px;
 	margin: 0 auto;
 }
 .order_history th {
 	padding: 20px 10px;
 	font-size: 20px;
 	border-bottom: 1px solid #777;
+}
+.order_history td {
+	padding: 5px 5px 0;
+}
+.order_history_image {
+	text-align: left;
+	width: 110px;
+	padding: 10px 20px;
 }
 .order_history_border {
 	border-bottom: 1px solid #777;
@@ -217,7 +224,7 @@ a{
 .table_boundary {
 	width: 18px;
 }
-=======
+
 .delete_confirm_title{
 	font-size: 70px;
 }
