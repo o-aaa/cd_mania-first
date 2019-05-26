@@ -65,7 +65,7 @@
 								<td>
 									<%= form_for order, url: "/orders/#{order.id}/delivery_status" do |f| %>
 										<%= f.select :delivery_status, Order.delivery_statuses.keys.map {|k| [I18n.t("enums.order.delivery_status.#{k}"), k]} %>
-									　<%= f.submit "更新", class: "btn btn-info " %>
+									　<%= f.submit "更新", class: "btn btn-info" %>
 								</td>
 							</tr>
 						</table>
