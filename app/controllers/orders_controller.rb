@@ -28,8 +28,6 @@ private
                     carts_attributes:[:id, :buy_count])
   end
 
-  def address_params
-    params.require(:address).permit(:post_num, :address, :delivery_last_name, :delivery_first_name, :delivery_last_name_kana, :delivery_first_name_kana, :user_id, :shipping_address, address_ids: [])
-  end
+  
 
 end

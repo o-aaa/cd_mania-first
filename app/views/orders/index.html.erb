@@ -38,35 +38,43 @@
         </div>
         <hr color="#000000" width="80%" size="9">
 
-        <div class="row">
-            <div class="col-lg-6">
+        
 
               <div class="table">
               <h4>お届け先住所</h4>
-              <div class="check_box">
 
                 <%= form_with model: current_user do |f| %>
-                  <%= f.collection_check_boxes(:address_ids, @addresses, :id, :address) do |b| %>
-                   <%= b.label do %>
-                     <%= b.object.post_num %>
-                     <%= b.object.address %>
-                     <%= b.check_box({:checked=> false}) %>
-                   <% end %>
-                  <% end %>
-                <%= f.submit %>
-                <% end %>
+                <div class="row">
+            <div class="col-lg-5">
+                  <table>
+
+                    <thead>
+                      <tr>
+                        <th>郵便番号</th>
+                        <th>配送先住所</th>
+                        <th>苗字</th>
+                        <th>名前</th>
+                        <th>選択</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <%= f.collection_check_boxes(:address_ids, @addresses, :id, :address) do |b| %>
+                       <%= b.label do %>
+                    <tr>
+                      <td><%= b.object.post_num %></td>
+                      <td><%= b.object.address %></td>
+                      <td><%= b.object.delivery_last_name %></td>
+                      <td><%= b.object.delivery_first_name %></td>
+                      <td><%= b.check_box({:checked=> false}) %></td>
+                    </tr>
+                       <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
             </div>
 
-
-                    <p>〒<%= @address.post_num %></p>
-                    <p>住所： <%= @address.address %></p>
-              </div>
-
-
-                    <p><%= link_to "別の住所へ発送したい方", new_address_path %> </p>
-            </div>
-            <!-- <div class="border-left" style="padding:15px;"> -->
-            <div class="col-lg-6">
+　　　　　　　<div class="col-lg-3">
                 <h4>お支払い方法<br>
                      form_for @order do |order|
                          order.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]}
@@ -76,13 +84,20 @@
                 <p>商品料金合計円</p>
                 <p>+ 送料500円</p>
                 <p><%= link_to "買い物続けるボタン", products_path %></p>
-                <p><%= link_to "確定画面へ" %></p>
-
-                <section>
-                </section>
-
             </div>
-        </div>
+              <div class="col-lg-2 d-flex align-items-end">
+                <br><br><%= f.submit "確定", class: "btn btn-success pull-right" %>
+            </div>
+                <% end %>
+
+            <div class="col-lg-6">
+                    <p><%= link_to "別の住所へ発送したい方", new_address_path %> </p>
+            </div>
+
+           </div>
+
+          </div>
+            <!-- <div class="border-left" style="padding:15px;"> -->
 
     </div>
 </body>
