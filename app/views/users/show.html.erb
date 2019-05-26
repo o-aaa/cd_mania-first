@@ -53,7 +53,13 @@
 				<tr><td colspan="4" class="order_history_border"></td></tr>
 				<tr>
 					<td >
-						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
+						<% if order.delivery_status == "Shipped" %>
+							<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
+						<% elsif order.delivery_status == "Unshipp" %>
+							<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
+						<% else %>
+							<span class="btn btn-warning btn-sm"><%= order.delivery_status_i18n %></span>
+						<% end %>
 					</td>
 					<td colspan="3">
 						<%= order.created_at.strftime('%Y年%m月%d日') %>に購入
