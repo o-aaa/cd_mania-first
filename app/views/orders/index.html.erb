@@ -9,8 +9,9 @@
                         <th>商品画像</th>
                         <th>商品名</th>
                         <th>歌手名</th>
+                        <th>商品価格</th>
                         <th>購入枚数</th>
-                        <th>価格</th>
+                        <th>小計</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -20,12 +21,13 @@
                             <td><%= attachment_image_tag cart.product, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size =>'50x50', class: "img-thumbnail" %></td>
                             <td><%= cart.product.product_name %></td>
                             <td><%= cart.product.artist %></td>
-                            <td><%= form_for cart do |f| %>
-                                    <%= f.select :buy_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]] %>
-                                <% end %>
+                            <td><%= (cart.product.price*1.08).floor %>円
                                 </td>
-                            <td><%= (cart.product.price*1.08).floor %></td>
-                            <td><%= link_to "削除",cart_path(cart.id), method: :delete, class: 'btn btn-danger', role: 'button' %> </td>
+                            <td><%= form_for cart do |f| %>
+                                    <%= f.select :buy_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]] %>個
+                                <% end %></td>
+                            <td><%= (cart.subtotal*1.08).floor %>円</td>
+                            <td><%= link_to "削除",cart_path(cart.id), method: :delete, class: 'btn btn-danger btn-sm', role: 'button' %> </td>
                         </tr>
                     <% end %>
                 </tbody>
@@ -42,16 +44,13 @@
             </div>
             <!-- <div class="border-left" style="padding:15px;"> -->
             <div class="col-lg-6">
-                <h4>お支払い方法<br>
-                     form_for @order do |order|
-                         order.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]}
-                    end
-                        </h4>
-                <h4>お会計</h4>
-                <p>商品料金合計円</p>
-                <p>+ 送料500円</p>
-                <p><%= link_to "買い物続けるボタン", products_path %></p>
-                <p><%= link_to "確定画面へ" %></p>
+                <h4>お支払い方法
+                    <%= form_for @order,:url => {:index => :create} do |f| %>
+                        <%= f.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]} %>
+                    <% end %>
+                </h4>
+                <h3>商品合計料金：<%= (@total_price*1.08).floor %>円</h3>
+                <p><%= link_to "買い物続けるボタン", products_path,  class: "btn btn-outline-info", role: 'button' %><%= link_to "確認画面へ", products_path, class: "btn btn-outline-success", role: 'button' %></p>
                 <section>
 
                 </section></p>

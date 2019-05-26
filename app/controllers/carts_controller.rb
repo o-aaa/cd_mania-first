@@ -7,7 +7,7 @@ class CartsController < ApplicationController
   	@cart.save
   	redirect_to mycart_path
   end
-  
+
   def destroy
     cart = Cart.find(params[:id])
     cart.destroy
@@ -20,6 +20,6 @@ private
   end
 
   def cart_params
-    params.require(:cart).permit(:buy_count)
+    params.require(:cart).permit(:buy_count, :subtotal)
   end
 end
