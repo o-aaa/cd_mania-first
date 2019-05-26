@@ -1,6 +1,8 @@
 <!-- : 55行目に修正点あります -->
 
 <div class="main">
+<% if user_signed_in? %>
+  <% if current_user.user_flag == 1 %>
 
 	<!-- 商品情報 -->
 	<div class="container order_item_index_wrapper">
@@ -63,16 +65,23 @@
 								<td>
 									<%= form_for order, url: "/orders/#{order.id}/delivery_status" do |f| %>
 										<%= f.select :delivery_status, Order.delivery_statuses.keys.map {|k| [I18n.t("enums.order.delivery_status.#{k}"), k]} %>
+									　<%= f.submit "更新", class: "btn btn-info " %>
 								</td>
 							</tr>
 						</table>
-										<%= f.submit "更新", class: "btn btn-info" %>
-									<% end %>
+									<% end %><!-- formタグのend -->
 					</div>
 				</div>
 			</div>
-
+			<hr  color="#eee" size="3">
 		<% end %>
 	</div>
+  <% end %>
+<% else %>
+
+	<div class="alert alert-primary text-center" role="alert">このページは管理者のみ閲覧することができます。</div>
+
+<% end %>
+
 
 </div>
