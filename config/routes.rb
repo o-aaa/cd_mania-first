@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get "/order_items" => "order_items#index", as: 'index'
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
   patch "/orders/:id/delivery_status" => "orders#delivery_status"
+  get "/delete_confirmation" => "users#delete_confirmation",as: 'delete_confirmation'
+
   root 'products#index'
   devise_for :users, controllers: {
     sessions: 'users/sessions',

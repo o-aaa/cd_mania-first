@@ -172,11 +172,6 @@ a{
 }
 
 
-
-
-
-
-
 // 販売一覧のレイアウト
 .order_item_index_wrapper {
 	width: 95%;
@@ -222,3 +217,18 @@ a{
 .table_boundary {
 	width: 18px;
 }
+=======
+.delete_confirm_title{
+	font-size: 70px;
+}
+
+.delete_confirm_message{
+	text-align: center;
+	margin: 20px 20% 40px;
+}
+
+.delete_confirm_link{
+	margin-top: 25px;
+}
+
+
