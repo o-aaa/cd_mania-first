@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   resources :addresses, only:[:new, :create, :show, :edit, :update]
-  resources :favorites, only:[:index, :create, :destroy]
-  resources :products
+  resources :products do
+    resource :favorites, only:[:create, :destroy]
+  end
+  resources :favorites, only:[:index]
   resources :discs, only:[:new, :create, :edit, :update, :destroy]
   resources :songs, only:[:new, :create, :edit, :update, :destroy]
   resources :carts, only:[:create, :update, :destroy]
@@ -12,6 +14,9 @@ Rails.application.routes.draw do
   get "/users/:id/orders/confirmation/:id" => "orders#confirmation", as: 'confirmation'
   get "/order_items" => "order_items#index", as: 'index'
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
+  patch "/orders/:id/delivery_status" => "orders#delivery_status"
+  get "/delete_confirmation" => "users#delete_confirmation",as: 'delete_confirmation'
+
   root 'products#index'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
