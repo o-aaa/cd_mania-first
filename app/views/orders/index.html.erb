@@ -40,10 +40,24 @@
 
         <div class="row">
             <div class="col-lg-6">
-                
 
               <div class="table">
-                    <h4>お届け先住所</h4>
+              <h4>お届け先住所</h4>
+              <div class="check_box">
+
+                <%= form_with model: current_user do |f| %>
+                  <%= f.collection_check_boxes(:address_ids, @addresses, :id, :address) do |b| %>
+                   <%= b.label do %>
+                     <%= b.object.post_num %>
+                     <%= b.object.address %>
+                     <%= b.check_box({:checked=> false}) %>
+                   <% end %>
+                  <% end %>
+                <%= f.submit %>
+                <% end %>
+            </div>
+
+
                     <p>〒<%= @address.post_num %></p>
                     <p>住所： <%= @address.address %></p>
               </div>
