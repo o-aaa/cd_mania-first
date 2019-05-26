@@ -1,5 +1,7 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
     errors:
       format: "%{attribute}%{message}"
       messages:
@@ -70,3 +72,8 @@ ja:
       disc_type:
         Single: シングル
         Album: アルバム
+    order:
+      delivery_status:
+        Please_select: 選択してください
+        Unshipp: 未発送
+        Shipped: 発送済み
