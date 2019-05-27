@@ -34,6 +34,7 @@
 
 
 			<%= link_to("/favorites", class: 'btn btn-info') do %>
+
 				<i class="far fa-heart"></i>
 				<span>お気に入りリスト</span>
 			<% end %>
@@ -45,51 +46,46 @@
 
 	<!-- ここから購入履歴 -->
 	<div class="order_history">
-		<table>
-		  <th colspan="5" class="order_history_border">購入経歴</th>
-			<tr>
-				<td rowspan="2" class="text-center">
-					<%= image_tag 'no_image.jpg', :size => '100x100' %>
-				</td>
-				<td>シングル/アルバム</td>
-				<td>アーティスト</td>
-				<td>枚数</td>
-				<td>￥合計金額</td>
-			</tr>
-			<tr>
-				<!-- td統合 -->
-				<td>送付先住所</td>
-				<td>配送状況</td>
-				<td>購入日</td>
-				<td></td>
-			</tr>
-		  <tr><td colspan="5" class="order_history_border"></td></tr>
-			<!-- 以上テスト -->
+		<h3>購入経歴</h3>
+
 			<!-- ここからモデルに保存されてるファイル -->
 			<% @orders.each do |order| %>
+				<div class="order_history_title">
+					<% if order.delivery_status == "Shipped" %>
+						<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
+					<% elsif order.delivery_status == "Unshipp" %>
+						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
+					<% else %>
+						<span class="btn btn-warning btn-sm"><%= order.delivery_status_i18n %></span>
+					<% end %>
+					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
+				</div>
+				<table>
 			  <% order.order_items.each do |order_item| %>
 				<tr>
-					<td rowspan="2" class="text-center">
-						<%= image_tag 'no_image.jpg', :size => '100x100' %>
+					<td rowspan="2" class="order_history_image">
+						<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
 					</td>
-					<td>シングル/アルバム</td>
-					<td>アーティスト</td>
-					<td>枚数</td>
-					<td>￥<%= order_item.buy_price %></td>
+					<td>商品名：　<%= order_item.cart.product.product_name %></td>
+					<td>シングル/アルバム：　<%= order_item.cart.product.disc_type_i18n %></td>
+					<td>アーティスト名：　<%= order_item.cart.product.artist %></td>
 				</tr>
 				<tr>
 					<!-- td統合 -->
-					<td>送付先住所</td>
-					<td><%= order.delivery_status %></td>
-					<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+					<td>購入枚数：　<%= order_item.cart.buy_count %>枚</td>
+					<td>小計：　￥<%= order_item.buy_price %></td>
 					<td></td>
 				</tr>
-				<tr><td colspan="5" class="order_history_border"></td></tr>
+				<tr><td colspan="4" class="order_history_border"></td></tr>
 			  <% end %>
 			<tr>
-				<td colspan="5" class="text-right">合計金額：￥<%= order.total_price %></td>
+				<td colspan="4">合計金額：￥<%= order.total_price %></td>
 			</tr>
-			<tr><td colspan="5" class="order_history_border"></td></tr>
+			<tr><td colspan="4" class="order_history_border"></td></tr>
+			<tr>
+				<td colspan="4">配送先：　<%= order.address.address %></td>
+			</tr>
+			<tr><td colspan="4" class="order_history_border"></td></tr>
 			<% end %>
 
 			<% else %>

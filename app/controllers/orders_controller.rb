@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     # 合計計算
     @total_price = 0
-    @carts.each do |cart|
+    @cart.each do |cart|
       @total_price += cart.subtotal
     end
   end
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
 
 private
   def cart_params
-    params.require(:cart).permit(:id, :buy_count, :subtotal)
+    params.require(:cart).permit(:id, :buy_count)
   end
   def order_params
     params.require(:order).permit(:payment, :delivery_status,
