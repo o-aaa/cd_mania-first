@@ -1,2 +1,78 @@
-<h1>Orders#confirmation</h1>
-<p>Find me in app/views/orders/confirmation.html.erb</p>
+<h1 class="text-center sign_up_wrapper">最終確認画面</h1>
+
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>商品画像</th>
+                        <th>商品名</th>
+                        <th>歌手名</th>
+                        <th>商品価格</th>
+                        <th>購入枚数</th>
+                        <th>小計</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @carts.each do |cart| %>
+                        <tr>
+                            <td><%= attachment_image_tag cart.product, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size =>'50x50', class: "img-thumbnail" %></td>
+                            <td><%= cart.product.product_name %></td>
+                            <td><%= cart.product.artist %></td>
+                            <td><%= (cart.product.price*1.08).floor %>円
+                                </td>
+                            <td>
+                                    <%= cart.buy_count %>枚
+                            </td>
+                            <td><%= (cart.subtotal*1.08).floor %>円</td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <hr color="#000000" width="80%" size="9">
+
+        <div class="row">
+            <div class="col-lg-6">
+                    <p>お届け先： 〒<%= @order.address.post_num %> <%= @order.address.address %></p>
+                    <p></p>
+                    <p>氏名：
+                    	<% if (@order.address.shipping_address == 0) %>
+                    		<%= @order.address.user.last_name %>
+                    		<%= @order.address.user.first_name %>
+                    	<% else %>
+                    		<%= @order.address.delivery_last_name %>
+                    		<%= @order.address.delivery_first_name %>
+                    	<% end %>
+                    </p>
+                    <p>お支払い方法： <%= @order.payment_i18n %></p>
+                    <table class="confirmation_fee">
+                    	<tr>
+                    		<td>お会計：</td>
+                    		<td>商品料金</td>
+                    		<td><%= @order.total_price %>円</td>
+                    	</tr>
+                    	<tr>
+                    		<td></td>
+                    		<td>＋ 送料</td>
+                    		<td>500円</td>
+                    	</tr>
+                    	<tr>
+                    		<td></td>
+                    		<td>合計</td>
+                    		<td><%= @order.total_price+500 %>円</td>
+                    	</tr>
+                    	<tr>
+                    		<td><%= link_to "戻る", mycart_path,  class: "btn btn-outline-info", role: 'button' %></td>
+                    		<td><%= link_to "確定", complete_path, method: :post, class: "btn btn-outline-success", role: 'button' %></td>
+                    		<td></td>
+                    	</tr>
+                    </table>
+                    <p class="text-center">
+                    </p>
+            </div>
+
+            <div class="col-lg-6">
+            </div>
+        </div>
+    </div>
