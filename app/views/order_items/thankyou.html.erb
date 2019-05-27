@@ -1,2 +1,32 @@
+<body>
 <h1>OrderItems#thankyou</h1>
-<p>Find me in app/views/order_items/index.html.erb</p>
+<div class="alert alert-success" role="alert">注文確定！</div>
+  <div class="container">
+   
+   <div class="row">
+   	<div class="col-lg-1"></div>
+   	<div class="col-lg-10">
+    
+    <div class="card card-body text-center bg-light p-3">
+    
+	<h1 class="card-title m-5 text-success border-bottom">ご注文が確定しました</h1>
+	
+	<form class="card-text mb-5">
+		<h4>ご利用ありがとうございます。<br>配送状況はマイページよりご確認ください。</h4>
+	</form>
+
+	<div class="col-lg-6 mx-auto mb-5">
+      <%= link_to "お買い物を続ける", products_path, class: "card-link btn btn-secondary" %>
+
+	  <%= link_to "マイページ", user_path(current_user.id), class: "card-link btn btn-primary" %>
+	</div>
+
+	</div>
+
+     <div class="col-lg-1"></div>
+     </div>
+    </div>
+   
+  </div>
+</body>
+

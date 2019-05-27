@@ -1,8 +1,10 @@
+
 <h1>カート内商品</h1>
 <p>Find me in app/views/orders/index.html.erb</p>
 
     <div class="container">
         <div class="row">
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -15,6 +17,7 @@
                         <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <% @cart.each do |cart| %>
                         <tr>
@@ -32,28 +35,66 @@
                     <% end %>
                 </tbody>
             </table>
+
         </div>
         <hr color="#000000" width="80%" size="9">
 
-        <div class="row">
-            <div class="col-lg-6">
-                    <h4>お届け先住所</h4>
-                    <p>〒<%= @address.post_num %></p>
-                    <p>氏名： %></p>
-                    <p><%= link_to "別の住所へ発送したい方", new_address_path %> </p>
-            </div>
-            <!-- <div class="border-left" style="padding:15px;"> -->
-            <div class="col-lg-6">
-                <h4>お支払い方法
-                    <%= form_for @order,:url => {:index => :create} do |f| %>
-                        <%= f.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]} %>
-                    <% end %>
-                </h4>
-                <h3>商品合計料金：<%= (@total_price*1.08).floor %>円</h3>
-                <p><%= link_to "買い物続けるボタン", products_path,  class: "btn btn-outline-info", role: 'button' %><%= link_to "確認画面へ", products_path, class: "btn btn-outline-success", role: 'button' %></p>
-                <section>
+        
 
-                </section></p>
+              <div class="table">
+              <h4>お届け先住所</h4>
+
+                <%= form_for(@order, url: confirmation_path) do |f| %>
+                <div class="row">
+                 <div class="col-lg-5">
+                  <table>
+
+                    <thead>
+                      <tr>
+                        <th>郵便番号</th>
+                        <th>配送先住所</th>
+                        <th>苗字</th>
+                        <th>名前</th>
+                        <th>選択</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        <% current_user.addresses.each do |address| %>
+                            <tr>
+                                <td><%= address.post_num%></td>
+                                <td><%= address.address%></td>
+                                <td><%= address.delivery_last_name%></td>
+                                <td><%= address.delivery_first_name%></td>
+                                <td><%= f.radio_button 'address', address.id, {} %></td>
+                            <tr>
+                        <% end %>
+                    </tbody>
+
+                  </table>
+                 </div>
+
+　　　　　　　     <div class="col-lg-3">
+                    <h4>お支払い方法
+                        <%= f.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]} %>
+                    </h4>
+                    <h3>商品合計料金：<%= (@total_price*1.08).floor %>円</h3>
+                    <!-- <p>合計金額をorder_itemsに渡す</p> -->
+                    <%= f.hidden_field :total_price, :value => @total_price %>
+                     <p><%= link_to "買い物続けるボタン", products_path,  class: "btn btn-outline-info", role: 'button' %></p>
+                 </div>
+
+                <div class="col-lg-2 d-flex align-items-end">
+                    <%= f.submit "確定", class: "btn btn-success pull-right" %>
+                </div>
+
+                <% end %>
+
+            <div class="col-lg-6">
+                    <p><%= link_to "別の住所へ発送したい方", new_address_path, class: "btn btn-outline-success", role: 'button' %> </p>
             </div>
-        </div>
+          </div>
+          </div>
+            <!-- <div class="border-left" style="padding:15px;"> -->
+
     </div>
