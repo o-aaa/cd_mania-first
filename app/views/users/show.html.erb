@@ -61,31 +61,32 @@
 					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
 				</div>
 				<table>
-			  <% order.order_items.each do |order_item| %>
-				<tr>
-					<td rowspan="2" class="order_history_image">
-						<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
-					</td>
-					<td>商品名：　<%= order_item.cart.product.product_name %></td>
-					<td>シングル/アルバム：　<%= order_item.cart.product.disc_type_i18n %></td>
-					<td>アーティスト名：　<%= order_item.cart.product.artist %></td>
-				</tr>
-				<tr>
-					<!-- td統合 -->
-					<td>購入枚数：　<%= order_item.cart.buy_count %>枚</td>
-					<td>小計：　￥<%= order_item.buy_price %></td>
-					<td></td>
-				</tr>
-				<tr><td colspan="4" class="order_history_border"></td></tr>
-			  <% end %>
-			<tr>
-				<td colspan="4">合計金額：￥<%= order.total_price %></td>
-			</tr>
-			<tr><td colspan="4" class="order_history_border"></td></tr>
-			<tr>
-				<td colspan="4">配送先：　<%= order.address.address %></td>
-			</tr>
-			<tr><td colspan="4" class="order_history_border"></td></tr>
+					<% order.order_items.each do |order_item| %>
+						<tr>
+							<td rowspan="2" class="order_history_image">
+								<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+							</td>
+							<td>商品名：　<%= order_item.cart.product.product_name %></td>
+							<td>シングル/アルバム：　<%= order_item.cart.product.disc_type_i18n %></td>
+							<td>アーティスト名：　<%= order_item.cart.product.artist %></td>
+						</tr>
+						<tr>
+							<!-- td統合 -->
+							<td>購入枚数：　<%= order_item.cart.buy_count %>枚</td>
+							<td>小計：　￥<%= order_item.buy_price %></td>
+							<td></td>
+						</tr>
+						<tr><td colspan="4" class="order_history_border"></td></tr>
+			  		<% end %>
+					<tr>
+						<td colspan="4">合計金額：￥<%= order.total_price %></td>
+					</tr>
+					<tr><td colspan="4" class="order_history_border"></td></tr>
+					<tr>
+						<td colspan="4">配送先：　<%= order.address.address %></td>
+					</tr>
+					<tr><td colspan="4" class="order_history_border"></td></tr>
+				</table>
 			<% end %>
 
 			<% else %>
@@ -97,6 +98,6 @@
 
 			<div>
 			<% end %>
-		</table>
+		
 	</div>
 </div>
