@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
   def index
     @user = current_user
-    @favorites = @user.favorites.page(params[:page]).per(10)
+    @favorite = @user.favorites.page(params[:page]).per(10)
   end
 
   def create
@@ -15,7 +15,8 @@ class FavoritesController < ApplicationController
   	product = Product.find(params[:product_id])
   	favorite = current_user.favorites.find_by(product_id: product.id)
   	favorite.destroy
-  	redirect_to product_path(product)
+    # 同一ページへリダイレクトする！
+  	redirect_back(fallback_location: root_path)
   end
 
 end
