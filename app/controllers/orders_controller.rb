@@ -44,6 +44,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def complete
+    order = Order.find(params[:id])
+    carts = Cart.where(user_id: current_user.id)
+    carts.each do |cart|
+      order_item = OrderItem.new
+      order_item.cart_id = cart.id
+      order_item.buy_price = (cart.product.price*1.08).floor
+      order_item.order_id = order.id
+      order_item.save()
+    end
+    order_items = OrderItem.where(order_id: order.id)
+    if order_items.count == carts.count
+      redirect_to thankyou_path
+    else
+      flash[:danger] = "カート内容の更新に失敗しました。もう一度やり直してください。"
+      order_items.delete_all
+      redirect_to mycart_path
+    end
+  end
+
 private
   def cart_params
     params.require(:cart).permit(:id, :buy_count)
@@ -51,6 +71,9 @@ private
   def order_params
     params.require(:order).permit(:payment, :delivery_status,
                     carts_attributes: [:id, :buy_count])
+  end
+  def order_item_params
+    params.require(:order_item).permit(:cart_id, :buy_price, :order_id)
   end
 
 end
