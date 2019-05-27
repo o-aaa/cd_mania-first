@@ -1,10 +1,4 @@
-<h1>Orders#confirmation</h1>
-<p>Find me in app/views/orders/confirmation.html.erb</p>
-
-<!-- ここから追加部分 -->
-
 <h1>確認画面</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
 
     <div class="container">
         <div class="row">
@@ -42,7 +36,15 @@
             <div class="col-lg-6">
                     <p>お届け先： 〒<%= @order.address.post_num %> <%= @order.address.address %></p>
                     <p></p>
-                    <p>氏名： %></p>
+                    <p>氏名：
+                    	<% if (@order.address.shipping_address == 0) %>
+                    		<%= @order.address.user.last_name %>
+                    		<%= @order.address.user.first_name %>
+                    	<% else %>
+                    		<%= @order.address.delivery_last_name %>
+                    		<%= @order.address.delivery_first_name %>
+                    	<% end %>
+                    </p>
                     <p>お支払い方法： <%= @order.payment_i18n %></p>
                     <table>
                     	<tr>
@@ -66,14 +68,8 @@
                     	<%= link_to "確定", thankyou_path, class: "btn btn-outline-success", role: 'button' %>
                     </p>
             </div>
-            <!-- <div class="border-left" style="padding:15px;"> -->
-            <div class="col-lg-6">
-<!--                 
-                <h3>商品合計料金：<%= (@total_price*1.08).floor %>円</h3>
-                <p><%= link_to "買い物続けるボタン", products_path,  class: "btn btn-outline-info", role: 'button' %><%= link_to "確認画面へ", products_path, class: "btn btn-outline-success", role: 'button' %></p>
-                <section>
 
-                </section></p> -->
+            <div class="col-lg-6">
             </div>
         </div>
     </div>
