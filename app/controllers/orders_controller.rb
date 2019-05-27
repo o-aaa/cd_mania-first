@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
 
   def index
   	@carts = Cart.all
-    @user = current_user.id
     @cart = current_user.carts
     @buy_count = params[:buy_count]
     @address = Address.find_by(user_id:current_user.id)
@@ -18,10 +17,12 @@ class OrdersController < ApplicationController
 
   def create
   	@order = Order.new(order_params)
-  	@cart.user_id = current_user.id
-    #@order.user_id = current_user.id
+    @order.address_id = params[:order][:address].to_i
+    current_user.carts.each do |cart|
+  	   cart.user_id = current_user.id
+    end
   	@order.save
-    redirect_to controller: :order_items, action: :confirmation
+    redirect_to confirmation_path
   end
 
   def confirmation
@@ -40,11 +41,12 @@ class OrdersController < ApplicationController
 
 private
   def cart_params
-    params.require(:cart).permit(:id, :buy_count)
+    params.require(:cart).permit(:id, :buy_count, :product_id,
+      products_attributes: [:price])
   end
 
   def order_params
-    params.require(:order).permit(:payment, :delivery_status,
+    params.require(:order).permit(:payment, :delivery_status, :total_price,
                     carts_attributes: [:id, :buy_count])
   end
 

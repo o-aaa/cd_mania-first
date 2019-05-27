@@ -20,6 +20,6 @@ private
   end
 
   def cart_params
-    params.require(:cart).permit(:buy_count, :subtotal)
+    params.require(:cart).permit(:buy_count)
   end
 end

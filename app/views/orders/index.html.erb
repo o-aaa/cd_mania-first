@@ -44,7 +44,7 @@
               <div class="table">
               <h4>お届け先住所</h4>
 
-                <%= form_with model: current_user do |f| %>
+                <%= form_for(@order, url: confirmation_path) do |f| %>
                 <div class="row">
                  <div class="col-lg-5">
                   <table>
@@ -60,17 +60,15 @@
                     </thead>
 
                     <tbody>
-                      <%= f.collection_check_boxes(:address_ids, @addresses, :id, :address) do |b| %>
-                       <%= b.label do %>
-                    <tr>
-                      <td><%= b.object.post_num %></td>
-                      <td><%= b.object.address %></td>
-                      <td><%= b.object.delivery_last_name %></td>
-                      <td><%= b.object.delivery_first_name %></td>
-                      <td><%= b.check_box({:checked=> false}) %></td>
-                    </tr>
-                       <% end %>
-                      <% end %>
+                        <% current_user.addresses.each do |address| %>
+                            <tr>
+                                <td><%= address.post_num%></td>
+                                <td><%= address.address%></td>
+                                <td><%= address.delivery_last_name%></td>
+                                <td><%= address.delivery_first_name%></td>
+                                <td><%= f.radio_button 'address', address.id, {} %></td>
+                            <tr>
+                        <% end %>
                     </tbody>
 
                   </table>
@@ -78,22 +76,22 @@
 
 　　　　　　　     <div class="col-lg-3">
                     <h4>お支払い方法
-                        <%= form_for @order,:url => {:index => :create} do |f| %>
-                            <%= f.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]} %>
-                        <% end %>
+                        <%= f.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]} %>
                     </h4>
                     <h3>商品合計料金：<%= (@total_price*1.08).floor %>円</h3>
+                    <!-- <p>合計金額をorder_itemsに渡す</p> -->
+                    <%= f.hidden_field :total_price, :value => @total_price %>
                      <p><%= link_to "買い物続けるボタン", products_path,  class: "btn btn-outline-info", role: 'button' %></p>
                  </div>
 
                 <div class="col-lg-2 d-flex align-items-end">
-                    <br><br><%= f.submit "確定", class: "btn btn-success pull-right" %>
+                    <%= f.submit "確定", class: "btn btn-success pull-right" %>
                 </div>
 
                 <% end %>
 
             <div class="col-lg-6">
-                    <p><%= link_to "別の住所へ発送したい方", new_address_path %> </p>
+                    <p><%= link_to "別の住所へ発送したい方", new_address_path, class: "btn btn-outline-success", role: 'button' %> </p>
             </div>
           </div>
           </div>
