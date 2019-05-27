@@ -1,4 +1,4 @@
-<h1>確認画面</h1>
+<h1 class="text-center sign_up_wrapper">最終確認画面</h1>
 
     <div class="container">
         <div class="row">
@@ -46,11 +46,11 @@
                     	<% end %>
                     </p>
                     <p>お支払い方法： <%= @order.payment_i18n %></p>
-                    <table>
+                    <table class="confirmation_fee">
                     	<tr>
                     		<td>お会計：</td>
                     		<td>商品料金</td>
-                    		<td><%= @order.total_price %></td>
+                    		<td><%= @order.total_price %>円</td>
                     	</tr>
                     	<tr>
                     		<td></td>
@@ -62,10 +62,15 @@
                     		<td>合計</td>
                     		<td><%= @order.total_price+500 %>円</td>
                     	</tr>
+                    	<tr>
+                    		<td><%= link_to "戻る", mycart_path,  class: "btn btn-outline-info", role: 'button' %></td>
+                    		<td><%= link_to "確定", complete_path, method: :post, class: "btn btn-outline-success", role: 'button' %></td>
+                    		<td></td>
+                    	</tr>
                     </table>
                     <p class="text-center">
-                    	<%= link_to "戻る", mycart_path,  class: "btn btn-outline-info", role: 'button' %>
-                    	<%= link_to "確定", complete_path, method: :post, class: "btn btn-outline-success", role: 'button' %>
+                    	
+                    	
                     </p>
             </div>
 

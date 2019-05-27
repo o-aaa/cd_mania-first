@@ -24,8 +24,6 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @carts = Cart.all
     @cart = current_user.carts
-    @buy_count = params[:buy_count]
-    @address = Address.find_by(user_id:current_user.id)
     # 合計計算
     @total_price = 0
     @cart.each do |cart|
