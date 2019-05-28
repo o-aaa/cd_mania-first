@@ -49,7 +49,7 @@
 		<h3>購入経歴</h3>
 
 			<!-- ここからモデルに保存されてるファイル -->
-			<% @orders.each do |order| %>
+			<% @orders.zip(@carts).each do |order, cart| %>
 				<div class="order_history_title">
 					<% if order.delivery_status == "Shipped" %>
 						<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
@@ -64,15 +64,15 @@
 					<% order.order_items.each do |order_item| %>
 						<tr>
 							<td rowspan="2" class="order_history_image">
-								<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+								<%= attachment_image_tag cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
 							</td>
-							<td>商品名：　<%= order_item.cart.product.product_name %></td>
-							<td>シングル/アルバム：　<%= order_item.cart.product.disc_type_i18n %></td>
-							<td>アーティスト名：　<%= order_item.cart.product.artist %></td>
+							<td>商品名：　<%= cart.product.product_name %></td>
+							<td>シングル/アルバム：　<%= cart.product.disc_type_i18n %></td>
+							<td>アーティスト名：　<%= cart.product.artist %></td>
 						</tr>
 						<tr>
 							<!-- td統合 -->
-							<td>購入枚数：　<%= order_item.cart.buy_count %>枚</td>
+							<td>購入枚数：　<%= cart.buy_count %>枚</td>
 							<td>小計：　￥<%= order_item.buy_price %></td>
 							<td></td>
 						</tr>
@@ -86,7 +86,6 @@
 						<td colspan="4">配送先：　<%= order.address.address %></td>
 					</tr>
 					<tr><td colspan="4" class="order_history_border"></td></tr>
-				</table>
 			<% end %>
 
 			<% else %>
