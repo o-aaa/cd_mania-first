@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
 
   def confirmation
     @order = Order.where(user_id: current_user.id).last
-    @carts = Cart.all
+    @carts = Cart.where(user_id: current_user.id)
     @cart = current_user.carts
     # 合計計算
     @total_price = 0
