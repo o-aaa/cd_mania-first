@@ -148,6 +148,7 @@ a{
 	margin: 0 auto;
 }
 .order_history_title {
+	margin-top: 20px;
 	padding: 5px;
 	background-color: #ccc;
 	border-top: 1px solid #777;
@@ -248,22 +249,20 @@ a{
 }
 
 .favorite_index_table{
-	margin-left: 100px;
-}
-
-.favorite_image{
-	padding: 50px;
+	margin-left: 140px;
 }
 
 
-.favorite_product{
+.favorite{
 	padding: 50px;
+	width: 280px;
 	font-size: 25px;
 }
 
-
 .favorite_delete{
-	padding: 80px;
+	padding: 50px;
+	width: 280px;
+	font-size: 20px;
 }
 
 
@@ -272,7 +271,13 @@ a{
 	margin-right: 50%;
 }
 
+.shop_sales{
+	font-size: 40px;
+	text-align: center;
+  }
+
 // 最終確認画面のレイアウト
 .confirmation_fee td {
 	width: 80px;
 }
+
