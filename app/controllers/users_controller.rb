@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   def index
   	@users = User.all
 
@@ -20,8 +22,8 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@address = @user.addresses.first
   	# ここから購入履歴
-  	@orders = Order.where(user_id: @user.id).includes(:order_items) #入れ子型のeach文を作成するため
-
+  	@orders = Order.where(user_id: @user.id).page(params[:page]).includes(:order_items) #入れ子型のeach文を作成するため
+    @carts = Cart.only_deleted.where(user_id: current_user.id)
 
     @sales = OrderItem.sum(:buy_price)
     # 該当月の絞り込みを追加予定。現在は全合計のみ
@@ -66,5 +68,15 @@ class UsersController < ApplicationController
   		)
   end
 
+# 編集者の制限を追加
+
+  def correct_user
+    user = User.find(params[:id])
+    if current_user.id == user.id
+    elsif current_user.user_flag == 1
+    else
+      redirect_back(fallback_location: root_path)
+    end
+  end
 
 end

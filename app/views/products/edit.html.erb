@@ -57,14 +57,14 @@
 		        		<h4>disc ナンバーと曲名
 		            	<%= product.nested_fields_for :discs do |disc| %>
 		            	<%= disc.select :disc_num, [["1枚目", "1"], ["2枚目", "2"], ["3枚目", "3"], ["4枚目", "4"]] ,class:"form-control" %>
-		            	<%= disc.remove_nested_fields_link 'Discナンバー削除', class: 'btn btn-danger', role: 'button' %></h4>
+		            	<%= disc.remove_nested_fields_link 'Discナンバー削除', class: 'btn btn-danger btn-sm', role: 'button' %></h4>
 		            	<h4><%= disc.nested_fields_for :songs do |song| %>
 		            	<%= song.text_field :song_title, placeholder:'曲名' %>
-		            	<%= song.remove_nested_fields_link '曲削除', class: 'btn btn-danger', role: 'button' %>
+		            	<%= song.remove_nested_fields_link '曲削除', class: 'btn btn-danger btn-sm', role: 'button' %>
 		            	<% end %>
-		            	<%= disc.add_nested_fields_link :songs, '曲追加', class: 'btn btn-primary', role: 'button' %></h4>
+		            	<%= disc.add_nested_fields_link :songs, '曲追加', class: 'btn btn-primary btn-sm', role: 'button' %></h4>
 		            	<% end %>
-		            	<%= product.add_nested_fields_link :discs, 'Discナンバー追加', class: 'btn btn-primary', role: 'button' %>
+		            	<%= product.add_nested_fields_link :discs, 'Discナンバー追加', class: 'btn btn-primary btn-sm', role: 'button' %>
 		        </section>
 		        <div class="text-right">
 		         	<%= product.submit "商品を編集" %>

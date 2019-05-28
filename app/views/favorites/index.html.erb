@@ -9,11 +9,17 @@
 	<table class="favorite_index_table">
 		<tr>
 		<td class="favorite_image">
-			<%= link_to product_path(favorite.product.id) do %>
-			<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x200' %>
+			<% if favorite.product.stocks != 0 %>
+				<%= link_to product_path(favorite.product.id) do %>
+				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'png', fallback: "no_image.png", :size =>'200x200' %>
+				<% end %>
+			<% else %>
+				<%= link_to product_path(favorite.product.id) do %>
+				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'png', fallback: "sold_out.png", :size =>'200x200' %>
+				<% end %>
 			<% end %>
 		</td>
-		<td class="favorite_product">
+		<td class="favorite">
 
 			<%= favorite.product.product_name %><br>
 			<%= favorite.product.artist %><br>
