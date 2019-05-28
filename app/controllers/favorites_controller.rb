@@ -1,7 +1,8 @@
 class FavoritesController < ApplicationController
   def index
     @user = current_user
-    @favorite = @user.favorites.page(params[:page]).per(10)
+    @favorite = @user.favorites.page(params[:page]).per(10).reverse_order
+
   end
 
   def create

@@ -8,12 +8,12 @@
 
 	<table class="favorite_index_table">
 		<tr>
-		<td class="favorite_image">
+		<td class="favorite">
 			<%= link_to product_path(favorite.product.id) do %>
 			<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x200' %>
 			<% end %>
 		</td>
-		<td class="favorite_product">
+		<td class="favorite">
 
 			<%= favorite.product.product_name %><br>
 			<%= favorite.product.artist %><br>
