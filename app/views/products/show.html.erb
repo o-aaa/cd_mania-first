@@ -9,19 +9,22 @@
 		<div class="col-lg-9">
 			<div class="row">
 				<div class="col-lg-6">
-					<h3><span class="badge badge-pill badge-primary"><%= @product.genre %></span>
+					<h3><span class="badge badge-pill badge-primary"><%= @product.genre_i18n %></span>
 					<span class="badge badge-pill badge-info"><%= @product.label %></span></h3>
-					 <%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'300x300', class: "img-thumbnail" %>
-
+					<% if @product.stocks != 0 %>
+					 	<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'png', fallback: "no_image.png", :size =>'300x300', class: "img-thumbnail" %>
+					<% else %>
+						<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'png', fallback: "sold_out.png", :size =>'300x300', class: "img-thumbnail" %>
+					<% end %>
 					 <!-- 気になるボタンを追加/ -->
       				<% if user_signed_in? %>
 					 <% if @product.favorited_by?(current_user) %>
 					 <%= link_to product_favorites_path(@product.id), method: :delete do %>
-					 	<p><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> お気に入り中</p>
+					 	<p><font size="4"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> お気に入り中</font></p>
 					 	<% end %>
 					 <% else %>
 						<%= link_to product_favorites_path(@product.id), method: :post do %>
-					 	<p><i class="fa fa-heart" aria-hidden="true" style="color: black;"></i> お気に入りリスト追加</p>
+					 	<p><font size="4"><i class="fa fa-heart" aria-hidden="true" style="color: black;"></i> お気に入りリスト追加</font></p>
 					 	<% end %>
 					 <% end %>
 					<% end %>
@@ -32,20 +35,19 @@
 					<table class="table">
 						<tbody>
                                 <br><br>
-								<tr><th><h2><%= @product.product_name %><blockquote class="blockquote text-right mb-0"><span class="badge badge-pill badge-secondary"><%= @product.disc_type %></span></blockquote></h2></th></tr>
+								<tr><th><h2><%= @product.product_name %><blockquote class="blockquote text-right mb-0"><span class="badge badge-pill badge-secondary"><%= @product.disc_type_i18n %></span></blockquote></h2></th></tr>
 								<tr><th>発売日 : <%= @product.release_date %></th></tr>
 								<tr><th>アーティスト : <%= @product.artist %></th></tr>
 								<tr><th><h3>価格 : ¥ <%= (@product.price*1.08).floor %>(税込)</h3></th></tr>
-
 						</tbody>
 					</table>
 
                       <table class="table">
-					  <!--% if current_user.user_flag == 2 %-->
+					  <% if current_user.user_flag == 2 %>
 				　     現在の在庫枚数　<%= @product.stocks %>
-				      <!--% end %-->
+				      <% end %>
 				      </table>
-				      
+
 				</div>
 
 			</div>
@@ -57,22 +59,26 @@
 			<div class="border-left" style="padding:15px;">
 
 				<br>
-
-				<%= form_for @cart, url: cart_create_path(params[:id]), html: {method: :post} do |f|  %>
-				  <span class="card p-2"><i class="fas fa-cart-arrow-down fa-5x mx-auto mb-2"></i>
-				  <h5>枚数を選択して下さい</h5>
-				  <%= f.select :buy_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], :selected=>1 %>
-				  <br>
-				  <%= f.submit "カートに入れる"%>
-				  </span>
+				<% if current_user.user_flag == 0 %>
+					<% if @product.stocks != 0 %>
+						<%= form_for @cart, url: cart_create_path(params[:id]), html: {method: :post} do |f|  %>
+						  <span class="card p-2"><i class="fas fa-cart-arrow-down fa-5x mx-auto mb-2"></i>
+						  <h5>枚数を選択して下さい</h5>
+						  <%= f.select :buy_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], :selected=>1 %>
+						  <br>
+						  <%= f.submit "カートに入れる"%>
+						  </span>
+						<% end %>
+					<% else %>
+					<% end %>
 				<% end %>
 
                 <div>
-                 <!--% if current_user.user_flag == 2 %-->
+                 <% if current_user.user_flag == 1 %>
                    <h2>管理者用機能</h2>
-                   <%= link_to "編集", edit_product_path, class: "btn btn-success" %>
-                   <%= link_to "削除", product_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-                 <!--% end %-->
+                   <%= link_to "編集", edit_product_path, class: "btn btn-success btn-sm" %>
+                   <%= link_to "削除", product_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+                 <% end %>
                 </div>
             </div>
 		</div>

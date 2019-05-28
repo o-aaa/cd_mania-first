@@ -64,7 +64,7 @@
 			  <% order.order_items.each do |order_item| %>
 				<tr>
 					<td rowspan="2" class="order_history_image">
-						<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+						<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'png', fallback: "no_image.png", :size =>'100x100' %>
 					</td>
 					<td>商品名：　<%= order_item.cart.product.product_name %></td>
 					<td>シングル/アルバム：　<%= order_item.cart.product.disc_type_i18n %></td>
