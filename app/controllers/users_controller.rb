@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@address = @user.addresses.first
   	# ここから購入履歴
-  	@orders = Order.where(user_id: @user.id).includes(:order_items) #入れ子型のeach文を作成するため
+  	@orders = Order.where(user_id: @user.id).page(params[:page]).includes(:order_items) #入れ子型のeach文を作成するため
     @carts = Cart.only_deleted.where(user_id: current_user.id)
     # @order_items = OrderItem.where(cart_id: carts.id)
     # @order_items = current_user.order_items

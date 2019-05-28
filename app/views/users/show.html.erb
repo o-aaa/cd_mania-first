@@ -71,7 +71,6 @@
 							<td>アーティスト名：　<%= cart.product.artist %></td>
 						</tr>
 						<tr>
-							<!-- td統合 -->
 							<td>購入枚数：　<%= cart.buy_count %>枚</td>
 							<td>小計：　￥<%= order_item.buy_price %></td>
 							<td></td>
@@ -86,17 +85,17 @@
 						<td colspan="4">配送先：　<%= order.address.address %></td>
 					</tr>
 					<tr><td colspan="4" class="order_history_border"></td></tr>
+				</table>
 			<% end %>
 
+
 			<% else %>
-
-
 			<div class="sales_management">
 				<h2><br>売り上げ状況</h2>
 				<p class="sales_amount">¥   <%  @sales %></p>
 
 			<div>
 			<% end %>
-		
 	</div>
 </div>
+    <%= paginate @orders, class: "paginate" %>
