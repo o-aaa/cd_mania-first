@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :adminonly, only: [:new, :edit]
+  
   def index
   	@products = Product.page(params[:page]).reverse_order
 
