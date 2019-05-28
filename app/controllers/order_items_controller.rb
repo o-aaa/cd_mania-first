@@ -5,7 +5,4 @@ class OrderItemsController < ApplicationController
     @carts = Cart.only_deleted.all
   end
 
-  def thankyou
-  	
-  end
 end

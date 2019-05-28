@@ -17,16 +17,30 @@ class OrdersController < ApplicationController
 
   def create
   	@order = Order.new(order_params)
-    @order.address_id = params[:order][:address].to_i
+    # @order.address_id = params[:order][:address].to_i
+    @order.user_id = current_user.id
     current_user.carts.each do |cart|
   	   cart.user_id = current_user.id
     end
-  	@order.save
-    redirect_to confirmation_path
+  	 if @order.save
+      redirect_to confirmation_path
+     else
+      @carts = Cart.all
+      @cart = current_user.carts
+      @buy_count = params[:buy_count]
+      @address = Address.find_by(user_id:current_user.id)
+      @addresses = current_user.addresses
+      # 合計計算
+      @total_price = 0
+      @cart.each do |cart|
+        @total_price += cart.subtotal
+      end
+      render :index
+     end
   end
 
   def confirmation
-    @order = Order.find(params[:id])
+    @order = Order.where(user_id: current_user.id).last
     @carts = Cart.all
     @cart = current_user.carts
     # 合計計算
@@ -75,7 +89,7 @@ private
   end
 
   def order_params
-    params.require(:order).permit(:payment, :delivery_status, :total_price,
+    params.require(:order).permit(:payment, :delivery_status, :total_price, :address_id,
                     carts_attributes: [:id, :buy_count])
   end
   def order_item_params

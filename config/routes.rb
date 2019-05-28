@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   post "products/:product_id/mycart" => 'carts#create', as: 'cart_create'
   get "/orders/confirmation" => "orders#confirmation", as: 'confirmation'
   post "/orders/confirmation" => "orders#create"
-  get "/order_items" => "order_items#index", as: 'index'
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
+  post "/orders/complete/:id" => "orders#complete", as: 'complete'
+  get "/order_items" => "order_items#index", as: 'index'
   patch "/orders/:id/delivery_status" => "orders#delivery_status"
   get "/delete_confirmation" => "users#delete_confirmation",as: 'delete_confirmation'
-  post "/orders/complete/:id" => "orders#complete", as: 'complete'
 
   root 'products#index'
   devise_for :users, controllers: {
