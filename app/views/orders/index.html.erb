@@ -66,7 +66,7 @@
                                 <td><%= address.address%></td>
                                 <td><%= address.delivery_last_name%></td>
                                 <td><%= address.delivery_first_name%></td>
-                                <td><%= f.radio_button 'address', address.id, {} %></td>
+                                <td><%= f.radio_button 'address_id', address.id, {} %></td>
                             <tr>
                         <% end %>
                     </tbody>
@@ -85,7 +85,7 @@
                  </div>
 
                 <div class="col-lg-2 d-flex align-items-end">
-                    <%= f.submit "確定", class: "btn btn-success pull-right" %>
+                    <%= f.submit "確定画面へ", class: "btn btn-success pull-right" %>
                 </div>
 
                 <% end %>
