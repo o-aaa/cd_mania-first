@@ -1,5 +1,3 @@
-
-<!-- コードここから -->
 <div class="main">
 	<div class="userinfo_wrapper">
 		<h1 class="text-center">ユーザー情報</h1>
@@ -40,6 +38,7 @@
 			<%= link_to "退会", "/delete_confirmation", class: "btn btn-info" %>
 		</div>
 	</div>
+
 	<!-- 管理人マイページのみ売り上げ表示 -->
 	<div class="shop_sales">
 	<% if @user.user_flag == 1 %>
@@ -57,46 +56,46 @@
 		<h3>購入経歴</h3>
 
 			<!-- ここからモデルに保存されてるファイル -->
-			<% @orders.each do |order| %>
+			<% @orders.zip(@carts).each do |order, cart| %>
 				<div class="order_history_title">
-							<% if order.delivery_status == "Shipped" %>
-								<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
-							<% elsif order.delivery_status == "Unshipp" %>
-								<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
-							<% else %>
-								<span class="btn btn-warning btn-sm"><%= order.delivery_status_i18n %></span>
-							<% end %>
-							<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
-						</div>
-						<table>
-					  <% order.order_items.each do |order_item| %>
+					<% if order.delivery_status == "Shipped" %>
+						<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
+					<% elsif order.delivery_status == "Unshipp" %>
+						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
+					<% else %>
+						<span class="btn btn-warning btn-sm"><%= order.delivery_status_i18n %></span>
+					<% end %>
+					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
+				</div>
+				<table>
+					<% order.order_items.each do |order_item| %>
 						<tr>
 							<td rowspan="2" class="order_history_image">
-								<%= attachment_image_tag order_item.cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+								<%= attachment_image_tag cart.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
 							</td>
-							<td>商品名：　<%= order_item.cart.product.product_name %></td>
-							<td>シングル/アルバム：　<%= order_item.cart.product.disc_type_i18n %></td>
-							<td>アーティスト名：　<%= order_item.cart.product.artist %></td>
+							<td>商品名：　<%= cart.product.product_name %></td>
+							<td>シングル/アルバム：　<%= cart.product.disc_type_i18n %></td>
+							<td>アーティスト名：　<%= cart.product.artist %></td>
 						</tr>
 						<tr>
-							<!-- td統合 -->
-							<td>購入枚数：　<%= order_item.cart.buy_count %>枚</td>
-							<td>小計：　￥<%= order_item.buy_price %></td>
-							<td></td>
-						</tr>
-						<tr><td colspan="4" class="order_history_border"></td></tr>
-					  <% end %>
-						<tr>
-							<td colspan="4">合計金額：￥<%= order.total_price %></td>
-						</tr>
-						<tr><td colspan="4" class="order_history_border"></td></tr>
-						<tr>
-							<td colspan="4">配送先：　<%= order.address.address %></td>
-						</tr>
-						<tr><td colspan="4" class="order_history_border"></td></tr>
+							<td>購入枚数：　<%= cart.buy_count %>枚</td>
+								<td>小計：　￥<%= order_item.buy_price %></td>
+								<td></td>
+							</tr>
+							<tr><td colspan="4" class="order_history_border"></td></tr>
+			  			<% end %>
+					<tr>
+						<td colspan="4">合計金額：￥<%= order.total_price %></td>
+					</tr>
+					<tr><td colspan="4" class="order_history_border"></td></tr>
+					<tr>
+						<td colspan="4">配送先：　<%= order.address.address %></td>
+					</tr>
+					<tr><td colspan="4" class="order_history_border"></td></tr>
+				</table>
 			<% end %>
 
-
-		</table>
 	</div>
 </div>
+
+<%= paginate @orders, class: "paginate" %>
