@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
   def create
   	@order = Order.new(order_params)
     @order.address_id = params[:order][:address].to_i
+    @order.user_id = current_user.id
     current_user.carts.each do |cart|
   	   cart.user_id = current_user.id
     end
@@ -26,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    @order = Order.find(params[:id])
+    @order = Order.find_by(user_id:current_user.id)
     @carts = Cart.all
     @cart = current_user.carts
     # 合計計算

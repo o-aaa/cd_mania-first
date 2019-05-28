@@ -33,7 +33,7 @@
         <hr color="#000000" width="80%" size="9">
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 border-bottom pb-2">
                     <p>お届け先： 〒<%= @order.address.post_num %> <%= @order.address.address %></p>
                     <p></p>
                     <p>氏名：
@@ -49,30 +49,37 @@
                     <table class="confirmation_fee">
                     	<tr>
                     		<td>お会計：</td>
-                    		<td>商品料金</td>
-                    		<td><%= @order.total_price %>円</td>
+                    		<td>商品小計</td>
+                    		<td>¥ <%= (@order.total_price*1.08).floor %>円</td>
                     	</tr>
                     	<tr>
                     		<td></td>
                     		<td>＋ 送料</td>
-                    		<td>500円</td>
+                    		<td>¥ 500円</td>
                     	</tr>
                     	<tr>
                     		<td></td>
-                    		<td>合計</td>
-                    		<td><%= @order.total_price+500 %>円</td>
+                    		<td>ご請求額</td>
+                    		<td>¥ <%= (@order.total_price*1.08).floor+500 %>円</td>
                     	</tr>
-                    	<tr>
-                    		<td><%= link_to "戻る", mycart_path,  class: "btn btn-outline-info", role: 'button' %></td>
-                    		<td><%= link_to "確定", complete_path, method: :post, class: "btn btn-outline-success", role: 'button' %></td>
-                    		<td></td>
-                    	</tr>
+                        
                     </table>
-                    <p class="text-center">
-                    </p>
+                    <p class="text-center"></p>
             </div>
 
             <div class="col-lg-6">
+            </div>
+
+            <div class="table">
+                <div class="row">
+                <div class="col-lg-12 text-center pt-4">
+                  <tr>
+                      <td><%= link_to "戻る", mycart_path,  class: "btn btn-outline-info", role: 'button' %></td>
+                      <td><%= link_to "確定", complete_path(@order.id), method: :post, class: "btn btn-outline-success", role: 'button' %></td>
+                      <td></td>
+                  </tr>
+                </div>
+                </div>
             </div>
         </div>
     </div>
