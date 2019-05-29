@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
   def index
+    @user_cart = Cart.without_deleted.last
   	@carts = Cart.all
     @cart = current_user.carts
     @buy_count = params[:buy_count]
