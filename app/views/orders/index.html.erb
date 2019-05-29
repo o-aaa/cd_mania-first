@@ -2,36 +2,10 @@
 <h1>カート内商品</h1>
 <p>Find me in app/views/orders/index.html.erb</p>
 
-<% if @user_cart.count == 0 %>
+ <!-- if @user_cart.count == 0 %> -->
 
-  <div class="container">
-
-   <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-10">
-
-    <div class="card card-body text-center bg-light p-3">
-
-    <h1 class="card-title m-5 text-success border-bottom">カートに商品が入っていません...。</h1>
-
-    <form class="card-text mb-5">
-        <h4>いつもありがとうございます。</h4>
-    </form>
-
-    <div class="col-lg-6 mx-auto mb-5">
-      <%= link_to "商品を見る", products_path, class: "card-link btn btn-secondary" %>
-
-      <%= link_to "マイページ", user_path(current_user.id), class: "card-link btn btn-primary" %>
-    </div>
-
-    </div>
-
-     <div class="col-lg-1"></div>
-     </div>
-    </div>
-
-  </div>
-<% else %>
+ 
+<!-- <else %> -->
 
     <div class="container">
         <div class="row">
@@ -52,7 +26,7 @@
                 <tbody>
                     <% @cart.each do |cart| %>
                         <tr>
-                            <td><%= attachment_image_tag cart.product, :image, :fill, 40, 40, format: 'png', fallback: "no_image.png", :size =>'50x50', class: "img-thumbnail" %></td>
+                            <td><%= attachment_image_tag cart.product, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size =>'50x50', class: "img-thumbnail" %></td>
                             <td><%= cart.product.product_name %></td>
                             <td><%= cart.product.artist %></td>
                             <td><%= (cart.product.price*1.08).floor %>円
@@ -129,4 +103,4 @@
             <!-- <div class="border-left" style="padding:15px;"> -->
 
     </div>
-<% end %>
+ <!-- end %> -->
