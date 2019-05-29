@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_26_085652) do
+ActiveRecord::Schema.define(version: 2019_05_29_034936) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "address_id"
     t.string "post_num"
     t.string "address"
     t.integer "shipping_address", default: 0
@@ -27,7 +26,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_085652) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "cart_id"
     t.integer "buy_count"
     t.integer "user_id"
     t.integer "product_id"
@@ -37,7 +35,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_085652) do
   end
 
   create_table "discs", force: :cascade do |t|
-    t.integer "disc_id"
     t.integer "disc_num", default: 0
     t.integer "product_id"
     t.datetime "created_at", null: false
@@ -45,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_085652) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "favorite_id"
     t.integer "user_id"
     t.integer "product_id"
     t.datetime "created_at", null: false
@@ -53,7 +49,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_085652) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_item_id"
     t.integer "cart_id"
     t.integer "buy_price"
     t.integer "order_id"
@@ -62,7 +57,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_085652) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "order_id"
     t.integer "payment", default: 0
     t.integer "total_price"
     t.integer "delivery_status", default: 0
@@ -73,7 +67,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_085652) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "product_id"
     t.string "artist"
     t.integer "price"
     t.integer "genre", default: 0
@@ -89,8 +82,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_085652) do
   end
 
   create_table "songs", force: :cascade do |t|
-    t.integer "song_id"
-    t.integer "track_num"
     t.string "song_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
