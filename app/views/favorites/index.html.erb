@@ -22,7 +22,7 @@
 		<td class="favorite">
 			<%= favorite.product.product_name %><br>
 			<%= favorite.product.artist %><br>
-			￥<%= (favorite.product.price*1.08).floor %>円<br>
+			￥<%= (favorite.product.price*1.08).floor %>円
 		</td>
 		<td class="favorite_delete">
 			<button type="button">
@@ -36,8 +36,8 @@
 	<% end %>
 
 
-	<div style="margin-left: 50%">
-		<%= paginate @favorite %>
+	<div style="margin-left: 40%">
+		<%= paginate @favorite, class: "paginate" %>
 		<button style="margin-left: 80%;">
 			<%= link_to "戻る", user_path(current_user.id) %>
 		</button>

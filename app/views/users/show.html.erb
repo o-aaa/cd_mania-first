@@ -87,6 +87,7 @@
 			<h3><%= link_to "過去の購入商品一覧", users_order_history_path, class:"btn" %></h3>
 
 	</div>
-
-	<%= paginate @orders, class: "paginate" %>
+	<div style="margin-left: 40%">
+		<%= paginate @orders, class: "paginate" %>
+	</div>
 </div>

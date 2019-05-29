@@ -24,7 +24,7 @@
 
             <div class="card-body">
               <h2 class="card-title"><%= product.product_name.truncate(9) %></h2>
-              <h4 class="card-text"><%= product.artist.truncate(11) %></h4> 
+              <h4 class="card-text"><%= product.artist.truncate(11) %></h4>
               <h4 class="card-text">¥<%= (product.price*1.08).floor %>円 (税込)</h4>
             </div>
           </div>
@@ -32,5 +32,7 @@
       <% end %>
       </div>
   </div>
-  <%= paginate @products, class: "paginate" %>
+  <div style="margin-left: 40%">
+    <%= paginate @search_products, class: "paginate" %>
+  </div>
 </main>

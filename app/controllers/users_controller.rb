@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
       if current_user.user_flag == 1
         user.destroy
+        flash[:success] = "ユーザー削除に成功しました。"
         redirect_to action: 'index'
       else
         user.destroy
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
   	@address = @user.addresses.first
   	# ここから購入履歴
     # １回毎の注文はOrderのidで判断する
-  	@orders = Order.where(user_id: @user.id).page(params[:page]).per(4).includes(:order_items)
+  	@orders = Order.where(user_id: @user.id).page(params[:page]).per(5).includes(:order_items)
 
     @sales = OrderItem.sum(:buy_price)
 
