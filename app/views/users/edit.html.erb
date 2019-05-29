@@ -24,20 +24,28 @@
                 <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"ナマエ", class: "short" %>
               </div>
 
-              <!-- ここからAddressモデルへ送るフォーム -->
-              <%= f.nested_fields_for :addresses do |a| %>
-                <div class="field py-2">
-                  <span>郵便番号</span><br>
-                  <%= a.number_field :post_num, required: true, value:"#{ @address.post_num }" %>
-                </div>
-                <div class="field py-2">
-                  <span>住所</span><br>
-                  <%= a.text_field :address, required: true, value:"#{ @address.address }", class: "long" %>
-                </div>
-                  <!-- <%= a.remove_nested_fields_link 'Addresses削除', class: 'btn btn-danger', role: 'button' %></h4> -->
-              <% end %>
-              <!-- <%= f.add_nested_fields_link :addresses, 'Adddress追加', class: 'btn btn-primary', role: 'button' %> -->
-              <!-- ここまでAddressモデルへ送るフォーム -->
+              <div class="table">
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>郵便番号</th>
+                    <th>登録住所</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @addresses.each do |address| %>
+                    <tr>
+                      <td>〒<%= address.post_num%></td>
+                      <td><%= address.address%></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              
+              </div>
+
+              
 
               <div class="field py-2">
                 <span>電話番号</span><br>

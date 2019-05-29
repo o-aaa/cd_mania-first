@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
       @addresses = current_user.addresses
       # 合計計算
       @total_price = 0
-      @cart.each do |cart|
+      @carts.each do |cart|
         @total_price += cart.subtotal
       end
       render :index
