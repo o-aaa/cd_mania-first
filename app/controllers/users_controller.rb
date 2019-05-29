@@ -32,7 +32,11 @@ class UsersController < ApplicationController
   # 次回参考：https://qiita.com/blueplanet/items/05aa424cc7e5847e6c84
 
   def order_history
-    @carts = current_user.carts.with_deleted.page(params[:page]).per(10)
+    if current_user.user_flag == 1
+      @carts = Cart.with_deleted.page(params[:page]).per(10)
+    else
+      @carts = current_user.carts.with_deleted.page(params[:page]).per(10)
+    end
   end
 
   def new
