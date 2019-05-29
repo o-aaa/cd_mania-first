@@ -1,0 +1,26 @@
+<div class="main">
+	<div class="order_history">
+
+				<table>
+					<tr><th colspan="4">過去の購入商品一覧</th></tr>
+					<% @carts.each do |cart| %>
+						<tr>
+							<td rowspan="2" class="order_history_image">
+								<%= attachment_image_tag cart.product, :image, :fill, 100, 100, format: 'png', fallback: "no_image.png", :size =>'100x100' %>
+							</td>
+							<td>商品名：　<%= cart.product.product_name %></td>
+							<td>シングル/アルバム：　<%= cart.product.disc_type_i18n %></td>
+							<td>アーティスト名：　<%= cart.product.artist %></td>
+						</tr>
+						<tr>
+							<td>購入枚数：　<%= cart.buy_count %>枚</td>
+								<td></td>
+							</tr>
+							<tr><td colspan="4" class="order_history_border"></td></tr>
+			  			<% end %>
+				</table>
+
+	</div>
+
+	<%= paginate @carts, class: "paginate" %>
+</div>

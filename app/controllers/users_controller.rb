@@ -23,13 +23,17 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@address = @user.addresses.first
   	# ここから購入履歴
-  	@orders = Order.where(user_id: @user.id).page(params[:page]).includes(:order_items) #入れ子型のeach文を作成するため
-    @carts = Cart.only_deleted.where(user_id: current_user.id)
+    # １回毎の注文はOrderのidで判断する
+  	@orders = Order.where(user_id: @user.id).page(params[:page]).per(4).includes(:order_items)
 
     @sales = OrderItem.sum(:buy_price)
 
   end
   # 次回参考：https://qiita.com/blueplanet/items/05aa424cc7e5847e6c84
+
+  def order_history
+    @carts = current_user.carts.with_deleted.page(params[:page]).per(10)
+  end
 
   def new
   end
