@@ -1,6 +1,4 @@
-<br>
-<body>
-
+<main>
   <div class="container">
 	<div class="row">
 
@@ -8,7 +6,7 @@
 
 		<div class="col-lg-9">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-5">
 					<h3><span class="badge badge-pill badge-primary"><%= @product.genre_i18n %></span>
 					<span class="badge badge-pill badge-info"><%= @product.label %></span></h3>
 					<% if @product.stocks != 0 %>
@@ -31,22 +29,32 @@
 
                 </div>
 
-				<div class="col-lg-6">
+				<div class="col-lg-7">
 					<table class="table">
 						<tbody>
-                                <br><br>
-								<tr><th><h2><%= @product.product_name %><blockquote class="blockquote text-right mb-0"><span class="badge badge-pill badge-secondary"><%= @product.disc_type_i18n %></span></blockquote></h2></th></tr>
-								<tr><th>発売日 : <%= @product.release_date %></th></tr>
-								<tr><th>アーティスト : <%= @product.artist %></th></tr>
-								<tr><th><h3>価格 : ¥ <%= (@product.price*1.08).floor %>(税込)</h3></th></tr>
+							<br><br><br>
+								<tr>
+									<th>商品名</th><td><%= @product.product_name %><blockquote class="blockquote text-right mb-0"><span class="badge badge-pill badge-secondary"><%= @product.disc_type_i18n %></span></blockquote></td>
+								</tr>
+								<tr>
+									<th>発売日</th><td><%= @product.release_date %></td>
+								</tr>
+								<tr>
+									<th>アーティスト</th><td><%= @product.artist %></td>
+								</tr>
+								<tr>
+									<th>価格</th><td>¥<%= (@product.price*1.08).floor %>(税込)</td>
+								</tr>
+								<tr><% if user_signed_in? %>
+                    					<% if current_user.user_flag == 0 %>
+                    					<% elsif current_user.user_flag == 1 %>
+                    						<th>在庫数</th><td><%= @product.stocks %></td>
+                    					<% else %>
+				    					<% end %>
+									<% end %>
+								</tr>
 						</tbody>
 					</table>
-
-                      <table class="table">
-					  <% if current_user.user_flag == 2 %>
-				　     現在の在庫枚数　<%= @product.stocks %>
-				      <% end %>
-				      </table>
 
 				</div>
 
@@ -56,35 +64,37 @@
 		<!--カート＆管理者編集側-->
 
 		<div class="col-lg-3">
-			<div class="border-left" style="padding:15px;">
-
-				<br>
-				<% if current_user.user_flag == 0 %>
-					<% if @product.stocks != 0 %>
-						<%= form_for @cart, url: cart_create_path(params[:id]), html: {method: :post} do |f|  %>
-						  <span class="card p-2"><i class="fas fa-cart-arrow-down fa-5x mx-auto mb-2"></i>
-						  <h5>枚数を選択して下さい</h5>
-						  <%= f.select :buy_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], :selected=>1 %>
-						  <br>
-						  <%= f.submit "カートに入れる"%>
-						  </span>
-						<% end %>
-					<% else %>
+			
+				<br><br><br>
+					<% if user_signed_in? %>
+							<% if current_user.user_flag == 0 %>
+								<% if @product.stocks != 0 %>
+									<%= form_for @cart, url: cart_create_path(params[:id]), html: {method: :post} do |f|  %>
+									  <span class="card p-2"><i class="fas fa-cart-arrow-down fa-5x mx-auto mb-2"></i>
+									  <h5>枚数を選択して下さい</h5>
+									  <%= f.select :buy_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], :selected=>1 %>
+									  <br>
+									  <%= f.submit "カートに入れる"%>
+									  </span>
+									<% end %>
+								<% else %>
+								<% end %>
+							<% elsif current_user.user_flag == 1 %>
+							<% else %>
+							<% end %>
 					<% end %>
-				<% end %>
-
-                <div>
-                 <% if current_user.user_flag == 1 %>
-                   <h2>管理者用機能</h2>
-                   <%= link_to "編集", edit_product_path, class: "btn btn-success btn-sm" %>
-                   <%= link_to "削除", product_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-                 <% end %>
-                </div>
+			                <div>
+			                <% if user_signed_in? %>
+				                 <% if current_user.user_flag == 1 %>
+				                   <%= link_to "商品を編集", edit_product_path, class: "btn btn-outline-success btn-sm" %><br>
+				                   <%= link_to "商品を削除", product_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %>
+				                 <% end %>
+			                <% end %>
+                			</div>
             </div>
 		</div>
 
 
 	 </div>
     </div>
-
-</body>
+</main>
