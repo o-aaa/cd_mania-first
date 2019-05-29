@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/order_items" => "order_items#index", as: 'index'
   patch "/orders/:id/delivery_status" => "orders#delivery_status"
   get "/delete_confirmation" => "users#delete_confirmation",as: 'delete_confirmation'
+  get "users/order_history" => "users#order_history", as: 'users_order_history'
 
   root 'products#index'
   devise_for :users, controllers: {
