@@ -73,7 +73,9 @@ class OrdersController < ApplicationController
     end
     order_items = OrderItem.where(order_id: order.id)
     if order_items.count == carts.count
-      carts.delete_all
+      carts.each do |cart|
+        cart.destroy
+      end
       redirect_to thankyou_path
     else
       flash[:danger] = "カート内容の更新に失敗しました。もう一度やり直してください。"
