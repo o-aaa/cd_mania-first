@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
     user = User.find(params[:id])
       if current_user.user_flag == 1
         user.destroy
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
     @carts = Cart.only_deleted.where(user_id: current_user.id)
 
     @sales = OrderItem.sum(:buy_price)
-    # 該当月の絞り込みを追加予定。現在は全合計のみ
+
   end
   # 次回参考：https://qiita.com/blueplanet/items/05aa424cc7e5847e6c84
 
