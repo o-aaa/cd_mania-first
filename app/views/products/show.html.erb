@@ -10,9 +10,9 @@
 					<h3><span class="badge badge-pill badge-primary"><%= @product.genre_i18n %></span>
 					<span class="badge badge-pill badge-info"><%= @product.label %></span></h3>
 					<% if @product.stocks != 0 %>
-					 	<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'png', fallback: "no_image.png", :size =>'300x300', class: "img-thumbnail" %>
+					 	<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'300x300', class: "img-thumbnail" %>
 					<% else %>
-						<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'png', fallback: "sold_out.png", :size =>'300x300', class: "img-thumbnail" %>
+						<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', fallback: "sold_out.jpg", :size =>'300x300', class: "img-thumbnail" %>
 					<% end %>
 					 <!-- 気になるボタンを追加/ -->
       				<% if user_signed_in? %>
