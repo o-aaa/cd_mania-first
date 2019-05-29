@@ -1,9 +1,8 @@
 class OrdersController < ApplicationController
 
   def index
+  	@carts = Cart.where(user_id: current_user.id)
     @user_cart = Cart.without_deleted.last
-  	@carts = Cart.all
-    @cart = current_user.carts
     @buy_count = params[:buy_count]
     @address = Address.find_by(user_id:current_user.id)
     @addresses = current_user.addresses
@@ -11,14 +10,14 @@ class OrdersController < ApplicationController
     @order = Order.new
     # 合計計算
     @total_price = 0
-    @cart.each do |cart|
+    @carts.each do |cart|
       @total_price += cart.subtotal
     end
   end
 
   def create
+
   	@order = Order.new(order_params)
-    # @order.address_id = params[:order][:address].to_i
     @order.user_id = current_user.id
     current_user.carts.each do |cart|
   	   cart.user_id = current_user.id
@@ -26,10 +25,7 @@ class OrdersController < ApplicationController
   	 if @order.save
       redirect_to confirmation_path
      else
-      @carts = Cart.all
-      @cart = current_user.carts
-      @buy_count = params[:buy_count]
-      @address = Address.find_by(user_id:current_user.id)
+      @carts = Cart.where(user_id: current_user.id)
       @addresses = current_user.addresses
       # 合計計算
       @total_price = 0
@@ -40,13 +36,14 @@ class OrdersController < ApplicationController
      end
   end
 
+
+
   def confirmation
     @order = Order.where(user_id: current_user.id).last
-    @carts = Cart.all
-    @cart = current_user.carts
+    @carts = Cart.where(user_id: current_user.id)
     # 合計計算
     @total_price = 0
-    @cart.each do |cart|
+    @carts.each do |cart|
       @total_price += cart.subtotal
     end
   end
@@ -96,6 +93,6 @@ private
   def order_item_params
     params.require(:order_item).permit(:cart_id, :buy_price, :order_id)
   end
-
+  #枚数を配列で渡すため(orders_index=>orders_confirmation)
 end
 

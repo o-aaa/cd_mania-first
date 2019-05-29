@@ -14,6 +14,12 @@ class CartsController < ApplicationController
     redirect_to mycart_path
   end
 
+  def count_edit
+    @cart = Cart.find(params[:id])
+    @cart.update(cart_params)
+    redirect_to mycart_path
+  end
+
 private
   def product_params
   	params.require(:product).permit(:id)
