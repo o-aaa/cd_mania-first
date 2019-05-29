@@ -12,5 +12,6 @@ class User < ApplicationRecord
   # Addressモデルにデータを送る
   accepts_nested_attributes_for :addresses
 
+  validates :phone_num, length: { in: 10..11 }
 
 end
