@@ -4,35 +4,16 @@
 
 	<!-- 商品情報 -->
 	<div class="container order_item_index_wrapper">
+  	<h1 class="text-center">販売済み商品一覧</h1>
 
-		<% @orders.zip(@carts).each do |order, cart| %>
+		<% @orders.each do |order| %>
 					<div class="order_history_title my-2">
 						<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入(購入者：<%= order.address.user.last_name %><%= order.address.user.first_name %>)</span>
 					</div>
 			<div class="row">
-				<div class="col">
-					<div class="order_item_index">
-						<table>
-							<% order.order_items.each do |order_item| %>
-								<tbody class="order_item_index_box">
-									<tr>
-										<th rowspan="2" class="text-center">
-											<%= attachment_image_tag cart.product, :image, :fill, 100, 100, format: 'png', fallback: "no_image.png", :size =>'100x100' %>
-										</th>
-										<td><%= cart.product.product_name %> / <%= cart.product.artist %></td>
-									</tr>
-									<tr>
-										<td><%= cart.buy_count %>枚</td>
-									</tr>
-								</tbody>
-							<% end %>
-						</table>
-					</div>
-				</div>
 
 				<div class="col">
-					<div class="order_item_solid">
-						<table class="order_item_address table table-hover">
+						<table class="order_item_address table">
 							<tr><th>購入者名</th>
 								<td class="table_boundary">：</td>
 								<td><%= order.address.user.last_name %><%= order.address.user.first_name %></td>
@@ -71,7 +52,6 @@
 								</td>
 							</tr>
 						</table>
-					</div>
 				</div>
 			</div>
 		<% end %>

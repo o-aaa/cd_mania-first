@@ -2,6 +2,9 @@ class OrdersController < ApplicationController
 
   def index
   	@carts = Cart.where(user_id: current_user.id)
+    @user_cart = Cart.without_deleted.last
+    @buy_count = params[:buy_count]
+    @address = Address.find_by(user_id:current_user.id)
     @addresses = current_user.addresses
     # お支払い方法
     @order = Order.new

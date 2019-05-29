@@ -190,7 +190,7 @@ a{
 }
 
 
-// 販売一覧のレイアウト
+// 販売済み商品一覧のレイアウト
 .order_item_index_wrapper {
 	width: 95%;
 	margin: 0 auto;
@@ -225,12 +225,13 @@ a{
 	text-align: left;
 	padding-left: 20px;
 }
-.order_item_address {
+.order_item_address td {
+	text-align: left;
 }
 .order_item_address th {
 	text-align: center;
 	font-weight: normal;
-	width: 140px;
+	width: 20%;
 }
 .table_boundary {
 	width: 18px;
@@ -280,4 +281,10 @@ a{
 .confirmation_fee td {
 	width: 80px;
 }
+
+main {
+	margin: 60px;
+}
+
+
 

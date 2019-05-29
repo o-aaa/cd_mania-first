@@ -78,7 +78,6 @@ ja:
         Creditcard: クレジットカード
         Bank_transfer: 銀行振り込み
       delivery_status:
-        Please_select: 選択してください
         Unshipp: 未発送
         Shipped: 発送済み
 

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   patch "/carts/count_edit/:id/" => "carts#count_edit", as: 'count_edit'
 
   get "/delete_confirmation" => "users#delete_confirmation",as: 'delete_confirmation'
+  get "users/order_history" => "users#order_history", as: 'users_order_history'
 
   root 'products#index'
   devise_for :users, controllers: {

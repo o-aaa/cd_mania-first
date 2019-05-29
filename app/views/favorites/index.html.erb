@@ -11,19 +11,18 @@
 		<td class="favorite_image">
 			<% if favorite.product.stocks != 0 %>
 				<%= link_to product_path(favorite.product.id) do %>
-				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'png', fallback: "no_image.png", :size =>'200x200' %>
+				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x200' %>
 				<% end %>
 			<% else %>
 				<%= link_to product_path(favorite.product.id) do %>
-				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'png', fallback: "sold_out.png", :size =>'200x200' %>
+				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'jpeg', fallback: "sold_out.jpg", :size =>'200x200' %>
 				<% end %>
 			<% end %>
 		</td>
 		<td class="favorite">
-
 			<%= favorite.product.product_name %><br>
 			<%= favorite.product.artist %><br>
-			￥<%= favorite.product.price %>円<br>
+			￥<%= (favorite.product.price*1.08).floor %>円<br>
 		</td>
 		<td class="favorite_delete">
 			<button type="button">

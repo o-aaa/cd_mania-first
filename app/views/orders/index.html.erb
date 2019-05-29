@@ -2,6 +2,11 @@
 <h1>カート内商品</h1>
 <p>Find me in app/views/orders/index.html.erb</p>
 
+ <!-- if @user_cart.count == 0 %> -->
+
+ 
+<!-- <else %> -->
+
     <div class="container">
         <div class="row">
 
@@ -22,7 +27,7 @@
                     <% @carts.each do |cart| %>
                      <%= form_for(cart, url: count_edit_path(cart)) do |f| %>
                         <tr>
-                            <td><%= attachment_image_tag cart.product, :image, :fill, 40, 40, format: 'png', fallback: "no_image.png", :size =>'50x50', class: "img-thumbnail" %></td>
+                            <td><%= attachment_image_tag cart.product, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size =>'50x50', class: "img-thumbnail" %></td>
                             <td><%= cart.product.product_name %></td>
                             <td><%= cart.product.artist %></td>
                             <td><%= (cart.product.price*1.08).floor %>円</td>
@@ -107,3 +112,4 @@
             <!-- <div class="border-left" style="padding:15px;"> -->
 
     </div>
+ <!-- end %> -->
