@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post "/orders/complete/:id" => "orders#complete", as: 'complete'
   get "/order_items" => "order_items#index", as: 'index'
   patch "/orders/:id/delivery_status" => "orders#delivery_status"
+  patch "/carts/count_edit/:id/" => "carts#count_edit", as: 'count_edit'
+
   get "/delete_confirmation" => "users#delete_confirmation",as: 'delete_confirmation'
 
   root 'products#index'
