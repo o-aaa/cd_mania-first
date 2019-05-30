@@ -28,11 +28,11 @@ class AddressesController < ApplicationController
   end
 
   def first_edit
-    @address = current_user.addresses.last
+    @address = current_user.addresses.first
   end
 
   def first_edit_update
-    address = current_user.addresses.last
+    address = current_user.addresses.first
     if address.update(address_update_params)
       flash[:success] = "住所を更新しました。"
       redirect_to user_path(current_user.id)
