@@ -73,14 +73,13 @@ ActiveRecord::Schema.define(version: 2019_05_30_102640) do
   create_table "products", force: :cascade do |t|
     t.string "artist"
     t.integer "price"
-    t.string "lebel"
     t.integer "genre", default: 0
     t.integer "buy_status", default: 0
     t.integer "stocks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "label"
-    t.text "image_id"
+    t.string "image_id"
     t.integer "disc_type"
     t.string "product_name"
     t.string "release_date"
