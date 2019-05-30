@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_034936) do
+ActiveRecord::Schema.define(version: 2019_05_29_082951) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "post_num"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_034936) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ordered_flag", default: "0"
   end
 
   create_table "discs", force: :cascade do |t|
@@ -64,18 +65,21 @@ ActiveRecord::Schema.define(version: 2019_05_29_034936) do
     t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ordered_flag", default: "0"
+    t.integer "update_flag", default: 0
   end
 
   create_table "products", force: :cascade do |t|
     t.string "artist"
     t.integer "price"
+    t.string "lebel"
     t.integer "genre", default: 0
     t.integer "buy_status", default: 0
     t.integer "stocks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "label"
-    t.string "image_id"
+    t.text "image_id"
     t.integer "disc_type"
     t.string "product_name"
     t.string "release_date"
