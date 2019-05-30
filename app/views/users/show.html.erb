@@ -63,27 +63,6 @@
 	<div class="order_history">
 		<h3>購入経歴</h3>
 
-			<% @orders.each do |order| %>
-				<div class="order_history_title">
-					<% if order.delivery_status == "Shipped" %>
-						<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
-					<% else %>
-						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
-					<% end %>
-					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
-					<p>合計金額：￥ <%= (order.total_price*1.08).floor %>（＋送料 500円）</p>
-                    <p>配送先氏名：
-                    	<% if (order.address.shipping_address == 0) %>
-                    		<%= order.address.user.last_name %>
-                    		<%= order.address.user.first_name %>
-                    	<% else %>
-                    		<%= order.address.delivery_last_name %>
-                    		<%= order.address.delivery_first_name %>
-                    	<% end %>
-                    </p>
-					<p>配送先：　<%= order.address.address %></p>
-				</div>
-			<% end %>
 
 		<% @orders.each do |order| %>
 					<div class="order_history_title">
