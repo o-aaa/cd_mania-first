@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
 
   def index
+    @user_carts = Cart.exists?(user_id: current_user.id)
   	@carts = Cart.where(user_id: current_user.id)
-    @user_cart = Cart.without_deleted.last
     @buy_count = params[:buy_count]
     @address = Address.find_by(user_id:current_user.id)
     @addresses = current_user.addresses
@@ -17,23 +17,43 @@ class OrdersController < ApplicationController
 
   def create
 
-  	@order = Order.new(order_params)
-    @order.user_id = current_user.id
-    current_user.carts.each do |cart|
-  	   cart.user_id = current_user.id
-    end
-  	 if @order.save
-      redirect_to confirmation_path
-     else
-      @carts = Cart.where(user_id: current_user.id)
-      @addresses = current_user.addresses
-      # 合計計算
-      @total_price = 0
-      @carts.each do |cart|
-        @total_price += cart.subtotal
+  order_find = Order.where(user_id: current_user.id).last #追加
+    if order_find.update_flag == 2 # 追加
+    	@order = Order.new(order_params)
+      @order.user_id = current_user.id
+      current_user.carts.each do |cart|
+    	   cart.user_id = current_user.id
       end
-      render :index
-     end
+    	 if @order.save
+          redirect_to confirmation_path
+       else
+        @carts = Cart.where(user_id: current_user.id)
+        @addresses = current_user.addresses
+        # 合計計算
+        @total_price = 0
+        @cart.each do |cart|
+          @total_price += cart.subtotal
+        end
+        render :index
+       end
+    else # ここからまるまる追加
+      @order = Order.where(user_id: current_user.id).last # 変更
+      current_user.carts.each do |cart|
+         cart.user_id = current_user.id
+      end
+       if @order.update(order_params) # 変更
+          redirect_to confirmation_path
+       else
+        @carts = Cart.where(user_id: current_user.id)
+        @addresses = current_user.addresses
+        # 合計計算
+        @total_price = 0
+        @cart.each do |cart|
+          @total_price += cart.subtotal
+        end
+        render :index
+       end
+    end
   end
 
 
@@ -60,24 +80,21 @@ class OrdersController < ApplicationController
   end
 
   def complete
-    order = Order.find(params[:id])
+    order = Order.where(user_id: current_user.id).last # 変更
     carts = Cart.where(user_id: current_user.id)
     carts.each do |cart|
       order_item = OrderItem.new
       order_item.cart_id = cart.id
       order_item.buy_price = (cart.product.price*1.08).floor
       order_item.order_id = order.id
-      order_item.save()
+      order_item.save
     end
-    order_items = OrderItem.where(order_id: order.id)
-    if order_items.count == carts.count
-      carts.delete_all
+      carts.each do |cart|
+        cart.destroy
+      end
+
+      order.update(order_update_params)
       redirect_to thankyou_path
-    else
-      flash[:danger] = "カート内容の更新に失敗しました。もう一度やり直してください。"
-      order_items.delete_all
-      redirect_to mycart_path
-    end
   end
 
 private
@@ -92,6 +109,9 @@ private
   end
   def order_item_params
     params.require(:order_item).permit(:cart_id, :buy_price, :order_id)
+  end
+  def order_update_params
+    params.require(:order).permit(:update_flag)
   end
   #枚数を配列で渡すため(orders_index=>orders_confirmation)
 end

@@ -65,7 +65,6 @@
                     		<td><h3>ご請求金額</h3></td>
                     		<td><h3>¥ <%= (@order.total_price*1.08).floor+500 %>円</h3></td>
                     	</tr>
-                        
                     </table>
                     <p class="text-center"></p>
             </div>
@@ -75,10 +74,15 @@
             <div class="table">
                 <div class="row">
                 <div class="col-lg-12 text-center pt-4">
-                  <tr>
-                      <td><%= link_to "戻る", mycart_path,  class: "btn btn-outline-secondary" %></td>
-                      <td><%= link_to "確定", complete_path(@order.id), method: :post, class: "btn btn-outline-success ml-5" %></td>
-                  </tr>
+
+                      <span><%= link_to "戻る", mycart_path,  class: "btn btn-outline-secondary", role: 'button' %></span>
+                      <p class="pt-1">
+                        <%= form_for @order, url: "/orders/complete/#{@order.id}" do |order| %>
+                            <%= order.hidden_field :update_flag, :value => 2 %>
+                            <%= order.submit "確定", class: "btn btn-outline-success ml-5" %>
+                        <% end %>
+                      </p>
+
                 </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@
  */
  /* Bootstrap用 */
 @import "bootstrap";
+// 全ページ適用
 
 // 新規投稿
 .main {
@@ -283,7 +284,6 @@ a{
 }
 
 main {
-	margin: 60px;
 }
 
 // 商品一覧レイアウト
@@ -300,7 +300,3 @@ main {
 	vertical-align: middle;
   text-align: center;
 }
-
-
-
-
