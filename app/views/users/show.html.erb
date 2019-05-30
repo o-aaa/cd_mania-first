@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main bg-light">
 	<div class="userinfo_wrapper">
 		<h1 class="text-center">ユーザー情報</h1>
 		<table>
@@ -25,22 +25,23 @@
 		</table>
 
 		<div class="mypage_btn_wrapper">
-			<%= link_to "登録情報を編集", edit_user_path, class: "btn btn-info" %>
+			<%= link_to "登録情報を編集", edit_user_path, class: "btn btn-outline-warning" %>
 
 
 
+			<% if current_user.user_flag != 1 %>
+				<%= link_to("/favorites", class: 'btn btn-outline-primary') do %>
 
-			<%= link_to("/favorites", class: 'btn btn-info') do %>
-
-				<i class="far fa-heart"></i>
-				<span>お気に入りリスト</span>
+					<i class="far fa-heart"></i>
+					<span>お気に入りリスト</span>
+				<% end %>
 			<% end %>
 
 			<!-- ユーザーフラグで退会ボタンor削除ボタンか変える -->
 			<% if current_user.user_flag == 0 %>
-			<%= link_to "退会", "/delete_confirmation", class: "btn btn-info" %>
+			<%= link_to "退会", "/delete_confirmation", class: "btn btn-outline-danger" %>
 			<% else %>
-				<%= link_to "会員削除", @user,  method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-info" %>
+				<%= link_to "会員削除", @user,  method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
 			<% end %>
 		</div>
 	</div>
@@ -48,40 +49,38 @@
 	<!-- 管理人マイページのみ売り上げ表示 -->
 	<div class="shop_sales">
 	<% if @user.user_flag == 1 %>
-		<tr>
-			<th>売り上げ状況：</th>
-			<td>¥   <%= @sales %></td>
-		</tr>
+			<span>売り上げ状況：</span>
+			<span>¥   <%= @sales %></span>
 	<% end %>
 	</div>
 
-	<hr color="#777" width="95%" size="5">
-
 	<!-- ここから購入履歴(管理人は非表示) -->
 	<% if @user.user_flag != 1 %>
-	<div class="order_history">
-		<h3>購入経歴</h3>
+		<div class="order_history">
+			<h3>購入経歴</h3>
 
-			<% @orders.each do |order| %>
-				<div class="order_history_title">
-					<% if order.delivery_status == "Shipped" %>
-						<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
-					<% else %>
-						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
-					<% end %>
-					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
-					<p>合計金額：￥<%= order.total_price %></p>
-                    <p>配送先氏名：
-                    	<% if (order.address.shipping_address == 0) %>
-                    		<%= order.address.user.last_name %>
-                    		<%= order.address.user.first_name %>
-                    	<% else %>
-                    		<%= order.address.delivery_last_name %>
-                    		<%= order.address.delivery_first_name %>
-                    	<% end %>
-                    </p>
-					<p>配送先：　<%= order.address.address %></p>
-				</div>
+				<% @orders.each do |order| %>
+					<div class="order_history_title">
+						<% if order.delivery_status == "Shipped" %>
+							<span class="order_history_shipped"><%= order.delivery_status_i18n %></span>
+						<% else %>
+							<span class="order_history_shipping"><%= order.delivery_status_i18n %></span>
+						<% end %>
+						<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
+						<div class="order_history_body">
+							<p>合計金額：￥<%= order.total_price %></p>
+		                    <p>配送先氏名：
+		                    	<% if (order.address.shipping_address == 0) %>
+		                    		<%= order.address.user.last_name %>
+		                    		<%= order.address.user.first_name %>
+		                    	<% else %>
+		                    		<%= order.address.delivery_last_name %>
+		                    		<%= order.address.delivery_first_name %>
+		                    	<% end %>
+		                    </p>
+							<p>配送先：　<%= order.address.address %></p>
+						</div>
+					</div>
 			<% end %>
 
 			<h3><%= link_to "過去の購入商品一覧", users_order_history_path, class:"btn" %></h3>
