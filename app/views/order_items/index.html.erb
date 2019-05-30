@@ -1,2 +1,87 @@
-<h1>OrderItems#index</h1>
-<p>Find me in app/views/order_items/index.html.erb</p>
+<div class="main">
+<% if user_signed_in? %>
+  <% if current_user.user_flag == 1 %>
+
+	<!-- 商品情報 -->
+	<div class="container order_item_index_wrapper">
+  	<h1 class="text-center">販売済み商品一覧</h1>
+
+		<% @orders.each do |order| %>
+					<div class="order_history_title my-2">
+						<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入(購入者：<%= order.address.user.last_name %><%= order.address.user.first_name %>)</span>
+					</div>
+			<div class="row">
+				<div class="col">
+						<table>
+					  <% order.order_items.each do |order_item| %>
+						<tr>
+							<td rowspan="2" class="order_history_image">
+								<%= attachment_image_tag order_item.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+							</td>
+							<td>商品名：　<%= order_item.product.product_name %></td>
+							<td>アーティスト名：　<%= order_item.product.artist %></td>
+						</tr>
+						<tr>
+							<td>購入枚数：　<%= order_item.bought_count %>枚</td>
+							<td></td>
+						</tr>
+						<tr><td colspan="4" class="order_history_border"></td></tr>
+					  <% end %>
+					</table>
+				</div>
+
+				<div class="col">
+						<table class="order_item_address table">
+							<tr><th>購入者名</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.last_name %><%= order.address.user.first_name %></td>
+							</tr>
+							<tr><th>郵便番号</th>
+								<td class="table_boundary">：</td>
+								<td>〒<%= order.address.post_num %></td>
+							</tr>
+							<tr><th>住所</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.address %></td>
+							</tr>
+							<tr><th>電話番号</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.phone_num %></td>
+							</tr>
+							<tr><th>メールアドレス</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.address.user.email %></td>
+							</tr>
+							<tr><th>支払い方法</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.payment_i18n %></td>
+							</tr>
+							<tr><th>合計金額</th>
+								<td class="table_boundary">：</td>
+								<td><%= order.total_price %></td>
+							</tr>
+							<tr><th>配送ステータス</th>
+								<td class="table_boundary"></td>
+								<td>
+									<%= form_for order, url: "/orders/#{order.id}/delivery_status" do |f| %>
+										<%= f.select :delivery_status, Order.delivery_statuses.keys.map {|k| [I18n.t("enums.order.delivery_status.#{k}"), k]} %>
+										<%= f.submit "更新", class: "btn btn-info" %>
+									<% end %><!-- formタグのend -->
+								</td>
+							</tr>
+						</table>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div style="margin-left: 40%">
+		<%= paginate @orders, class: "paginate" %>
+	</div>
+  <% end %>
+
+<!-- 一般ユーザーに表示 -->
+<% else %>
+	<div class="alert alert-primary text-center" role="alert">このページは管理者のみ閲覧することができます。</div>
+<% end %>
+</div>
+

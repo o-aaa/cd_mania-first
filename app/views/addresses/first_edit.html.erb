@@ -1,0 +1,31 @@
+<main>
+
+  <div class="jumbotron bg-warning">
+  <div class="container">
+  <div class="row">
+    <div class="card border-success mb-3 mx-auto" style="width: 50rem;">
+    <div class="card-body">
+      <h2 class="card-header">住所情報の編集</h2>
+
+          <div class="text-center py-2">
+          </div>
+
+          <%= form_for(@address, url:"/addresses/first_edit/#{@address.id}") do |f| %>
+                <div class="field py-2">
+                  <span>郵便番号</span><br>
+                  <%= f.number_field :post_num, required: true, value:"#{ @address.post_num }" %>
+                </div>
+                <div class="field py-2">
+                  <span>住所</span><br>
+                  <%= f.text_field :address, required: true, value:"#{ @address.address }", class: "long" %>
+                </div>
+              <div class="form-actions py-2">
+                <%= f.submit "保存", class: "btn btn-info" %>
+              </div>
+          <% end %>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</main>

@@ -9,4 +9,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :carts, dependent: :destroy
 
+  # Addressモデルにデータを送る
+  accepts_nested_attributes_for :addresses
+
+  validates :phone_num, length: { in: 10..11 }
+
 end

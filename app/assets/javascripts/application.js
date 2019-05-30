@@ -10,11 +10,37 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
 //= require rails-ujs
-//= require activestorage
 //= require turbolinks
+//= require jquery
+//= require activestorage
 //= require_tree .
+
+// Bootstrap用
+//= require bootstrap-sprockets
+//= require jquery3
+//= require jquery_ujs
+//= require popper
 //
 // 動的フォームの追加(Gem:nested_form_fields)
 //= require nested_form_fields
+
+$(function() {
+ $('#buy_count').bind('change', function() {
+ 	var url = "/cart_create_path(params[:id])/" + $(this).val()
+ 	if (url) {
+ 		window.location.replace(url);
+ 	}
+ 	return false;
+ });
+  // button要素をクリックしたら発動
+  $('button').click(function() {
+ 
+    // セレクトボックスで選択したvalue値を変数に格納
+    var count = $('#buy_count').val();
+ 
+    // p要素にvauleを出力
+    $('p').integer(count);
+ 
+  });
+});

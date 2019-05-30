@@ -1,2 +1,71 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<main>
+
+  <div class="jumbotron bg-warning">
+  <div class="container">
+  <div class="row">
+    <div class="card border-success mb-3 mx-auto" style="width: 50rem;">
+    <div class="card-body">
+      <h2 class="card-header">ユーザー情報の編集</h2>
+
+      
+
+          <div class="text-center py-2">
+          </div>
+
+          <%= form_for(@user) do |f| %>
+
+              <div class="field py-2">
+                <span>お名前</span><br>
+                <%= f.text_field :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" }, class: "short" %>
+                <%= f.text_field :first_name, required: true, input_html: { autocomplete: "first_name" }, class: "short" %>
+              </div>
+
+              <div class="field py-2">
+                <span>フリガナ</span><br>
+                <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"セイ", class: "short" %>
+                <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"ナマエ", class: "short" %>
+              </div><br>
+
+              <h3>お届け先住所一覧</h3>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>郵便番号</th>
+                    <th>登録住所</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @addresses.each do |address| %>
+                  <tr>
+                      <td>〒 <%= address.post_num%></td>
+                      <td><%= address.address%></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+              
+
+              <div class="field py-2">
+                <h3>電話番号</h3><br>
+               <%= f.number_field :phone_num, required: true, input_html: { autocomplete: "phone_num" } %>
+              </div>
+
+              <div class="field py-2">
+                <h3>メールアドレス</h3><br>
+                <%= f.email_field :email, required: true, input_html: { autocomplete: "email" }, class: "long" %>
+              </div>
+
+              <div class="form-actions py-2">
+                <%= f.submit "保存", class: "btn btn-outline-success w-25" %>
+              </div>
+
+          <% end %>
+
+      
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</main>

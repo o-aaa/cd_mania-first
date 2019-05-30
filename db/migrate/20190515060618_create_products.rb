@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :price
       t.date :release_date
       t.text :cover_image_id
-      t.string :lebel
+      t.string :label
       t.integer :genre, default: 0
       t.integer :buy_status, default: 0
       t.integer :stocks

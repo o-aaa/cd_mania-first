@@ -1,2 +1,59 @@
-<h1>Favorites#index</h1>
-<p>Find me in app/views/favorites/index.html.erb</p>
+<main>
+<div class="jumbotron bg-warning">
+<div class="container bg-white p-5">
+
+<div>
+
+
+    <table class="table table-striped">
+	  <thead>
+			<tr>
+			<th colspan="3"><h3>気になるCD一覧</h3></th>
+            </tr>
+	  </thead>
+
+	  <tbody>
+
+	  <% @favorite.each do |favorite| %>
+	  <tr>
+
+		<td class="favorite_image">
+			<% if favorite.product.stocks != 0 %>
+				<%= link_to product_path(favorite.product.id) do %>
+				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'jpeg', fallback: "no_image.jpg", :size =>'150x150', class: "img-thumbnail"  %>
+				<% end %>
+			<% else %>
+				<%= link_to product_path(favorite.product.id) do %>
+				<%= attachment_image_tag favorite.product, :image, :fill, 120, 120, format: 'jpeg', fallback: "sold_out.jpg", :size =>'150x150', class: "img-thumbnail"  %>
+				<% end %>
+			<% end %>
+		</td>
+		<td class="favorite">
+			<%= favorite.product.product_name %><br>
+			<%= favorite.product.artist %><br>
+			￥<%= (favorite.product.price*1.08).floor %>円<br>
+		</td>
+		<td class="favorite_delete">
+
+				<%= link_to "お気に入りから削除", product_favorites_path(favorite.product), method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+
+		</td>
+	    
+      </tr>
+      <% end %> 
+
+      </tbody>
+
+    </table>
+
+
+	<div style="margin-left: 40%">
+		<%= paginate @favorite %>
+			<%= link_to "マイページへ戻る", user_path(current_user.id), class: 'btn btn-outline-secondary ml-4' %>
+	</div>
+
+</div>
+
+</div>
+</div>
+</main>

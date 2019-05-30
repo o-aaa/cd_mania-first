@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_063625) do
+ActiveRecord::Schema.define(version: 2019_05_30_102640) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "address_id"
     t.string "post_num"
     t.string "address"
-    t.integer "shipping_address"
+    t.integer "shipping_address", default: 0
     t.integer "user_id"
     t.string "delivery_last_name"
     t.string "delivery_first_name"
@@ -24,10 +23,10 @@ ActiveRecord::Schema.define(version: 2019_05_15_063625) do
     t.string "delivery_first_name_kana"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "deleted_at"
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "cart_id"
     t.integer "buy_count"
     t.integer "user_id"
     t.integer "product_id"
@@ -37,8 +36,6 @@ ActiveRecord::Schema.define(version: 2019_05_15_063625) do
   end
 
   create_table "discs", force: :cascade do |t|
-    t.integer "disc_id"
-    t.integer "disc_type", default: 0
     t.integer "disc_num", default: 0
     t.integer "product_id"
     t.datetime "created_at", null: false
@@ -46,7 +43,6 @@ ActiveRecord::Schema.define(version: 2019_05_15_063625) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "favorite_id"
     t.integer "user_id"
     t.integer "product_id"
     t.datetime "created_at", null: false
@@ -54,16 +50,16 @@ ActiveRecord::Schema.define(version: 2019_05_15_063625) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_item_id"
     t.integer "cart_id"
     t.integer "buy_price"
     t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
+    t.integer "bought_count"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "order_id"
     t.integer "payment", default: 0
     t.integer "total_price"
     t.integer "delivery_status", default: 0
@@ -71,30 +67,29 @@ ActiveRecord::Schema.define(version: 2019_05_15_063625) do
     t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "update_flag", default: 0
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "product_id"
-    t.string "disc_name"
     t.string "artist"
     t.integer "price"
-    t.date "release_date"
-    t.text "cover_image_id"
-    t.string "lebel"
     t.integer "genre", default: 0
     t.integer "buy_status", default: 0
     t.integer "stocks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "label"
+    t.string "image_id"
+    t.integer "disc_type"
+    t.string "product_name"
+    t.string "release_date"
   end
 
   create_table "songs", force: :cascade do |t|
-    t.integer "song_id"
-    t.integer "track_num"
     t.string "song_title"
-    t.integer "disc_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "disc_id"
   end
 
   create_table "users", force: :cascade do |t|
