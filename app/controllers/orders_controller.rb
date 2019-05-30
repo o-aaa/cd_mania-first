@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create
+  def create  
   order_find = Order.where(user_id: current_user.id).last #追加
     if order_find.update_flag == 2 # 追加
     	@order = Order.new(order_params)
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
       current_user.carts.each do |cart|
          cart.user_id = current_user.id
       end
-       if @order.update(order_update_params) # 変更
+       if @order.update(order_params) # 変更
           redirect_to confirmation_path
        else
         @carts = Cart.where(user_id: current_user.id)
@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def complete
+  def complete  
     order = Order.where(user_id: current_user.id).last # 変更
     carts = Cart.where(user_id: current_user.id)
     carts.each do |cart|
@@ -90,9 +90,12 @@ class OrdersController < ApplicationController
     end
     # order_items = OrderItem.where(order_id: order.id)
     if order.update_flag = 1 #変更
-      carts.delete_all
-      order.update_flag = 2 # 追加
-    binding.pry
+      carts.each do |cart|
+        cart.destroy
+      end
+
+      # order.update_flag = 2 # 追加
+
       order.update(order_update_params)
       redirect_to thankyou_path
     else
@@ -112,11 +115,11 @@ private
     params.require(:order).permit(:payment, :delivery_status, :total_price, :address_id,
                     carts_attributes: [:id, :buy_count])
   end
-  def order_item_params
+  def order_item_params  
     params.require(:order_item).permit(:cart_id, :buy_price, :order_id)
   end
-  def order_update_params
-    params.require(:order).permit(:payment, :delivery_status, :total_price, :address_id, :user_id, :update_flag)
+  def order_update_params  
+    params.require(:order).permit(:update_flag)
   end
   #枚数を配列で渡すため(orders_index=>orders_confirmation)
 end

@@ -8,13 +8,14 @@ Rails.application.routes.draw do
   resources :discs, only:[:new, :create, :edit, :update, :destroy]
   resources :songs, only:[:new, :create, :edit, :update, :destroy]
   resources :carts, only:[:create, :update, :destroy]
-  resources :orders, only:[:destroy, :update, :create]
+  resources :orders, only:[:destroy, :update, :create, :update]
   get "mycart" => 'orders#index', as: 'mycart'
   post "products/:product_id/mycart" => 'carts#create', as: 'cart_create'
   get "/orders/confirmation" => "orders#confirmation", as: 'confirmation'
   post "/orders/confirmation" => "orders#create"
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
   post "/orders/complete/:id" => "orders#complete", as: 'complete'
+  patch "/orders/complete/:id" => "orders#complete", as: 'complete_u'
   get "/order_items" => "order_items#index", as: 'index'
   patch "/orders/:id/delivery_status" => "orders#delivery_status"
   patch "/carts/count_edit/:id/" => "carts#count_edit", as: 'count_edit'
