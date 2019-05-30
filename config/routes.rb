@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "/orders/confirmation" => "orders#create"
   get "/thankyou" => "order_items#thankyou", as: 'thankyou'
   post "/orders/complete/:id" => "orders#complete", as: 'complete'
+  patch "/orders/complete/:id" => "orders#complete"
   get "/order_items" => "order_items#index", as: 'index'
   patch "/orders/:id/delivery_status" => "orders#delivery_status"
   patch "/carts/count_edit/:id/" => "carts#count_edit", as: 'count_edit'

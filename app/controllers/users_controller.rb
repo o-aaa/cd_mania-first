@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   	@address = @user.addresses.first
   	# ここから購入履歴
     # １回毎の注文はOrderのidで判断する
-  	@orders = Order.where(user_id: @user.id).page(params[:page]).per(4).includes(:order_items)
+  	@orders = Order.where(user_id: @user.id).page(params[:page]).per(5).reverse_order.includes(:order_items)
 
     @sales = OrderItem.sum(:buy_price)
 
