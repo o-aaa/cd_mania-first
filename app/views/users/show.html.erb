@@ -57,11 +57,11 @@
 
 	<hr color="#777" width="95%" size="5">
 
-	<!-- ここから購入履歴 -->
+	<!-- ここから購入履歴(管理人は非表示) -->
+	<% if @user.user_flag != 1 %>
 	<div class="order_history">
 		<h3>購入経歴</h3>
 
-			<!-- ここからモデルに保存されてるファイル -->
 			<% @orders.each do |order| %>
 				<div class="order_history_title">
 					<% if order.delivery_status == "Shipped" %>
@@ -70,7 +70,7 @@
 						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
 					<% end %>
 					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
-					<p>合計金額：￥<%= order.total_price %></p>
+					<p>合計金額：￥ <%= (order.total_price*1.08).floor %>（＋送料 500円）</p>
                     <p>配送先氏名：
                     	<% if (order.address.shipping_address == 0) %>
                     		<%= order.address.user.last_name %>
@@ -85,8 +85,10 @@
 			<% end %>
 
 			<h3><%= link_to "過去の購入商品一覧", users_order_history_path, class:"btn" %></h3>
+	<% end %>
 
 	</div>
-
+  <div style="margin-left: 40%">
 	<%= paginate @orders, class: "paginate" %>
+  </div>
 </div>

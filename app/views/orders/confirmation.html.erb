@@ -70,22 +70,19 @@
                     <p class="text-center"></p>
             </div>
 
-            <hr color="#000000" width="80%" size="9">
-
-            <div class="table">
+             <div class="table">
                 <div class="row">
-                <div class="col-lg-12 text-center pt-4">
-                  <tr>
-                      <td><%= link_to "戻る", mycart_path,  class: "btn btn-outline-secondary" %></td>
-                      <td><%= link_to "確定", complete_path(@order.id), method: :post, class: "btn btn-outline-success ml-5" %></td>
-                  </tr>
+                <div class="col-lg-12 text-center pt-2">
+
+                      <span><%= link_to "配送先・お支払い方法選択画面に戻る", mycart_path,  class: "btn btn-outline-secondary", role: 'button' %></span>
+                      <p class="pt-1">
+                        <%= form_for @order, url: "/orders/complete/#{@order.id}" do |order| %>
+                            <%= order.hidden_field :update_flag, :value => 2 %>
+                            <%= order.submit "確定", class: "btn btn-outline-success" %>
+                        <% end %>
+                      </p>
+
                 </div>
                 </div>
             </div>
-
-        </div>
-
-
-    </div>
-</div>
 </main>
