@@ -1,23 +1,31 @@
 <main>
-  <div class="container">
-    <div class="col-xs-12">
-      <h2 class="product_index">商品一覧</h2>
+
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 cover-img" style="background-image:url('https://cdn.pixabay.com/photo/2015/10/09/06/57/records-978813_1280.jpg');">
+      <div class="cover-text text-center">
+        <h4 style="color: #fff;">CDまにあ堂は長野で営む小さなCDショップです！<br>お気に入りの一枚を見つけてくださいね！！</h4>
+      </div>
     </div>
   </div>
-  <br>
-  <div class="container">
+  </div>
+
+  <div class="jumbotron bg-light"><br>
+    <div class="container">
     <div class="row">
 
       <% @search_products.each do |product| %>
-        <div class="col-xs-6 col-lg-4 text-center mb-4">
-          <div class="card p-4" style="width: 20rem;">
+        <div class="col-xs-6 col-lg-3 text-center mb-4">
+          <div class="card border-dark p-3" style="width: 16rem;">
+
             <% if product.stocks != 0 %>
               <%= link_to product_path(product.id) do %>
-                <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'250x250' %>
+
+                <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", :size =>'180x180' %>
               <% end %>
             <% else %>
               <%= link_to product_path(product.id) do %>
-                <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "sold_out.jpg", :size =>'250x250' %>
+                <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg', fallback: "sold_out.jpg", :size =>'180x180' %>
               <% end %>
             <% end %>
 
@@ -29,8 +37,10 @@
           </div>
         </div>
       <% end %>
-      </div>
+
+    </div>
   </div>
+
   <div style="margin-left: 40%">
   <%= paginate @search_products, class: "paginate" %>
   </div>

@@ -1,13 +1,15 @@
-<div class="main">
+<main>
 
+  <div class="jumbotron bg-warning">
   <div class="container">
-    <div class="row">
+  <div class="row">
+    <div class="card border-success mb-3 mx-auto" style="width: 50rem;">
+    <div class="card-body">
+      <h2 class="card-header">ユーザー情報の編集</h2>
 
-      <div class="mx-auto">
-        <div class="sign_up_wrapper">
+      
 
-          <div class="text-center py-4">
-            <h2>ユーザー情報の編集</h2>
+          <div class="text-center py-2">
           </div>
 
           <%= form_for(@user) do |f| %>
@@ -22,42 +24,48 @@
                 <span>フリガナ</span><br>
                 <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"セイ", class: "short" %>
                 <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"ナマエ", class: "short" %>
-              </div>
+              </div><br>
 
-              <!-- ここからAddressモデルへ送るフォーム -->
-              <%= f.nested_fields_for :addresses do |a| %>
-                <div class="field py-2">
-                  <span>郵便番号</span><br>
-                  <%= a.number_field :post_num, required: true, value:"#{ @address.post_num }" %>
-                </div>
-                <div class="field py-2">
-                  <span>住所</span><br>
-                  <%= a.text_field :address, required: true, value:"#{ @address.address }", class: "long" %>
-                </div>
-                  <!-- <%= a.remove_nested_fields_link 'Addresses削除', class: 'btn btn-danger', role: 'button' %></h4> -->
-              <% end %>
-              <!-- <%= f.add_nested_fields_link :addresses, 'Adddress追加', class: 'btn btn-primary', role: 'button' %> -->
-              <!-- ここまでAddressモデルへ送るフォーム -->
+              <h3>お届け先住所一覧</h3>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>郵便番号</th>
+                    <th>登録住所</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @addresses.each do |address| %>
+                  <tr>
+                      <td>〒 <%= address.post_num%></td>
+                      <td><%= address.address%></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+              
 
               <div class="field py-2">
-                <span>電話番号</span><br>
+                <h3>電話番号</h3><br>
                <%= f.number_field :phone_num, required: true, input_html: { autocomplete: "phone_num" } %>
               </div>
 
               <div class="field py-2">
-                <span>メールアドレス</span><br>
+                <h3>メールアドレス</h3><br>
                 <%= f.email_field :email, required: true, input_html: { autocomplete: "email" }, class: "long" %>
               </div>
 
               <div class="form-actions py-2">
-                <%= f.submit "保存", class: "btn btn-info" %>
+                <%= f.submit "保存", class: "btn btn-outline-success w-25" %>
               </div>
 
           <% end %>
 
-        </div>
-      </div>
+      
+    </div>
     </div>
   </div>
-
-</div>
+  </div>
+  </div>
+</main>

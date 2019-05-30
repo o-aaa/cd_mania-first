@@ -1,6 +1,8 @@
-<h1 class="text-center sign_up_wrapper">最終確認画面</h1>
+<main>
+<div class="jumbotron bg-warning">
+    <div class="container bg-white">
+        <h2 class="text-center p-9">お会計最終確認画面</h2>
 
-    <div class="container">
         <div class="row">
             <table class="table table-striped">
                 <thead>
@@ -30,13 +32,14 @@
                 </tbody>
             </table>
         </div>
+
         <hr color="#000000" width="80%" size="9">
 
         <div class="row">
-            <div class="col-lg-6 border-bottom pb-2">
-                    <p>お届け先： 〒<%= @order.address.post_num %> <%= @order.address.address %></p>
+            <div class="col-lg-10 py-2">
+                    <p>お届け先： 〒 <%= @order.address.post_num %> <%= @order.address.address %></p>
                     <p></p>
-                    <p>氏名：
+                    <p>お宛名：
                     	<% if (@order.address.shipping_address == 0) %>
                     		<%= @order.address.user.last_name %>
                     		<%= @order.address.user.first_name %>
@@ -46,11 +49,11 @@
                     	<% end %>
                     </p>
                     <p>お支払い方法： <%= @order.payment_i18n %></p>
-                    <table class="confirmation_fee">
+                    <table class="table">
                     	<tr>
                     		<td>お会計：</td>
                     		<td>商品小計</td>
-                    		<td>¥ <%= (@order.total_price*1.08).floor %>円</td>
+                    		<td>¥ <%= (@order.total_price*1.08).floor %>円 (税込)</td>
                     	</tr>
                     	<tr>
                     		<td></td>
@@ -59,30 +62,34 @@
                     	</tr>
                     	<tr>
                     		<td></td>
-                    		<td>ご請求額</td>
-                    		<td>¥ <%= (@order.total_price*1.08).floor+500 %>円</td>
+                    		<td><h3>ご請求金額</h3></td>
+                    		<td><h3>¥ <%= (@order.total_price*1.08).floor+500 %>円</h3></td>
                     	</tr>
                     </table>
                     <p class="text-center"></p>
             </div>
 
-            <div class="col-lg-6">
-            </div>
+            <hr color="#000000" width="80%" size="9">
 
             <div class="table">
                 <div class="row">
                 <div class="col-lg-12 text-center pt-4">
 
-                      <span><%= link_to "戻る", mycart_path,  class: "btn btn-outline-info long", role: 'button' %></span>
+                      <span><%= link_to "戻る", mycart_path,  class: "btn btn-outline-secondary", role: 'button' %></span>
                       <p class="pt-1">
                         <%= form_for @order, url: "/orders/complete/#{@order.id}" do |order| %>
                             <%= order.hidden_field :update_flag, :value => 2 %>
-                            <%= order.submit "確定", class: "btn btn-outline-success long" %>
+                            <%= order.submit "確定", class: "btn btn-outline-success ml-5" %>
                         <% end %>
                       </p>
 
                 </div>
                 </div>
             </div>
+
         </div>
+
+
     </div>
+</div>
+</main>

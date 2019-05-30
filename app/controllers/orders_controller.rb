@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+
   order_find = Order.where(user_id: current_user.id).last #追加
     if order_find.update_flag == 2 # 追加
     	@order = Order.new(order_params)

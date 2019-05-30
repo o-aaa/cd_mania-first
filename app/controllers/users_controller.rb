@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find(params[:id])
-  	@address = @user.addresses.first
+  	@addresses = current_user.addresses
   end
 
   def delete_confirmation
