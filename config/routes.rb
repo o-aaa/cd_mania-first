@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get "/order_items" => "order_items#index", as: 'index'
   patch "/orders/:id/delivery_status" => "orders#delivery_status"
   patch "/carts/count_edit/:id/" => "carts#count_edit", as: 'count_edit'
+  get "/addresses/first_edit/:id" => "addresses#first_edit", as: 'first_edit'
+  patch "/addresses/first_edit/:id" => "addresses#first_edit_update", as: 'first_edit_update'
 
   get "/delete_confirmation" => "users#delete_confirmation",as: 'delete_confirmation'
   get "users/order_history" => "users#order_history", as: 'users_order_history'
