@@ -91,23 +91,24 @@
       </div>
     <% end %>
 <% else %>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-10">
-        <div class="card card-body text-center bg-light p-3">
-          <h1 class="card-title m-5 text-success border-bottom">カートに商品が入っていません...。</h1>
-          <form class="card-text mb-5">
-            <h4>いつもありがとうございます。</h4>
-          </form>
-          <div class="col-lg-6 mx-auto mb-5">
-            <%= link_to "商品を見る", products_path, class: "card-link btn btn-secondary" %>
-            <%= link_to "マイページ", user_path(current_user.id), class: "card-link btn btn-primary" %>
-          </div>
-        </div>
+  <div class="jumbotron bg-secondary">
+    <div class="container">
+      <div class="row">
         <div class="col-lg-1"></div>
+          <div class="col-lg-10">
+            <div class="card card-body text-center bg-white p-3">
+              <h1 class="card-title m-5 text-danger border-bottom">現在カートに商品が入っていません...</h1>
+                <form class="card-text mb-5">
+                  <h4><br>ご利用ありがとうございます</h4>
+                </form>
+              <div class="col-lg-6 mx-auto mb-5">
+                <%= link_to "商品を見にいく", products_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-success ml-3" %>
+              </div>
+            </div>
+            <div class="col-lg-1"></div>
+          </div>
       </div>
     </div>
   </div>
 <% end %>
-            <!-- <div class="border-left" style="padding:15px;"> -->

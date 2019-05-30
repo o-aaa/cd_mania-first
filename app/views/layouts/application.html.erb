@@ -34,7 +34,9 @@
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <div class="title-admin">
-          <%= link_to "CDまにあ堂", "/" %>
+          <%= link_to "/" do %>
+          <i class="fas fa-compact-disc">CDまにあ堂</i>
+          <% end %>
         </div>
 
         <span class="nav-item-admin">
@@ -75,7 +77,9 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 
         <div class="title-kaiin">
-          <%= link_to"CDまにあ堂", "/" %>
+          <%= link_to "/" do %>
+          <i class="fas fa-compact-disc"><font face="arial unicode ms">まにあ堂</font></i>
+          <% end %>
         </div>
 
         <div class="form">
@@ -119,7 +123,9 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 
         <div class="title-user">
-          <%= link_to"CDまにあ堂", "/" %>
+          <%= link_to "/" do %>
+          <i class="fas fa-compact-disc">CDまにあ堂</i>
+          <% end %>
         </div>
 
          <div class="form">
@@ -160,6 +166,8 @@
 
 
   <%= yield %>
+
+
 
 </body>
 
