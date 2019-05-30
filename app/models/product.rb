@@ -4,6 +4,7 @@ class Product < ApplicationRecord
 	 accepts_nested_attributes_for :discs
 	 # dependent: :destroy
 	has_many :carts, dependent: :destroy
+	has_many :order_items
 	attachment :image
 
     has_many :favorites, dependent: :destroy
