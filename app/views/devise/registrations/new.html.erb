@@ -1,73 +1,66 @@
-<div class="main">
-
-  <div class="container">
-    <div class="row">
-
-      <div class="mx-auto">
-        <div class="sign_up_wrapper">
-
-          <div class="text-center py-4">
+<main>
+  <div class="jumbotron bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="card border-secondary mb-3 mx-auto" style="width: 40rem;">
+          <div class="card-body">
             <h2>新規登録画面</h2>
+              <%= devise_error_messages! %>
+
+                <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+                    <div class="field py-2">
+                      <span class="form_label">お名前</span>
+                      <%= f.text_field :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" }, placeholder:"姓", class: "short" %>
+                      <%= f.text_field :first_name, required: true, input_html: { autocomplete: "first_name" }, placeholder:"名前", class: "short" %>
+                    </div>
+
+                    <div class="field py-2">
+                      <span class="form_label">フリガナ</span>
+                      <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"セイ", class: "short" %>
+                      <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"ナマエ", class: "short" %>
+                    </div>
+
+                    <!-- ここからAddressモデルへ送るフォーム -->
+                    <%= f.fields_for :address do |a| %>
+                      <div class="field py-2">
+                        <span class="form_label">郵便番号</span>
+                        <%= a.number_field :post_num, placeholder:"◯◯◯△△△△" %>
+                      </div>
+                      <div class="field py-2">
+                        <span class="form_label">住所</span>
+                        <%= a.text_field :address, placeholder:"長野県長野市A町1-23", class: "long" %>
+                      </div>
+                    <% end %>
+                    <!-- ここまでAddressモデルへ送るフォーム -->
+
+                    <div class="field py-2">
+                      <span class="form_label">電話番号</span>
+                     <%= f.number_field :phone_num, placeholder:"◯◯◯×××△△△", required: true, input_html: { autocomplete: "phone_num" } %>
+                    </div>
+
+                    <div class="field py-2">
+                      <span class="form_label">メールアドレス</span>
+                      <%= f.email_field :email, required: true, placeholder:"◯◯◯@×××.com",  input_html: { autocomplete: "email" }, class: "long" %>
+                    </div>
+
+                    <div class="field py-2">
+                      <span class="form_label">パスワード</span>
+                      <%= f.password_field :password, required: true, placeholder:"6文字以上", input_html: { autocomplete: "new-password" } %>
+                    </div>
+
+                    <div class="field py-2">
+                      <span class="form_label">パスワード確認</span>
+                      <%= f.password_field :password_confirmation, required: true, placeholder:"もう一度入力", input_html: { autocomplete: "new-password" } %>
+                    </div>
+
+                    <div class="form-actions text-center py-2">
+                      <%= f.button :submit, "新規登録", class: "btn btn-info" %>
+                    </div>
+                <% end %>
           </div>
-
-            <%= devise_error_messages! %>
-
-          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-              <div class="field py-2">
-                <span class="form_label">お名前</span>
-                <%= f.text_field :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" }, placeholder:"姓", class: "short" %>
-                <%= f.text_field :first_name, required: true, input_html: { autocomplete: "first_name" }, placeholder:"名前", class: "short" %>
-              </div>
-
-              <div class="field py-2">
-                <span class="form_label">フリガナ</span>
-                <%= f.text_field :last_name_kana, required: true, input_html: { autocomplete: "last_name_kana" }, placeholder:"セイ", class: "short" %>
-                <%= f.text_field :first_name_kana, required: true, input_html: { autocomplete: "first_name_kana" }, placeholder:"ナマエ", class: "short" %>
-              </div>
-
-              <!-- ここからAddressモデルへ送るフォーム -->
-              <%= f.fields_for :address do |a| %>
-                <div class="field py-2">
-                  <span class="form_label">郵便番号</span>
-                  <%= a.number_field :post_num, placeholder:"◯◯◯△△△△" %>
-                </div>
-                <div class="field py-2">
-                  <span class="form_label">住所</span>
-                  <%= a.text_field :address, placeholder:"長野県長野市A町1-23", class: "long" %>
-                </div>
-              <% end %>
-              <!-- ここまでAddressモデルへ送るフォーム -->
-
-              <div class="field py-2">
-                <span class="form_label">電話番号</span>
-               <%= f.number_field :phone_num, placeholder:"◯◯◯×××△△△", required: true, input_html: { autocomplete: "phone_num" } %>
-              </div>
-
-              <div class="field py-2">
-                <span class="form_label">メールアドレス</span>
-                <%= f.email_field :email, required: true, placeholder:"◯◯◯@×××.com",  input_html: { autocomplete: "email" }, class: "long" %>
-              </div>
-
-              <div class="field py-2">
-                <span class="form_label">パスワード</span>
-                <%= f.password_field :password, required: true, placeholder:"6文字以上", input_html: { autocomplete: "new-password" } %>
-              </div>
-
-              <div class="field py-2">
-                <span class="form_label">パスワード確認</span>
-                <%= f.password_field :password_confirmation, required: true, placeholder:"もう一度入力", input_html: { autocomplete: "new-password" } %>
-              </div>
-
-              <div class="form-actions text-center py-2">
-                <%= f.button :submit, "新規登録", class: "btn btn-info" %>
-              </div>
-
-          <% end %>
-
         </div>
-      </div>
+       </div>
     </div>
   </div>
-
-</div>
+</main>
