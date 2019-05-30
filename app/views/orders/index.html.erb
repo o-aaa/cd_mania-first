@@ -1,15 +1,8 @@
+<main>  
+  <div class="jumbotron bg-warning">
+    <div class="container bg-white">
 
-<h1>カート内商品</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
-
- <!-- if @user_cart.count == 0 %> -->
-
- 
-<!-- <else %> -->
-
-    <div class="container">
         <div class="row">
-
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -36,8 +29,8 @@
                                 <%= f.select :buy_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], selected: cart.buy_count %>
                             </td>
                             <td><%= (cart.subtotal*1.08).floor %>円</td>
-                            <td><%= f.submit '変更' %></td>
-                            <td><%= link_to "削除",cart_path(cart.id), method: :delete, class: 'btn btn-danger btn-sm', role: 'button' %> </td>
+                            <td><%= f.submit '変更', class: 'btn btn-outline-success btn-sm' %></td>
+                            <td><%= link_to "削除",cart_path(cart.id), method: :delete, class: 'btn btn-outline-danger btn-sm', role: 'button' %> </td>
                         </tr>
                         <% end %>
                     <% end %>
@@ -45,15 +38,16 @@
             </table>
 
         </div>
+
         <hr color="#000000" width="80%" size="9">
 
+           <div class="table">
             <%= form_for(@order, url: confirmation_path) do |f| %>        
 
-              <div class="table">
-              <h4>お届け先住所</h4>
+              <h4>お届け先住所とお支払い方法をお選び下さい。</h4>
 
                 <div class="row">
-                 <div class="col-lg-6">
+                 <div class="col-lg-12 mt-2">
                   <table>
 
                     <thead>
@@ -70,7 +64,7 @@
                         <% @addresses.each do |address| %>
                             <tr>
 
-                                <td>〒<%= address.post_num%></td>
+                                <td>〒 <%= address.post_num%></td>
                                 <td><%= address.address%></td>
                                 <% if (address.shipping_address == 0) %>
                                   <td><%= address.user.last_name %></td>
@@ -80,36 +74,36 @@
                                   <td><%= address.delivery_first_name%></td>
                                 <% end %>
                                 <td><%= f.radio_button 'address_id', address.id %></td>
-                            <tr>
+                            </tr>
                         <% end %>
                     </tbody>
 
-                  </table>
-                 </div>
+                  </table><br>
+                    <p><%= link_to "別の住所へ発送したい方", new_address_path, class: "btn btn-outline-secondary", role: 'button' %> </p>
+                  </div>
 
-　　　　　　　     <div class="col-lg-3">
-                    <h5>お支払い方法
+　　　　　　　     <div class="col-lg-4 mt-2">
+                    <h5>お支払い方法：
                         <%= f.select :payment, Order.payments.keys.map {|k| [I18n.t("enums.order.payment.#{k}"), k]} %>
                     </h5><br>
-                    <h4>商品合計料金：<%= (@total_price*1.08).floor %>円</h4>
+                    <h4>商品の合計金額：¥ <%= (@total_price*1.08).floor %>円</h4>
                     <!-- <p>合計金額をorder_itemsに渡す</p> -->
                     <%= f.hidden_field :total_price, :value => @total_price %><br>
-                     <p><%= link_to "買い物続けるボタン", products_path,  class: "btn btn-outline-info align-items-end", role: 'button' %></p>
+                  </div>
+
+                  <div class="col-lg-2">
+                  </div>
+
+                   <div class="col-lg-4">
+                    <p><%= link_to "お買い物を続ける", products_path,  class: "btn btn-outline-secondary align-items-end", role: 'button' %></p>
+                      <%= f.submit "確認画面へ行く", class: "btn btn-outline-success pull-right mt-2" %>
+                   </div>
+
                  </div>
 
-                <div class="col-lg-1 d-flex align-items-end">
-                    <%= f.submit "確定画面へ", class: "btn btn-success pull-right" %>
-                </div>
-
-
-
-              <div class="col-lg-6">
-                    <p><%= link_to "別の住所へ発送したい方", new_address_path, class: "btn btn-outline-success", role: 'button' %> </p>
-              </div>
-             </div>
-            </div>
-           <% end %>
-            <!-- <div class="border-left" style="padding:15px;"> -->
-
+            <% end %>
+           </div>
+            
     </div>
- <!-- end %> -->
+  </div>
+</main>

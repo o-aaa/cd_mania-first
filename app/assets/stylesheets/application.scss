@@ -286,5 +286,21 @@ main {
 	margin: 60px;
 }
 
+// 商品一覧レイアウト
+
+.cover-img {
+	height: 300px;
+	display: table;
+	width: 100%;
+	background-size: cover;
+}
+
+.cover-text {
+	display: table-cell;
+	vertical-align: middle;
+  text-align: center;
+}
+
+
 
 
