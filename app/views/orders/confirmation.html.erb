@@ -62,7 +62,6 @@
                     		<td>ご請求額</td>
                     		<td>¥ <%= (@order.total_price*1.08).floor+500 %>円</td>
                     	</tr>
-                        
                     </table>
                     <p class="text-center"></p>
             </div>
@@ -81,8 +80,7 @@
                             <%= order.submit "確定", class: "btn btn-outline-success long" %>
                         <% end %>
                       </p>
-                      <!-- <td><%= link_to "確定", complete_path(@order.id, update_flag: 2), method: :post, class: "btn btn-outline-success", role: 'button' %></td> -->
-                
+
                 </div>
                 </div>
             </div>

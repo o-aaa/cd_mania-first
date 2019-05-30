@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create  
+  def create
   order_find = Order.where(user_id: current_user.id).last #追加
     if order_find.update_flag == 2 # 追加
     	@order = Order.new(order_params)
@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def complete  
+  def complete
     order = Order.where(user_id: current_user.id).last # 変更
     carts = Cart.where(user_id: current_user.id)
     carts.each do |cart|
@@ -88,21 +88,12 @@ class OrdersController < ApplicationController
       order_item.order_id = order.id
       order_item.save
     end
-    # order_items = OrderItem.where(order_id: order.id)
-    if order.update_flag = 1 #変更
       carts.each do |cart|
         cart.destroy
       end
 
-      # order.update_flag = 2 # 追加
-
       order.update(order_update_params)
       redirect_to thankyou_path
-    else
-      flash[:danger] = "カート内容の更新に失敗しました。もう一度やり直してください。"
-      order_items.delete_all
-      redirect_to mycart_path
-    end
   end
 
 private
@@ -115,10 +106,10 @@ private
     params.require(:order).permit(:payment, :delivery_status, :total_price, :address_id,
                     carts_attributes: [:id, :buy_count])
   end
-  def order_item_params  
+  def order_item_params
     params.require(:order_item).permit(:cart_id, :buy_price, :order_id)
   end
-  def order_update_params  
+  def order_update_params
     params.require(:order).permit(:update_flag)
   end
   #枚数を配列で渡すため(orders_index=>orders_confirmation)
