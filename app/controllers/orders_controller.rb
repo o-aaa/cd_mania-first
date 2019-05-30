@@ -85,6 +85,8 @@ class OrdersController < ApplicationController
     carts.each do |cart|
       order_item = OrderItem.new
       order_item.cart_id = cart.id
+      order_item.product_id = cart.product_id
+      order_item.bought_count = cart.buy_count
       order_item.buy_price = (cart.product.price*1.08).floor
       order_item.order_id = order.id
       order_item.save
@@ -107,9 +109,9 @@ private
     params.require(:order).permit(:payment, :delivery_status, :total_price, :address_id,
                     carts_attributes: [:id, :buy_count])
   end
-  def order_item_params
-    params.require(:order_item).permit(:cart_id, :buy_price, :order_id)
-  end
+  # def order_item_params
+  #   params.require(:order_item).permit(:cart_id, :buy_price, :order_id, :product_id, :bought_count)
+  # end
   def order_update_params
     params.require(:order).permit(:update_flag)
   end

@@ -56,10 +56,32 @@
 
 	<!-- ここから購入履歴(管理人は非表示) -->
 	<% if @user.user_flag != 1 %>
-		<div class="order_history">
-			<h3>購入経歴</h3>
+	<div class="order_history">
+		<h3>購入経歴</h3>
+<!-- 
+			<% @orders.each do |order| %>
+				<div class="order_history_title">
+					<% if order.delivery_status == "Shipped" %>
+						<span class="btn btn-success btn-sm"><%= order.delivery_status_i18n %></span>
+					<% else %>
+						<span class="btn btn-primary btn-sm"><%= order.delivery_status_i18n %></span>
+					<% end %>
+					<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
+					<p>合計金額：￥<%= order.total_price %></p>
+                    <p>配送先氏名：
+                    	<% if (order.address.shipping_address == 0) %>
+                    		<%= order.address.user.last_name %>
+                    		<%= order.address.user.first_name %>
+                    	<% else %>
+                    		<%= order.address.delivery_last_name %>
+                    		<%= order.address.delivery_first_name %>
+                    	<% end %>
+                    </p>
+					<p>配送先：　<%= order.address.address %></p>
+				</div>
+			<% end %> -->
 
-				<% @orders.each do |order| %>
+		<% @orders.each do |order| %>
 					<div class="order_history_title">
 						<% if order.delivery_status == "Shipped" %>
 							<span class="order_history_shipped"><%= order.delivery_status_i18n %></span>
@@ -67,21 +89,34 @@
 							<span class="order_history_shipping"><%= order.delivery_status_i18n %></span>
 						<% end %>
 						<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入</span>
-						<div class="order_history_body">
-							<p>合計金額：￥<%= order.total_price %></p>
-		                    <p>配送先氏名：
-		                    	<% if (order.address.shipping_address == 0) %>
-		                    		<%= order.address.user.last_name %>
-		                    		<%= order.address.user.first_name %>
-		                    	<% else %>
-		                    		<%= order.address.delivery_last_name %>
-		                    		<%= order.address.delivery_first_name %>
-		                    	<% end %>
-		                    </p>
-							<p>配送先：　<%= order.address.address %></p>
-						</div>
 					</div>
-			<% end %>
+					<table>
+				  <% order.order_items.each do |order_item| %>
+					<tr>
+						<td rowspan="2" class="order_history_image">
+							<%= attachment_image_tag order_item.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+						</td>
+						<td>商品名：　<%= order_item.product.product_name %></td>
+						<td>シングル/アルバム：　<%= order_item.product.disc_type_i18n %></td>
+						<td>アーティスト名：　<%= order_item.product.artist %></td>
+					</tr>
+					<tr>
+						<td>購入枚数：　<%= order_item.bought_count %>枚</td>
+						<td>小計：　￥<%= order_item.buy_price %></td>
+						<td></td>
+					</tr>
+					<tr><td colspan="4" class="order_history_border"></td></tr>
+				  <% end %>
+				<tr>
+					<td colspan="4">合計金額：￥<%= order.total_price %></td>
+				</tr>
+				<tr><td colspan="4" class="order_history_border"></td></tr>
+				<tr>
+					<td colspan="4">配送先：　<%= order.address.address %></td>
+				</tr>
+				<tr><td colspan="4" class="order_history_border"></td></tr>
+			</table>
+		<% end %>
 
 			<h3><%= link_to "過去の購入商品一覧", users_order_history_path, class:"btn" %></h3>
 	<% end %>
