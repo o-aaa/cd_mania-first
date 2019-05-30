@@ -65,13 +65,13 @@
                     		<td><h3>ご請求金額</h3></td>
                     		<td><h3>¥ <%= (@order.total_price*1.08).floor+500 %>円</h3></td>
                     	</tr>
-                        
                     </table>
                     <p class="text-center"></p>
             </div>
 
              <div class="table">
                 <div class="row">
+
                 <div class="col-lg-12 text-center pt-2">
 
                       <span><%= link_to "配送先・お支払い方法選択画面に戻る", mycart_path,  class: "btn btn-outline-secondary", role: 'button' %></span>

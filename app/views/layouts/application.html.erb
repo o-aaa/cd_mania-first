@@ -13,154 +13,158 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body text="black">
+
+    <header>
+
+      <!-- boot strap nav bar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
 
-  <header>
 
-    <!-- boot strap nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <% if user_signed_in? %>
 
+        <!-- 管理者なら -->
 
+        <% if current_user.user_flag == 1 %>
 
-      <% if user_signed_in? %>
-
-      <!-- 管理者なら -->
-
-      <% if current_user.user_flag == 1 %>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <div class="title-admin">
-          <%= link_to "CDまにあ堂", "/" %>
-        </div>
-
-        <span class="nav-item-admin">
-          <%= link_to"新規投稿", "/products/new" %>
-        </span>
-
-        <span class="nav-item-admin">
-          <%= link_to user_path(current_user.id) do %>
-          <i class="fas fa-user"></i><br>
-          マイページ
-          <% end %>
-        </span>
-
-        <span class="nav-item-admin">
-          <%= link_to "/users" do %>
-          <i class="fas fa-users"></i><br>
-          ユーザー一覧
-          <% end %>
-        </span>
-
-        <span class="nav-item-admin">
-          <%= link_to "/order_items" do %>
-          <i class="fas fa-compact-disc"></i><br>
-          販売一覧
-          <% end %>
-        </span>
-
-        <span class="nav-item-admin">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </span>
-
-      </div>
-
-      <!-- 一般ユーザー -->
-
-      <% elsif current_user.user_flag == 0 %>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-
-        <div class="title-kaiin">
-          <%= link_to"CDまにあ堂", "/" %>
-        </div>
-
-        <div class="form">
-          <%= search_form_for @search, url: products_path, :class =>"form-inline my-2 my-lg-0" do |f| %>
-            <%= f.text_field :artist_cont , placeholder:"アーティスト名検索", :class =>"form-control mr-sm-2" %>
-            <%= button_tag :type => "submit", :class =>"btn btn-outline-success my-2 my-sm-0" do %>
-              <i class="fas fa-search"></i>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <div class="title-admin">
+            <%= link_to "/" do %>
+            <i class="fas fa-compact-disc">CDまにあ堂</i>
             <% end %>
-          <% end %>
+          </div>
+
+          <span class="nav-item-admin">
+            <%= link_to"新規投稿", "/products/new" %>
+          </span>
+
+          <span class="nav-item-admin">
+            <%= link_to user_path(current_user.id) do %>
+            <i class="fas fa-user"></i><br>
+            マイページ
+            <% end %>
+          </span>
+
+          <span class="nav-item-admin">
+            <%= link_to "/users" do %>
+            <i class="fas fa-users"></i><br>
+            ユーザー一覧
+            <% end %>
+          </span>
+
+          <span class="nav-item-admin">
+            <%= link_to "/order_items" do %>
+            <i class="fas fa-compact-disc"></i><br>
+            販売一覧
+            <% end %>
+          </span>
+
+          <span class="nav-item-admin">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </span>
+
         </div>
 
+        <!-- 一般ユーザー -->
 
-        <span class="nav-item">
-          <%= link_to user_path(current_user.id) do %>
-          <i class="fas fa-user"></i><br>
-          マイページ
-          <% end %>
-        </span>
+        <% elsif current_user.user_flag == 0 %>
 
-        <span class="nav-item">
-         <%= link_to mycart_path(current_user.id) do %>
-          <i class="fas fa-cart-arrow-down"></i><br>
-          カート
-         <% end %>
-        </span>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 
-        <span>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </span>
+          <div class="title-kaiin">
+            <%= link_to "/" do %>
+            <i class="fas fa-compact-disc"><font face="arial unicode ms">CDまにあ堂</font></i>
+            <% end %>
+          </div>
 
-      </div>
+          <div class="form">
+            <%= search_form_for @search, url: products_path, :class =>"form-inline my-2 my-lg-0" do |f| %>
+              <%= f.text_field :artist_cont , placeholder:"アーティスト名検索", :class =>"form-control mr-sm-2" %>
+              <%= button_tag :type => "submit", :class =>"btn btn-outline-success my-2 my-sm-0" do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            <% end %>
+          </div>
 
+
+          <span class="nav-item">
+            <%= link_to user_path(current_user.id) do %>
+            <i class="fas fa-user"></i><br>
+            マイページ
+            <% end %>
+          </span>
+
+          <span class="nav-item">
+           <%= link_to mycart_path(current_user.id) do %>
+            <i class="fas fa-cart-arrow-down"></i><br>
+            カート
+           <% end %>
+          </span>
+
+          <span>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </span>
+
+        </div>
+
+        <% end %>
+
+
+
+
+        <!-- 上記当てはまらない人（サインインしていない人） -->
+        <% else %>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+
+          <div class="title-user">
+            <%= link_to "/" do %>
+            <i class="fas fa-compact-disc">CDまにあ堂</i>
+            <% end %>
+          </div>
+
+           <div class="form">
+            <%= search_form_for @search, url: products_path, :class =>"form-inline my-2 my-lg-0" do |f| %>
+              <%= f.text_field :artist_cont , placeholder:"アーティスト名検索", :class =>"form-control mr-sm-2" %>
+              <%= button_tag :type => "submit", :class =>"btn btn-outline-success my-2 my-sm-0" do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            <% end %>
+          </div>
+
+          <span class="nav-item">
+            <%= link_to"ログイン", "/users/sign_in" %>
+          </span>
+
+          <span>
+            <%= link_to"新規登録", "/users/sign_up" %>
+          </span>
+        </div>
+
+        <% end %>
+
+
+      </nav>
+
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
       <% end %>
 
 
+    </header>
+      <!-- margin効かない問題の対策 -->
+    <div style="height: 65px;">
+
+    </div>
 
 
-      <!-- 上記当てはまらない人（サインインしていない人） -->
-      <% else %>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-
-        <div class="title-user">
-          <%= link_to"CDまにあ堂", "/" %>
-        </div>
-
-         <div class="form">
-          <%= search_form_for @search, url: products_path, :class =>"form-inline my-2 my-lg-0" do |f| %>
-            <%= f.text_field :artist_cont , placeholder:"アーティスト名検索", :class =>"form-control mr-sm-2" %>
-            <%= button_tag :type => "submit", :class =>"btn btn-outline-success my-2 my-sm-0" do %>
-              <i class="fas fa-search"></i>
-            <% end %>
-          <% end %>
-        </div>
-
-        <span class="nav-item">
-          <%= link_to"ログイン", "/users/sign_in" %>
-        </span>
-
-        <span>
-          <%= link_to"新規登録", "/users/sign_up" %>
-        </span>
-      </div>
-
-      <% end %>
-
-
-    </nav>
-
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>">
-        <%= message %>
-      </div>
-    <% end %>
-
-
-  </header>
-    <!-- margin効かない問題の対策 -->
-  <div style="height: 65px;">
-
-  </div>
-
-
-  <%= yield %>
-
+    <%= yield %>
 </body>
 
 </html>

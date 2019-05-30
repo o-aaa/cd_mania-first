@@ -11,6 +11,24 @@
 						<span class="order_history_title_purchase"><%= order.created_at.strftime('%Y年%m月%d日') %>に購入(購入者：<%= order.address.user.last_name %><%= order.address.user.first_name %>)</span>
 					</div>
 			<div class="row">
+				<div class="col">
+						<table>
+					  <% order.order_items.each do |order_item| %>
+						<tr>
+							<td rowspan="2" class="order_history_image">
+								<%= attachment_image_tag order_item.product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", :size =>'100x100' %>
+							</td>
+							<td>商品名：　<%= order_item.product.product_name %></td>
+							<td>アーティスト名：　<%= order_item.product.artist %></td>
+						</tr>
+						<tr>
+							<td>購入枚数：　<%= order_item.bought_count %>枚</td>
+							<td></td>
+						</tr>
+						<tr><td colspan="4" class="order_history_border"></td></tr>
+					  <% end %>
+					</table>
+				</div>
 
 				<div class="col">
 						<table class="order_item_address table">
@@ -56,7 +74,9 @@
 			</div>
 		<% end %>
 	</div>
-	<%= paginate @orders, class: "paginate" %>
+	<div style="margin-left: 40%">
+		<%= paginate @orders, class: "paginate" %>
+	</div>
   <% end %>
 
 <!-- 一般ユーザーに表示 -->

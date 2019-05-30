@@ -14,6 +14,7 @@
  */
  /* Bootstrap用 */
 @import "bootstrap";
+// 全ページ適用
 
 // 新規投稿
 .main {
@@ -126,7 +127,7 @@ a{
 .userinfo_wrapper {
 	width: 90%;
 	margin: 0 auto;
-	padding-top: 100px;
+	padding-top: 60px;
 	text-align: center;
 }
 .userinfo_wrapper table {
@@ -152,7 +153,25 @@ a{
 	padding: 5px;
 	background-color: #ccc;
 	border-top: 1px solid #777;
-	border-bottom: 1px solid #777;;
+	border-bottom: 1px solid #777;
+	background-image: url("user_show_order.jpg");
+}
+.order_history_shipping {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #007Bff;
+	color: white;
+	font-size: 14px;
+}
+.order_history_shipped {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #28a745;
+	color: white;
+	font-size: 14px;
+}
+.order_history_body {
+	margin-left: 95px;
 }
 .order_history_title_purchase {
 	padding-left: 30px;
@@ -283,7 +302,6 @@ a{
 }
 
 main {
-	margin: 60px;
 }
 
 // 商品一覧レイアウト
@@ -300,7 +318,3 @@ main {
 	vertical-align: middle;
   text-align: center;
 }
-
-
-
-

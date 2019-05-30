@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 	# 検索フォーム
 	def set_search
 		@search = Product.ransack(params[:q]) #ransackタグで検索機能を実装
-		@search_products = @search.result.page(params[:page]) #結果を返す。kaminariでページャ機能つける
+		@search_products = @search.result.page(params[:page]).per(15).reverse_order #結果を返す。kaminariでページャ機能つける
   	end
 
 
